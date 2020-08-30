@@ -20,7 +20,7 @@ export default function Story({ story }: StoryProps) {
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener" onMouseEnter={prefetchUrl}>
+    <a href={url} onMouseEnter={prefetchUrl}>
       <div className="flex flex-col sm:flex-row w-full max-w-full mb-8 mt-4 px-3 max-w-full">
         <div
           className="h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out"
