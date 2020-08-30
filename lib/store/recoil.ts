@@ -18,6 +18,7 @@ export const increaseStoryCountState = selector({
     const prevStoryCount = get(storyCountState)
     set(storyCountState, prevStoryCount + PAGE_SIZE)
   },
+  get: () => {},
 })
 
 export const storyIdsState = selector({
@@ -52,7 +53,7 @@ export const metadataQuery = selectorFamily({
 
     try {
       const response = await fetch(
-        `/api/metadata?url=${encodeURIComponent(url)}`,
+        `/api/metadata?url=${encodeURIComponent(String(url))}`,
       )
 
       if (response.ok) return await response.json()
