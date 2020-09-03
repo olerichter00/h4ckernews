@@ -5,23 +5,20 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import StoryList from './storyList'
 import Spinner from './spinner'
-import { increaseStoryCountState, storiesState } from '../lib/store/recoil'
+import { increaseStoryCountState, storiesState, storyIdsState } from '../lib/store/recoil'
 
 const LOAD_MORE_SCROLL_OFFSET = 800
 
 export default function App() {
-  let stories = useRecoilValue(storiesState)
+  const stories = useRecoilValue(storiesState)
 
   const increaseStoryCount = useSetRecoilState(increaseStoryCountState)
 
-  const loadMore = useRef(throttle(() => increaseStoryCount(null), 2000))
-    .current
+  const loadMore = useRef(throttle(() => increaseStoryCount(null), 2000)).current
 
   useBottomScrollListener(loadMore, LOAD_MORE_SCROLL_OFFSET)
 
-  let firstLoadingStoryIndex = stories.findIndex(
-    story => story.state === 'loading',
-  )
+  const firstLoadingStoryIndex = stories.findIndex(story => story.state === 'loading')
 
   const isLoading = firstLoadingStoryIndex !== stories.length
 

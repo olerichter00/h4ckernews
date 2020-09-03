@@ -2,13 +2,15 @@ import Truncate from 'react-truncate'
 import { Loadable, useRecoilValueLoadable } from 'recoil'
 
 import { metadataQuery } from '../lib/store/recoil'
+import FadeTransition from './fadeTransition'
 
 type StoryProps = {
   story: Loadable<any>
+  show: Boolean
 }
 
-export default function Story({ story }: StoryProps) {
-  const { title = null, url = null } = story.contents
+export default function Story({ story, show }: StoryProps) {
+  const { title = null, url = null, score = null } = story.contents
 
   const metadata = useRecoilValueLoadable(metadataQuery(url))
 
@@ -19,23 +21,20 @@ export default function Story({ story }: StoryProps) {
     prefetch(url)
   }
 
-  const isLoading = story.state !== 'loading' && metadata.state !== 'loading'
-
   return (
     <a href={url} onMouseEnter={prefetchUrl}>
-      <div
-        className={`transition-opacity duration-1000 ease-in-out opacity-0 ${
-          isLoading ? 'opacity-100' : ''
-        }`}
-      >
+      <FadeTransition show={show && story.state !== 'loading'}>
         <div className="flex flex-col sm:flex-row w-full max-w-full mb-8 mt-4 px-3 max-w-full">
-          <div
-            className="h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out"
-            style={{
-              backgroundImage: `url('${imageUrl}')`,
-            }}
-            title={title}
-          ></div>
+          <div className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out">
+            <FadeTransition show={metadata.state !== 'loading'}>
+              <div
+                className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out"
+                style={{
+                  backgroundImage: `url('${imageUrl}')`,
+                }}
+              ></div>
+            </FadeTransition>
+          </div>
 
           <div className="h-full sm:h-32 w-full bg-white rounded-b sm:pl-3 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal">
             <div className="mb-1 text-gray-900 font-bold text-lg sm:text-md leading-tight">
@@ -43,17 +42,60 @@ export default function Story({ story }: StoryProps) {
                 {title}
               </Truncate>
             </div>
-            <div className="mb-1 text-sm text-orange-700 flexf items-center hover:underline">
-              {url && new URL(url).hostname}
+            <div className="flex mb-1 text-sm  flexf items-center ">
+              <div className="text-orange-700  mr-3">
+                <span className="inline-block align-middle mr-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                    />
+                  </svg>
+                </span>
+                <span className="inline-block align-middle">{score}</span>
+              </div>
+              <div className="text-gray-600">
+                <span className="inline-block align-middle mr-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </span>
+                <span className="inline-block align-middle hover:underline">
+                  <a href={url} target="_blank" rel="noopener">
+                    {url && new URL(url).hostname}
+                  </a>
+                </span>
+              </div>
             </div>
-            <div className="text-gray-600 text-sm mb-1 sm:flex-1">
-              <Truncate lines={3} ellipsis={'...'}>
-                {description}
-              </Truncate>
+            <div className="text-gray-700 text-sm mb-1 sm:flex-1">
+              <FadeTransition show={metadata.state !== 'loading'}>
+                <Truncate lines={3} ellipsis={'...'}>
+                  {description}
+                </Truncate>
+              </FadeTransition>
             </div>
           </div>
         </div>
-      </div>
+      </FadeTransition>
     </a>
   )
 }

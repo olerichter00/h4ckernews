@@ -7,14 +7,15 @@ type StoryListProps = {
 }
 
 export default function StoryList({ stories }: StoryListProps) {
+  const firstLoadingStoryIndex = stories.findIndex(story => story.state === 'loading')
+
   return (
     <div>
-      {stories.map(story => (
-        <Story
-          story={story}
-          key={story.contents ? story.contents.id : 'story-placeholder'}
-        />
-      ))}
+      {stories.map((story, index) => {
+        const show = firstLoadingStoryIndex === -1 || index <= firstLoadingStoryIndex
+
+        return <Story story={story} key={index} show={show} />
+      })}
     </div>
   )
 }
