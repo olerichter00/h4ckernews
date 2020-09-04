@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import App from '../components/app'
-import { fetchTopStories } from '../lib/apiClient'
+import { fetchStories } from '../lib/apiClient'
 import { useSetRecoilState } from 'recoil'
 import { allStoryIdsState } from '../lib/store/recoil'
 
@@ -28,7 +28,7 @@ export async function getServerSideProps() {
   let ids = []
   let loadingError = false
   try {
-    ids = await fetchTopStories()
+    ids = await fetchStories()
   } catch {
     loadingError = true
   }

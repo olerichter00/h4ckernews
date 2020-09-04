@@ -6,11 +6,21 @@ The app is available at [h4ckernews.vercel.app](https://h4ckernews.vercel.app/).
 
 ### Features
 
-- Preview image and description for stories
-- Link prefetching on hover
-- Infinite scroll
-- Vercel's Edge Caching for Serverless Functions
-- Installable PWA
+**Story Metadata**
+
+In order to show a preview images and a description of each story html-metadata is used to scrape the story url and lazy load the data. Since the scraping can take up to a few seconds, Vercel's Edge Caching is used to cache the results.
+
+**Infinite Scroll**
+
+More stories are loaded when scrolling to the bottom.
+
+**Link Prefetching**
+
+External links are prefetched on hover using [quicklink](https://github.com/GoogleChromeLabs/quicklink).
+
+**Installable PWA**
+
+The app is a PWA and can be installed.
 
 ### Tech
 

@@ -1,6 +1,12 @@
 import { atom, selector, selectorFamily, waitForNone } from 'recoil'
+import { DEFAULT_STORIES_TYPE } from '../apiClient'
 
-const PAGE_SIZE = 10
+export const PAGE_SIZE = 10
+
+export const storyType = atom({
+  key: 'storyType',
+  default: DEFAULT_STORIES_TYPE,
+})
 
 export const allStoryIdsState = atom({
   key: 'storyIds',
@@ -15,8 +21,11 @@ export const storyCountState = atom({
 export const increaseStoryCountState = selector({
   key: 'increaseStoryCountState',
   set: ({ get, set }) => {
-    const prevStoryCount = get(storyCountState)
-    set(storyCountState, prevStoryCount + PAGE_SIZE)
+    const newStoryCount = get(storyCountState) + PAGE_SIZE
+
+    history.replaceState({ count: newStoryCount }, '')
+
+    set(storyCountState, newStoryCount)
   },
   get: () => {},
 })
@@ -52,9 +61,7 @@ export const metadataQuery = selectorFamily({
     if (!url) return {}
 
     try {
-      const response = await fetch(
-        `/api/metadata?url=${encodeURIComponent(String(url))}`,
-      )
+      const response = await fetch(`/api/metadata?url=${encodeURIComponent(String(url))}`)
 
       if (response.ok) return await response.json()
 
