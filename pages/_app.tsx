@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
         <link href="/favicon.png" rel="icon" type="image/png" sizes="16x16" />
         <link href="/favicon.png" rel="icon" type="image/png" sizes="48x48" />
         <link href="/favicon.png" rel="apple-touch-icon"></link>
-        <meta name="theme-color" content="#c05621" />
+        <meta name="theme-color" content="#FFFFFF" />
       </Head>
       <Header />
       <Component {...pageProps} />

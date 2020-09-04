@@ -1,6 +1,6 @@
 {
-  "name": "Hackernews",
-  "short_name": "Hackernews",
+  "name": "H4ckernews",
+  "short_name": "H4ckernews",
   "icons": [{
       "src": "/favicon.png",
       "sizes": "192x192",
@@ -17,8 +17,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#FFFFFF",
-  "background_color": "#c05621",
+  "theme_color": "#c05621",
+  "background_color": "#FFFFFF",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"
