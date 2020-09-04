@@ -3,6 +3,7 @@ import { Loadable, useRecoilValueLoadable } from 'recoil'
 
 import { metadataQuery } from '../lib/store/recoil'
 import FadeTransition from './fadeTransition'
+import PreloadedLink from './preloadedLink'
 
 type StoryProps = {
   story: Loadable<any>
@@ -22,7 +23,7 @@ export default function Story({ story, show }: StoryProps) {
   }
 
   return (
-    <a href={url} onMouseEnter={prefetchUrl}>
+    <PreloadedLink url={url}>
       <FadeTransition show={show && story.state !== 'loading'}>
         <div className="flex flex-col sm:flex-row w-full max-w-full mb-8 mt-4 px-3 max-w-full">
           <div className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out">
@@ -80,9 +81,7 @@ export default function Story({ story, show }: StoryProps) {
                   </svg>
                 </span>
                 <span className="inline-block align-middle hover:underline">
-                  <a href={url} target="_blank" rel="noopener">
-                    {url && new URL(url).hostname}
-                  </a>
+                  {url && new URL(url).hostname}
                 </span>
               </div>
             </div>
@@ -96,6 +95,6 @@ export default function Story({ story, show }: StoryProps) {
           </div>
         </div>
       </FadeTransition>
-    </a>
+    </PreloadedLink>
   )
 }
