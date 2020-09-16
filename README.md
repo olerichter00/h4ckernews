@@ -8,7 +8,7 @@ The app is available at [h4ckernews.vercel.app](https://h4ckernews.vercel.app/).
 
 **Story Metadata**
 
-In order to show a preview images and a description for each story [html-metadata](https://www.npmjs.com/package/html-metadata) is used to scrape each story's page and lazy load the information. Since the scraping can take up to a few seconds, Vercel's Edge Caching is used to cache the results.
+In order to show a preview images and a description for each story [cheerio](https://cheerio.js.org/) is used to scrape each story's page and lazy load the information. Since the scraping can take up to a few seconds, Vercel's Edge Caching is used to cache the results.
 
 **Infinite Scroll**
 

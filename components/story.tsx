@@ -11,7 +11,7 @@ type StoryProps = {
 }
 
 export default function Story({ story, show }: StoryProps) {
-  const { title = null, url = null, score = null } = story.contents
+  const { title = null, url = null, score = null, text = null, id = null } = story.contents
 
   const metadata = useRecoilValueLoadable(metadataQuery(url))
 
@@ -23,7 +23,7 @@ export default function Story({ story, show }: StoryProps) {
   }
 
   return (
-    <PreloadedLink url={url}>
+    <PreloadedLink url={url || `https://news.ycombinator.com/item?id=${id}`}>
       <FadeTransition show={show && story.state !== 'loading'}>
         <div className="flex flex-col sm:flex-row w-full max-w-full mb-8 mt-4 px-3 max-w-full">
           <div className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out">
@@ -88,7 +88,7 @@ export default function Story({ story, show }: StoryProps) {
             <div className="text-gray-700 text-sm mb-1 sm:flex-1">
               <FadeTransition show={metadata.state !== 'loading'}>
                 <Truncate lines={3} ellipsis={'...'}>
-                  {description}
+                  {description || (text && unescape(text))}
                 </Truncate>
               </FadeTransition>
             </div>

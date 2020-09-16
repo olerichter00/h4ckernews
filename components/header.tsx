@@ -14,7 +14,7 @@ export default function Header() {
   }
 
   return (
-    <nav className="pl-2 pr-4 py-4 sm:py-5 shadow-md sticky top-0 bg-white">
+    <nav className="pl-2 pr-4 py-4 sm:py-5 shadow-md sticky top-0 bg-white z-10">
       <div className="max-w-3xl sm:px-2 m-auto items-center justify-between flex flex-wrap">
         <div className="flex ml-1 mr-3 items-center">
           <a href="#" onClick={() => showStories('top')}>
