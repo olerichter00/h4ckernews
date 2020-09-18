@@ -1,5 +1,5 @@
 import { atom, selector, selectorFamily, waitForNone } from 'recoil'
-import { DEFAULT_STORIES_TYPE } from '../apiClient'
+import { DEFAULT_STORIES_TYPE, fetchStories } from '../apiClient'
 
 export const PAGE_SIZE = 10
 
@@ -8,9 +8,11 @@ export const storyType = atom({
   default: DEFAULT_STORIES_TYPE,
 })
 
-export const allStoryIdsState = atom({
-  key: 'storyIds',
-  default: [],
+export const storyIdsState = selector({
+  key: 'storyIdsState',
+  get: async ({ get }) => {
+    return await fetchStories({ type: get(storyType) })
+  },
 })
 
 export const storyCountState = atom({
@@ -20,20 +22,13 @@ export const storyCountState = atom({
 
 export const increaseStoryCountState = selector({
   key: 'increaseStoryCountState',
+  get: () => {},
   set: ({ get, set }) => {
     const newStoryCount = get(storyCountState) + PAGE_SIZE
 
     history.replaceState({ count: newStoryCount }, '')
 
     set(storyCountState, newStoryCount)
-  },
-  get: () => {},
-})
-
-export const storyIdsState = selector({
-  key: 'currentStoryIds',
-  get: ({ get }) => {
-    return get(allStoryIdsState).slice(0, get(storyCountState))
   },
 })
 
@@ -78,7 +73,7 @@ export const storiesState = selector({
   get: ({ get }) => {
     if (!process.browser) return []
 
-    const ids = get(storyIdsState)
+    const ids = get(storyIdsState).slice(0, get(storyCountState))
     const stories = get(waitForNone(ids.map(id => storyQuery(id))))
 
     return stories

@@ -4,6 +4,7 @@ import { Loadable, useRecoilValueLoadable } from 'recoil'
 import { metadataQuery } from '../lib/store/recoil'
 import FadeTransition from './fadeTransition'
 import PreloadedLink from './preloadedLink'
+import { useState } from 'react'
 
 type StoryProps = {
   story: Loadable<any>
@@ -13,14 +14,11 @@ type StoryProps = {
 export default function Story({ story, show }: StoryProps) {
   const { title = null, url = null, score = null, text = null, id = null } = story.contents
 
+  const [faviconLoadError, setFaviconLoadError] = useState(false)
+
   const metadata = useRecoilValueLoadable(metadataQuery(url))
 
-  const { description = null, imageUrl = null } = metadata.contents
-
-  const prefetchUrl = () => {
-    const { prefetch } = require('quicklink')
-    prefetch(url)
-  }
+  const { description = null, imageUrl = null, favicon = null } = metadata.contents
 
   return (
     <PreloadedLink url={url || `https://news.ycombinator.com/item?id=${id}`}>
@@ -63,27 +61,40 @@ export default function Story({ story, show }: StoryProps) {
                 </span>
                 <span className="inline-block align-middle">{score}</span>
               </div>
-              <div className="text-gray-600">
-                <span className="inline-block align-middle mr-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </span>
-                <span className="inline-block align-middle hover:underline">
-                  {url && new URL(url).hostname}
-                </span>
-              </div>
+              {url && (
+                <div className="text-gray-600">
+                  <span className="inline-block align-middle mr-1">
+                    {favicon && !faviconLoadError ? (
+                      <span>
+                        <img
+                          className="h-3 w-3"
+                          src={favicon}
+                          onError={() => setFaviconLoadError(true)}
+                        />
+                      </span>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    )}
+                  </span>
+
+                  <span className="inline-block align-middle hover:underline">
+                    {new URL(url).hostname}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="text-gray-700 text-sm mb-1 sm:flex-1">
               <FadeTransition show={metadata.state !== 'loading'}>

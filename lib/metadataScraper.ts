@@ -7,7 +7,12 @@ export const scrape = async url => {
 
   const page = cheerio.load(html)
 
-  return { title: title(page), description: description(page), imageUrl: imageUrl(page, url) }
+  return {
+    title: title(page),
+    description: description(page),
+    imageUrl: imageUrl(page, url),
+    favicon: favicon(page, url),
+  }
 }
 
 const title = page => page("meta[property='og:title']").attr('content')
@@ -23,4 +28,13 @@ const imageUrl = (page, url) => {
     : `${new URL(url).origin}/${firstImageUrl}`
 
   return ogImage || firstImageFullUrl
+}
+
+const favicon = (page, url) => {
+  const icon = page("link[rel='icon']").attr('href')
+  const urlRegExp = new RegExp('^(?:[a-z]+:)?//', 'i')
+
+  if (!icon) return null
+
+  return urlRegExp.test(icon) ? icon : `${new URL(url).origin}${icon}`
 }
