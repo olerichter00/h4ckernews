@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil'
 import StoryList from './storyList'
 import { increaseStoryCountState } from '../lib/store/recoil'
 
-const LOAD_MORE_SCROLL_OFFSET = 800
+const LOAD_MORE_SCROLL_OFFSET = 1600
 
 export default function App() {
   const increaseStoryCount = useSetRecoilState(increaseStoryCountState)
