@@ -19,6 +19,7 @@
     "react": "16.13.1",
     "react-bottom-scroll-listener": "^4.1.0",
     "react-dom": "16.13.1",
+    "react-headroom": "^3.0.0",
     "react-truncate": "^2.4.0",
     "recoil": "^0.0.10",
     "tailwindcss": "^1.6.2"

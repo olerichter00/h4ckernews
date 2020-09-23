@@ -24,10 +24,10 @@ export default function Story({ story, show }: StoryProps) {
     <PreloadedLink url={url || `https://news.ycombinator.com/item?id=${id}`}>
       <FadeTransition show={show && story.state !== 'loading'}>
         <div className="flex flex-col sm:flex-row w-full max-w-full mb-8 mt-4 px-3 max-w-full">
-          <div className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out">
+          <div className="overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out">
             <FadeTransition show={metadata.state !== 'loading'}>
               <div
-                className="overflow-hidden h-32 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out"
+                className="overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-300 ease-in-out"
                 style={{
                   backgroundImage: `url('${imageUrl}')`,
                 }}
