@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 
-import { systemColorScheme } from '../lib/utils'
-
-type ColorScheme = 'dark' | 'light'
+import { systemColorScheme, ColorScheme } from '../lib/utils'
 
 export default function useColorScheme(): [ColorScheme, Function] {
   const [cookies, setCookies] = useCookies(['colorScheme'])

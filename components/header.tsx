@@ -3,6 +3,7 @@ import Headroom from 'react-headroom'
 
 import { storyTypeState } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
+import { backgroundColorClass } from '../lib/utils'
 
 export default function Header() {
   const [type, setType] = useRecoilState(storyTypeState)
@@ -13,11 +14,13 @@ export default function Header() {
     setType(type)
   }
 
-  const backgroundColorClass = colorScheme === 'light' ? 'bg-gray-100' : 'bg-gray-900'
-
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav className={`pl-2 pr-4 py-3 shadow-lg sticky top-0 z-10 ${backgroundColorClass}`}>
+      <nav
+        className={`pl-2 pr-4 py-3 shadow-lg sticky top-0 z-10 ${backgroundColorClass(
+          colorScheme,
+        )}`}
+      >
         <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-md font-semibold flex flex-no-wrap">
           <div className="flex ml-1 mr-3 items-center">
             <a href="#" onClick={() => showStories('top')}>
