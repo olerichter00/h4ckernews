@@ -1,9 +1,13 @@
 import { atom, selector, selectorFamily, waitForNone } from 'recoil'
 import { DEFAULT_STORIES_TYPE, fetchStories } from '../apiClient'
+import Cookies from 'js-cookie'
 
 export const PAGE_SIZE = 10
+const COOKIE_SCHEME_NAME = 'colorScheme'
 
-export const storyType = atom({
+const getDefaultScheme = () => Cookies.get(COOKIE_SCHEME_NAME)
+
+export const storyTypeState = atom({
   key: 'storyType',
   default: DEFAULT_STORIES_TYPE,
 })
@@ -11,7 +15,7 @@ export const storyType = atom({
 export const storyIdsState = selector({
   key: 'storyIdsState',
   get: async ({ get }) => {
-    return await fetchStories({ type: get(storyType) })
+    return await fetchStories({ type: get(storyTypeState) })
   },
 })
 

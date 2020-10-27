@@ -4,10 +4,12 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+* {
+  box-sizing: border-box;
 }
 
 a {
@@ -15,8 +17,20 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+a:hover {
+  @apply text-primary-700;
+}
+
+button {
+  @apply outline-none;
+}
+
+button:hover {
+  @apply outline-none;
+}
+
+button:focus {
+  @apply outline-none;
 }
 
 .animate-spin {
@@ -26,7 +40,6 @@ a {
     from {
       transform: rotate(0deg);
     }
-
     to {
       transform: rotate(360deg);
     }

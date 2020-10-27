@@ -15,9 +15,5 @@ export default function App() {
 
   useBottomScrollListener(loadMore, LOAD_MORE_SCROLL_OFFSET)
 
-  return (
-    <div className="max-w-full overflow-hidden">
-      <StoryList />
-    </div>
-  )
+  return <StoryList />
 }

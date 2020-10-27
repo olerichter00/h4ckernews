@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-export default function PreloadedLink({ children, url }) {
+export default function PreloadedLink({ children, url, className }) {
   const [timer, setTimer] = useState(null)
 
-  const onMouseEnter = () => setTimer(setTimeout(prefetchUrl, 500))
+  const onMouseEnter = () => setTimer(setTimeout(prefetchUrl, 100))
 
   const onMouseLeave = () => clearTimeout(timer)
 
@@ -22,6 +22,7 @@ export default function PreloadedLink({ children, url }) {
       rel="noopener"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      className={className}
     >
       {children}
     </a>

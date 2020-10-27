@@ -3,12 +3,12 @@ import { useRecoilValueLoadable } from 'recoil'
 
 import Spinner from './spinner'
 import Story from './story'
-import { storyType } from '../lib/store/recoil'
+import { storyTypeState } from '../lib/store/recoil'
 import { storiesState } from '../lib/store/recoil'
 
 export default function StoryList() {
   const stories = useRecoilValueLoadable(storiesState)
-  const type = useRecoilValue(storyType)
+  const type = useRecoilValue(storyTypeState)
 
   switch (stories.state) {
     case 'hasValue':
@@ -16,7 +16,7 @@ export default function StoryList() {
       const firstLoadingStoryIndex = stories.contents.findIndex(story => story.state === 'loading')
 
       return (
-        <div>
+        <div className="mx-3">
           {/* @ts-ignore */}
           {stories.contents.map((story, index) => {
             const show = firstLoadingStoryIndex === -1 || index <= firstLoadingStoryIndex
