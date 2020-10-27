@@ -13,6 +13,14 @@ type StoryProps = {
 
 export default function Story({ story, show }: StoryProps) {
   const { title = null, url = null, score = null, text = null, id = null } = story.contents
+  const [titleLines, setTitleLines] = useState(1)
+  const descriptionLines = 4 - titleLines
+
+  const onTruncateTitle = truncated => {
+    if (!truncated) return
+
+    setTitleLines(2)
+  }
 
   const [faviconLoadError, setFaviconLoadError] = useState(false)
 
@@ -27,7 +35,7 @@ export default function Story({ story, show }: StoryProps) {
         className="hover:text-current"
       >
         <FadeTransition show={show && story.state !== 'loading'}>
-          <div className="flex flex-col sm:flex-row w-full max-w-full my-4 max-w-full">
+          <div className="flex flex-col sm:flex-row w-full max-w-full my-5 max-w-full">
             <FadeTransition show={metadata.state !== 'loading'}>
               <div
                 className="overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-500 ease-in-out"
@@ -40,13 +48,13 @@ export default function Story({ story, show }: StoryProps) {
             <div className="h-full sm:h-32 w-full rounded-b sm:pl-3 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal">
               <a>
                 <div className="mb-1 text-neutral font-bold text-lg sm:text-md leading-tight">
-                  <Truncate lines={2} ellipsis={'...'}>
+                  <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
                     {title}
                   </Truncate>
                 </div>
               </a>
 
-              <div className="flex mb-1 text-sm  flexf items-center ">
+              <div className="flex mb-1 text-smitems-center ">
                 <div className="text-primary-700 mr-3">
                   <span className="inline-block align-middle mr-1">
                     <svg
@@ -103,7 +111,7 @@ export default function Story({ story, show }: StoryProps) {
               </div>
               <div className="text-neutral text-sm mb-1 sm:flex-1">
                 <FadeTransition show={metadata.state !== 'loading'}>
-                  <Truncate lines={2} ellipsis={'...'}>
+                  <Truncate lines={descriptionLines} ellipsis={'...'}>
                     {description || (text && unescape(text))}
                   </Truncate>
                 </FadeTransition>
