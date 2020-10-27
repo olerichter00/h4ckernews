@@ -1,7 +1,7 @@
 import React, { ReactChildren, ReactChild } from 'react'
 
 import Header from '../components/header'
-import useColorScheme from './useColorScheme'
+import useColorScheme from '../hooks/useColorScheme'
 
 type LayoutProps = { children: ReactChildren | ReactChild }
 

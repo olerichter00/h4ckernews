@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 
-export default function useColorScheme(): [String, Function] {
-  const [cookies, setCookies] = useCookies(['colorScheme'])
-  const [colorScheme, setColorScheme] = useState('')
+import { systemColorScheme } from '../lib/utils'
 
-  useEffect(() => setColorScheme(cookies.colorScheme))
+type ColorScheme = 'dark' | 'light'
+
+export default function useColorScheme(): [ColorScheme, Function] {
+  const [cookies, setCookies] = useCookies(['colorScheme'])
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('dark')
+
+  useEffect(() => {
+    const initialColorScheme = cookies.colorScheme || systemColorScheme()
+
+    setColorScheme(initialColorScheme)
+  })
 
   const switchColorScheme = () => {
     const newColorScheme = colorScheme === 'dark' ? 'light' : 'dark'

@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 
 import { storyTypeState } from '../lib/store/recoil'
-import useColorScheme from './useColorScheme'
+import useColorScheme from '../hooks/useColorScheme'
 
 export default function Header() {
   const [type, setType] = useRecoilState(storyTypeState)
