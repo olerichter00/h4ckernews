@@ -10,8 +10,8 @@ function MyApp({ Component, pageProps }) {
     <CookiesProvider>
       <RecoilRoot>
         <Head>
-          <title>Hackernews</title>
-          <meta name="description" content="Hackernews" />
+          <title>H4ckernews</title>
+          <meta name="description" content="A beautiful hackernews client" />
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"

@@ -29,3 +29,4 @@ The app is a PWA and can be installed.
 - [Recoil](https://recoiljs.org/)
 - [Vercel Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)
 - [quicklink](https://github.com/GoogleChromeLabs/quicklink)
+- [Headroom.js](https://wicky.nillia.ms/headroom.js/)
