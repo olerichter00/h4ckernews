@@ -3,7 +3,7 @@ import { useBottomScrollListener } from 'react-bottom-scroll-listener'
 import throttle from 'lodash.throttle'
 import { useSetRecoilState } from 'recoil'
 
-import StoryList from './storyList'
+import StoryList from './stories/storyList'
 import { increaseStoryCountState } from '../lib/store/recoil'
 
 const LOAD_MORE_SCROLL_OFFSET = 1600

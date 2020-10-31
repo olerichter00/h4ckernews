@@ -1,10 +1,10 @@
-import { Loadable, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { useRecoilValueLoadable } from 'recoil'
 
-import Spinner from './spinner'
+import Spinner from '../common/spinner'
 import Story from './story'
-import { storyTypeState } from '../lib/store/recoil'
-import { storiesState } from '../lib/store/recoil'
+import { storyTypeState } from '../../lib/store/recoil'
+import { storiesState } from '../../lib/store/recoil'
 
 export default function StoryList() {
   const stories = useRecoilValueLoadable(storiesState)
