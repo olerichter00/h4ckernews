@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav className={`pl-2 pr-4 py-3 shadow-lg sticky top-0 z-10 ${backgroundColorClass}`}>
+      <nav className={`pl-2 pr-4 py-2 sm:py-3 shadow-lg sticky top-0 z-10 ${backgroundColorClass}`}>
         <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-md font-semibold flex flex-no-wrap">
           <div className="flex ml-1 mr-3 items-center">
             <a href="#" onClick={() => showStories('top')}>

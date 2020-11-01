@@ -24,6 +24,7 @@ export default function Story({ story, show }: StoryProps) {
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const { isMobile } = useBreakpoint()
 
+  const itemUrl = `https://news.ycombinator.com/item?id=${id}`
   const maxLines = isMobile ? MAX_LINES_MOBILE : MAX_LINES_DEKSTOP
   const descriptionLines = maxLines - titleLines
 
@@ -41,10 +42,7 @@ export default function Story({ story, show }: StoryProps) {
   const { description = unescapedText, imageUrl = null, favicon = null } = metadata.contents
 
   return (
-    <PreloadedLink
-      url={url || `https://news.ycombinator.com/item?id=${id}`}
-      className="hover:text-current"
-    >
+    <PreloadedLink url={url || itemUrl} className="hover:text-current">
       <FadeTransition show={show && story.state !== 'loading'}>
         <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
           <StoryImage show={metadata.state !== 'loading'} imageUrl={imageUrl} />
@@ -60,6 +58,7 @@ export default function Story({ story, show }: StoryProps) {
             faviconLoadError={faviconLoadError}
             setFaviconLoadError={setFaviconLoadError}
             metadataState={metadata.state}
+            commentsUrl={itemUrl}
           />
         </div>
       </FadeTransition>
