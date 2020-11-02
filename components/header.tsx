@@ -45,7 +45,7 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex ml-1 mr-3 items-center">
+          <div className="flex ml-1 ml-3 items-center">
             <div className="sm:block ml-3 mt-2">
               <button onClick={() => switchColorScheme()}>
                 {colorScheme === 'light' ? (
@@ -82,7 +82,7 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="hidden sm:block ml-4">
+            <div className="hidden sm:block ml-3">
               <a href="https://github.com/olerichter00/h4ckernews" target="_blank" rel="noopener">
                 <span className="text-md ">About</span>
               </a>

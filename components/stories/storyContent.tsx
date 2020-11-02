@@ -1,3 +1,4 @@
+import React from 'react'
 import Truncate from 'react-truncate'
 import FadeTransition from '../common/fadeTransition'
 
@@ -60,63 +61,62 @@ export default function Story({
         </div>
 
         {url && (
-          <div className="text-gray-600 mr-4">
-            <span className="inline-block align-middle mr-1">
-              {favicon && !faviconLoadError ? (
-                <span>
-                  <img
-                    className="h-3 w-3"
-                    src={favicon}
-                    onError={() => setFaviconLoadError(true)}
-                  />
-                </span>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              )}
-            </span>
-
-            <span className="inline-block align-middle hover:underline">
-              {new URL(url).hostname}
-            </span>
-          </div>
-        )}
-        {commentsUrl && (
-          <div className="text-gray-600">
-            <a href={commentsUrl}>
+          <div className="text-gray-600 mr-3">
+            <a href={url}>
               <span className="inline-block align-middle mr-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                  />
-                </svg>
+                {favicon && !faviconLoadError ? (
+                  <span>
+                    <img
+                      className="h-3 w-3"
+                      src={favicon}
+                      onError={() => setFaviconLoadError(true)}
+                    />
+                  </span>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                )}
               </span>
 
-              <span className="inline-block align-middle hover:underline">Comments</span>
+              <span className="inline-block align-middle">{new URL(url).hostname}</span>
             </a>
           </div>
         )}
+
+        <div className="text-gray-600 mr-3">
+          <a href={commentsUrl}>
+            <span className="inline-block align-middle mr-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                />
+              </svg>
+            </span>
+
+            <span className="inline-block align-middle">Comments</span>
+          </a>
+        </div>
       </div>
       <div className="mb-1 sm:flex-1">
         <FadeTransition show={metadataState !== 'loading'}>
