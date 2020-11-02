@@ -1,7 +1,6 @@
-import Truncate from 'react-truncate'
-import { Loadable, useRecoilValueLoadable } from 'recoil'
+import { useRecoilState, Loadable, useRecoilValueLoadable } from 'recoil'
 
-import { metadataQuery } from '../../lib/store/recoil'
+import { metadataQuery, filterState } from '../../lib/store/recoil'
 import FadeTransition from '../common/fadeTransition'
 import PreloadedLink from '../common/preloadedLink'
 import StoryImage from './storyImage'
@@ -14,6 +13,8 @@ const MAX_LINES_DEKSTOP = 4
 const MIN_TITLE_LINES = 1
 const MAX_TITLE_LINES = 2
 
+const SCORE_THRESHOLD = 100
+const COMMENTS_THRESHOLD = 100
 type StoryProps = {
   story: Loadable<any>
   show: Boolean
@@ -30,6 +31,7 @@ export default function Story({ story, show }: StoryProps) {
   } = story.contents
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const { isMobile } = useBreakpoint()
+  const [filter] = useRecoilState(filterState)
 
   const itemUrl = `https://news.ycombinator.com/item?id=${id}`
   const maxLines = isMobile ? MAX_LINES_MOBILE : MAX_LINES_DEKSTOP
@@ -48,9 +50,11 @@ export default function Story({ story, show }: StoryProps) {
   const unescapedText = text && unescape(text)
   const { description = unescapedText, imageUrl = null, favicon = null } = metadata.contents
 
+  const hideStory = filter && score < SCORE_THRESHOLD && descendants < COMMENTS_THRESHOLD
+
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <FadeTransition show={show && story.state !== 'loading'}>
+      <FadeTransition show={show && story.state !== 'loading'} hide={hideStory}>
         <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
           <StoryImage show={metadata.state !== 'loading'} imageUrl={imageUrl} />
           <StoryContent

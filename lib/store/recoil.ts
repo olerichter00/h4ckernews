@@ -1,11 +1,13 @@
 import { atom, selector, selectorFamily, waitForNone } from 'recoil'
 import { DEFAULT_STORIES_TYPE, fetchStories } from '../apiClient'
-import Cookies from 'js-cookie'
 
-export const PAGE_SIZE = 10
-const COOKIE_SCHEME_NAME = 'colorScheme'
+export const PAGE_SIZE = 15
+export const FILTER_PAGE_SIZE = 30
 
-const getDefaultScheme = () => Cookies.get(COOKIE_SCHEME_NAME)
+export const filterState = atom({
+  key: 'filterType',
+  default: false,
+})
 
 export const storyTypeState = atom({
   key: 'storyType',
@@ -28,7 +30,8 @@ export const increaseStoryCountState = selector({
   key: 'increaseStoryCountState',
   get: () => {},
   set: ({ get, set }) => {
-    const newStoryCount = get(storyCountState) + PAGE_SIZE
+    const pageSize = get(filterState) ? FILTER_PAGE_SIZE : PAGE_SIZE
+    const newStoryCount = get(storyCountState) + pageSize
 
     history.replaceState({ count: newStoryCount }, '')
 
