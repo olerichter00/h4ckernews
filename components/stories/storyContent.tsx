@@ -15,6 +15,7 @@ type StoryProps = {
   setFaviconLoadError: Function
   metadataState: String
   commentsUrl: string
+  commentsCount: number
 }
 
 export default function Story({
@@ -30,6 +31,7 @@ export default function Story({
   setFaviconLoadError,
   metadataState,
   commentsUrl,
+  commentsCount,
 }: StoryProps) {
   return (
     <div className="h-full sm:h-32 w-full rounded-b sm:pl-3 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal text-sm">
@@ -114,7 +116,7 @@ export default function Story({
               </svg>
             </span>
 
-            <span className="inline-block align-middle">Comments</span>
+            <span className="inline-block align-middle">{commentsCount} Comments</span>
           </a>
         </div>
       </div>

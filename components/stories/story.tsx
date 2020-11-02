@@ -20,7 +20,14 @@ type StoryProps = {
 }
 
 export default function Story({ story, show }: StoryProps) {
-  const { title = null, url = null, score = null, text = null, id = null } = story.contents
+  const {
+    title = null,
+    url = null,
+    score = null,
+    text = null,
+    id = null,
+    descendants = null,
+  } = story.contents
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const { isMobile } = useBreakpoint()
 
@@ -59,6 +66,7 @@ export default function Story({ story, show }: StoryProps) {
             setFaviconLoadError={setFaviconLoadError}
             metadataState={metadata.state}
             commentsUrl={itemUrl}
+            commentsCount={descendants}
           />
         </div>
       </FadeTransition>
