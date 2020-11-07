@@ -47,7 +47,7 @@ export default function Story({ story, show }: StoryProps) {
 
   const metadata = useRecoilValueLoadable(metadataQuery(url))
 
-  const unescapedText = text && unescape(text)
+  const unescapedText = unescape(text || '').replace(/(<([^>]+)>)/gi, '')
   const { description = unescapedText, imageUrl = null, favicon = null } = metadata.contents
 
   const hideStory = filter && score < SCORE_THRESHOLD && descendants < COMMENTS_THRESHOLD
@@ -56,7 +56,11 @@ export default function Story({ story, show }: StoryProps) {
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
       <FadeTransition show={show && story.state !== 'loading'} hide={hideStory}>
         <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
-          <StoryImage show={metadata.state !== 'loading'} imageUrl={imageUrl} />
+          <StoryImage
+            placeholderText={title}
+            show={metadata.state !== 'loading'}
+            imageUrl={imageUrl || favicon}
+          />
           <StoryContent
             titleLines={titleLines}
             descriptionLines={descriptionLines}

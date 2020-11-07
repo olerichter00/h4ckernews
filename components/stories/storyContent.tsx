@@ -2,7 +2,7 @@ import React from 'react'
 import Truncate from 'react-truncate'
 import FadeTransition from '../common/fadeTransition'
 
-type StoryProps = {
+type StoryContentProps = {
   titleLines: Number
   descriptionLines: Number
   onTruncateTitle: Function
@@ -18,7 +18,7 @@ type StoryProps = {
   commentsCount: number
 }
 
-export default function Story({
+export default function StoryContent({
   titleLines,
   descriptionLines,
   onTruncateTitle,
@@ -32,10 +32,13 @@ export default function Story({
   metadataState,
   commentsUrl,
   commentsCount,
-}: StoryProps) {
+}: StoryContentProps) {
   return (
-    <div className="h-full sm:h-32 w-full rounded-b sm:pl-3 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal text-sm">
-      <div className="mb-1 text-neutral font-bold text-lg sm:text-md leading-tight hover:text-primary-700">
+    <div
+      style={{ marginTop: '0.1rem' }}
+      className="h-full sm:h-32 w-full rounded-b sm:pl-4 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal text-sm"
+    >
+      <div className="mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary-700">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>

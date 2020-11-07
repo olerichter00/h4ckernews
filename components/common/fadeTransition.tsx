@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactChildren, ReactChild } from 'react'
 
 type FadeTransitionProps = {
-  children: JSX.Element
+  children: ReactChildren | ReactChild
   show: Boolean
   hide?: Boolean
 }
