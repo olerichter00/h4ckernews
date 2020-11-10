@@ -59,17 +59,26 @@ export const storyQuery = selectorFamily({
 
 export const metadataQuery = selectorFamily({
   key: 'metadataQuery',
-  get: url => async () => {
-    if (!url) return {}
+  get: id => async ({ get }) => {
+    const { url, title } = get(await storyQuery(id))
+
+    const itemUrl = `https://news.ycombinator.com/item?id=${id.toString()}`
+    const storyUrl = String(url || itemUrl)
+
+    if (!(storyUrl && title)) return {}
+
+    const keywords = encodeURIComponent(title.split(' '))
 
     try {
-      const response = await fetch(`/api/metadata?url=${encodeURIComponent(String(url))}`)
+      const response = await fetch(
+        `/api/metadata?url=${encodeURIComponent(storyUrl)}&keywords=${keywords}`,
+      )
 
       if (response.ok) return await response.json()
 
       throw new Error()
     } catch {
-      console.warn(`Couldn't fetch metadata for ${String(url)}.`)
+      console.warn(`Couldn't fetch metadata for ${storyUrl}.`)
       return {}
     }
   },

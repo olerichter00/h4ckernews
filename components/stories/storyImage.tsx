@@ -1,28 +1,43 @@
+import { useState, useEffect } from 'react'
 import FadeTransition from '../common/fadeTransition'
 
 type StoryImageProps = {
-  imageUrl: string
-  show: Boolean
-  placeholderText?: string
+  imageUrls: [string]
 }
 
-export default function StoryImage({ imageUrl, show, placeholderText }: StoryImageProps) {
+export default function StoryImage({ imageUrls }: StoryImageProps) {
+  const [imageIndex, setImageIndex] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+
+  const onError = () => {
+    if (imageIndex === imageUrls.length - 1) {
+      setLoaded(true)
+      return
+    }
+
+    setImageIndex(imageIndex + 1)
+  }
+
+  useEffect(() => {
+    if (imageUrls && imageUrls.length <= 0) setLoaded(true)
+  }, [imageUrls])
+
+  const onLoad = () => {
+    setLoaded(true)
+  }
+
   return (
-    <FadeTransition show={show}>
-      <div
-        className="flex justify-center flex-col overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none bg-cover bg-center rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-500 ease-in-out"
-        style={{
-          backgroundImage: `url('${imageUrl}')`,
-        }}
-      >
-        {!imageUrl && (
-          <div
-            className="pt-10 mx-auto text-white font-semibold"
-            style={{ fontSize: '9rem', lineHeight: 1, marginLeft: '-10px' }}
-          >
-            {placeholderText}
-          </div>
-        )}
+    <FadeTransition show={loaded}>
+      <div className="flex justify-center flex-col overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-500 ease-in-out">
+        {imageUrls && imageUrls[imageIndex] ? (
+          <img
+            src={imageUrls[imageIndex]}
+            className="h-40 w-full"
+            style={{ objectFit: 'cover' }}
+            onError={onError}
+            onLoad={onLoad}
+          />
+        ) : null}
       </div>
     </FadeTransition>
   )
