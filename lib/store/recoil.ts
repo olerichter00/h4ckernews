@@ -4,20 +4,35 @@ import { DEFAULT_STORIES_TYPE, fetchStories } from '../apiClient'
 export const PAGE_SIZE = 15
 export const FILTER_PAGE_SIZE = 30
 
+export const forceUpdateState = atom({
+  key: 'forceUpdateState',
+  default: 0,
+})
+
 export const filterState = atom({
   key: 'filterType',
   default: false,
 })
 
-export const storyTypeState = atom({
-  key: 'storyType',
+export const typeState = atom({
+  key: 'typeType',
   default: DEFAULT_STORIES_TYPE,
+})
+
+export const storyTypeState = selector({
+  key: 'storyTypeState',
+  get: ({ get }) => get(typeState),
+  set: ({ set, get }, newValue) => {
+    set(typeState, newValue)
+    set(forceUpdateState, get(forceUpdateState) + 1)
+  },
 })
 
 export const storyIdsState = selector({
   key: 'storyIdsState',
   get: async ({ get }) => {
-    return await fetchStories({ type: get(storyTypeState) })
+    get(forceUpdateState)
+    return await fetchStories({ type: get(typeState) })
   },
 })
 
