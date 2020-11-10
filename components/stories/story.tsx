@@ -8,8 +8,7 @@ import StoryContent from './storyContent'
 import { useState } from 'react'
 import useBreakpoint from '../../hooks/useBreakpoint'
 
-const MAX_LINES_MOBILE = 5
-const MAX_LINES_DEKSTOP = 4
+const MAX_LINES_DEKSTOP = 5
 const MIN_TITLE_LINES = 1
 const MAX_TITLE_LINES = 2
 const MOBILE_TITLE_LINES = 4
@@ -36,7 +35,7 @@ export default function Story({ story, show }: StoryProps) {
   const [filter] = useRecoilState(filterState)
 
   const itemUrl = `https://news.ycombinator.com/item?id=${id}`
-  const maxLines = isMobile ? MAX_LINES_MOBILE : MAX_LINES_DEKSTOP
+  const maxLines = MAX_LINES_DEKSTOP
   const descriptionLines = maxLines - titleLines
 
   const onTruncateTitle = truncated => {
@@ -61,7 +60,7 @@ export default function Story({ story, show }: StoryProps) {
           <StoryImage imageUrls={imageUrls} />
           <StoryContent
             titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
-            descriptionLines={isMobile ? MOBILE_TITLE_LINES : descriptionLines}
+            descriptionLines={isMobile ? MOBILE_DESCRIPTION_LINES : descriptionLines}
             onTruncateTitle={onTruncateTitle}
             title={title}
             description={description}

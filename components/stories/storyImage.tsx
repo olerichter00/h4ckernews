@@ -28,11 +28,14 @@ export default function StoryImage({ imageUrls }: StoryImageProps) {
 
   return (
     <FadeTransition show={loaded}>
-      <div className="flex justify-center flex-col overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-500 ease-in-out">
+      <div
+        className="flex justify-center flex-col overflow-hidden h-40 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none rounded-md bg-gray-200 hover:opacity-75 transition-opacity duration-500 ease-in-out"
+        style={{ minWidth: '200px', minHeight: '138px' }}
+      >
         {imageUrls && imageUrls[imageIndex] ? (
           <img
             src={imageUrls[imageIndex]}
-            className="h-40 w-full"
+            className="min-h-full min-w-full"
             style={{ objectFit: 'cover' }}
             onError={onError}
             onLoad={onLoad}
