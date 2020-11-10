@@ -3,7 +3,7 @@ const IMAGE_SEARCH_BASE_URL =
 
 const fetchImagesFromSearch = async keywords => {
   // Return cute panda image in development mode
-  if (process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     return [
       'https://www.tagesspiegel.de/images/grosser-panda-meng-meng_zoo-berlin/24195486/2-format43.jpg',
     ]
