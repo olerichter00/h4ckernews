@@ -1,6 +1,7 @@
 import cheerio from 'cheerio'
 
 import { images } from './imageScraper'
+import { description } from './descriptionScraper'
 
 export const scrape = async (url, keywords) => {
   const response = await fetch(url)
@@ -16,13 +17,6 @@ export const scrape = async (url, keywords) => {
 }
 
 const title = page => page("meta[property='og:title']").attr('content')
-
-const description = page => {
-  const description = page("meta[property='og:description']").attr('content')
-  const strippedDescription = description && description.replace(/(<([^>]+)>)/gi, '')
-
-  return strippedDescription
-}
 
 const favicon = (page, url) => {
   const icon = page("link[rel='icon']").attr('href')
