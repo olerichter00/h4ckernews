@@ -12,6 +12,8 @@ const MAX_LINES_MOBILE = 5
 const MAX_LINES_DEKSTOP = 4
 const MIN_TITLE_LINES = 1
 const MAX_TITLE_LINES = 2
+const MOBILE_TITLE_LINES = 4
+const MOBILE_DESCRIPTION_LINES = 4
 
 const SCORE_THRESHOLD = 100
 const COMMENTS_THRESHOLD = 100
@@ -58,8 +60,8 @@ export default function Story({ story, show }: StoryProps) {
         <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
           <StoryImage imageUrls={imageUrls} />
           <StoryContent
-            titleLines={titleLines}
-            descriptionLines={descriptionLines}
+            titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
+            descriptionLines={isMobile ? MOBILE_TITLE_LINES : descriptionLines}
             onTruncateTitle={onTruncateTitle}
             title={title}
             description={description}
