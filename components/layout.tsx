@@ -14,9 +14,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <div className={`max-w-full min-h-screen ${backgroundColorClass} ${textColorClass}`}>
       <Header />
-      <main className="sm:pt-3">
-        <div className="max-w-3xl m-auto overflow-hidden ">{children}</div>
-      </main>
+      <main className="max-w-3xl m-auto overflow-hidden ">{children}</main>
     </div>
   )
 }

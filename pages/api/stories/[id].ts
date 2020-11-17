@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
-import { fetchStory } from '../../lib/apiClient'
+import { fetchStory } from '../../../lib/apiClient'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const id = String(req.query.id)

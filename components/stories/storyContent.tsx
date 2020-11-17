@@ -1,5 +1,7 @@
 import React from 'react'
 import Truncate from 'react-truncate'
+import { useState } from 'react'
+
 import FadeTransition from '../common/fadeTransition'
 
 type StoryContentProps = {
@@ -11,9 +13,7 @@ type StoryContentProps = {
   url: string
   score: string
   favicon: string
-  faviconLoadError: Boolean
-  setFaviconLoadError: Function
-  metadataState: String
+  loading: boolean
   commentsUrl: string
   commentsCount: number
 }
@@ -27,16 +27,14 @@ export default function StoryContent({
   url,
   score,
   favicon,
-  faviconLoadError,
-  setFaviconLoadError,
-  metadataState,
+  loading,
   commentsUrl,
   commentsCount,
 }: StoryContentProps) {
   return (
     <div
       style={{ marginTop: '0.1rem' }}
-      className="h-full sm:h-32 w-full rounded-b sm:pl-4 sm:pr-5 sm:pl-4 sm:pr-5 flex flex-col justify-between leading-normal text-sm"
+      className="h-full sm:w-full mx-3 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm"
     >
       <div className="mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary-700">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
@@ -68,34 +66,24 @@ export default function StoryContent({
         {url && (
           <div className="text-gray-600 mr-3">
             <a href={url}>
-              <span className="inline-block align-middle mr-1">
-                {favicon && !faviconLoadError ? (
-                  <span>
-                    <img
-                      className="h-3 w-3"
-                      src={favicon}
-                      onError={() => setFaviconLoadError(true)}
-                    />
-                  </span>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                )}
+              <span className="inline-block align-middle w-3 mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
               </span>
 
-              <span className="inline-block align-middle">{new URL(url).hostname}</span>
+              <span className="inline-block align-middle ">{new URL(url).hostname}</span>
             </a>
           </div>
         )}
@@ -123,10 +111,10 @@ export default function StoryContent({
           </a>
         </div>
       </div>
-      <div className="mb-1 sm:flex-1">
-        <FadeTransition show={metadataState !== 'loading'}>
+      <div className="sm:flex-1">
+        <FadeTransition show={!loading}>
           <Truncate lines={descriptionLines} ellipsis={'...'}>
-            {description}
+            {description || title}
           </Truncate>
         </FadeTransition>
       </div>

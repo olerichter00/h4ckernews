@@ -3,6 +3,7 @@ import Headroom from 'react-headroom'
 
 import { storyTypeState, filterState } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
+import useBreakpoint from '../hooks/useBreakpoint'
 
 export default function Header() {
   const [type, setType] = useRecoilState(storyTypeState)
@@ -20,43 +21,41 @@ export default function Header() {
 
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav className={`pl-2 pr-4 py-2 sm:py-3 shadow-lg sticky top-0 z-10 ${backgroundColorClass}`}>
-        <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-md font-semibold flex flex-no-wrap">
-          <div className="flex ml-1 mr-3 items-center">
+      <nav className={`pl-2 pr-4 py-1 sm:py-2 sticky top-0 z-10 ${backgroundColorClass}`}>
+        <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-no-wrap">
+          <div className="flex ml-1 items-center">
             <a href="#" onClick={() => showStories('top')}>
-              <img src="logo.png" alt="Speak Everywhere" height="60" width="200" />
+              <img src={'favicon.png'} alt="Speak Everywhere" className="w-auto h-10" />
             </a>
 
-            <div className="ml-5 mr-1">
+            <div className="ml-2 sm:ml-5 mr-1">
               <a href="#" onClick={() => showStories('top')}>
-                <span className={`text-md ${type === 'top' ? 'text-primary-700' : ''}`}>Top</span>
+                <span className={`${type === 'top' ? 'text-primary-700' : ''}`}>Top</span>
               </a>
             </div>
 
             <div className="mx-1">
               <a href="#" onClick={() => showStories('ask')}>
-                <span className={`text-md  ${type === 'ask' ? 'text-primary-700' : ''}`}>Ask</span>
+                <span className={`${type === 'ask' ? 'text-primary-700' : ''}`}>Ask</span>
               </a>
             </div>
 
             <div className="mx-1">
               <a href="#" onClick={() => showStories('show')}>
-                <span className={`text-md  ${type === 'show' ? 'text-primary-700' : ''}`}>
-                  Show
-                </span>
+                <span className={`${type === 'show' ? 'text-primary-700' : ''}`}>Show</span>
               </a>
             </div>
           </div>
 
-          <div className="flex ml-1 ml-3 items-center">
-            <div className="sm:block ml-3 mt-2">
+          <div className="flex ml-2 items-center">
+            <div className="sm:block flex sm:mt-2">
               <button onClick={() => switchColorScheme()} title="Switch color scheme.">
                 {colorScheme === 'light' ? (
                   <svg
-                    className="w-5 h-5"
+                    className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 26 26"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -68,10 +67,10 @@ export default function Header() {
                   </svg>
                 ) : (
                   <svg
-                    className="w-5 h-5"
+                    className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 26 26"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -85,13 +84,13 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="sm:block ml-3 mt-2">
+            <div className="sm:block ml-3 flex sm:mt-2">
               <button onClick={() => switchFilter()} title="Filter unimportant stories.">
                 {filter ? (
                   <svg
-                    className="w-5 h-5"
+                    className="w-6 h-6"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 19 19"
                     fill="currentColor"
                   >
                     <path
@@ -102,7 +101,7 @@ export default function Header() {
                   </svg>
                 ) : (
                   <svg
-                    className="w-5 h-5"
+                    className="w-6 h-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"

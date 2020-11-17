@@ -60,7 +60,7 @@ export const storyQuery = selectorFamily({
     if (!id) return {}
 
     try {
-      const response = await fetch(`/api/story?id=${String(id)}`)
+      const response = await fetch(`/api/stories/${String(id)}`)
 
       if (response.ok) return await response.json()
 
@@ -84,18 +84,13 @@ export const metadataQuery = selectorFamily({
 
     const keywords = encodeURIComponent(title.split(' '))
 
-    try {
-      const response = await fetch(
-        `/api/metadata?url=${encodeURIComponent(storyUrl)}&keywords=${keywords}`,
-      )
+    const response = await fetch(
+      `/api/metadata?url=${encodeURIComponent(storyUrl)}&keywords=${keywords}`,
+    )
 
-      if (response.ok) return await response.json()
+    if (!response.ok) throw new Error('Failed to load metadata.')
 
-      throw new Error()
-    } catch {
-      console.warn(`Couldn't fetch metadata for ${storyUrl}.`)
-      return {}
-    }
+    return await response.json()
   },
 })
 

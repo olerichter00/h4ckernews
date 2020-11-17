@@ -1,5 +1,4 @@
-import { useRecoilValue } from 'recoil'
-import { useRecoilValueLoadable } from 'recoil'
+import { useRecoilValue, useRecoilValueLoadable, Loadable } from 'recoil'
 
 import Spinner from '../common/spinner'
 import Story from './story'
@@ -10,24 +9,19 @@ export default function StoryList() {
   const stories = useRecoilValueLoadable(storiesState)
   const type = useRecoilValue(storyTypeState)
 
-  switch (stories.state) {
-    case 'hasValue':
-      // @ts-ignore
-      const firstLoadingStoryIndex = stories.contents.findIndex(story => story.state === 'loading')
+  if (stories.state === 'loading') return <Spinner />
+  if (stories.state === 'hasError') return <div>Error...</div>
 
-      return (
-        <div className="mx-3">
-          {/* @ts-ignore */}
-          {stories.contents.map((story, index) => {
-            const show = firstLoadingStoryIndex === -1 || index <= firstLoadingStoryIndex
+  const storyContents = stories.contents as Array<Loadable<any>>
+  const firstLoadingStoryIndex = storyContents.findIndex(story => story.state === 'loading')
 
-            return <Story story={story} key={`${type}-${index}`} show={show} />
-          })}
-        </div>
-      )
-    case 'loading':
-      return <Spinner />
-    case 'hasError':
-      return <div>Error...</div>
-  }
+  return (
+    <div className="sm:mx-3">
+      {storyContents.map((story, index) => {
+        const show = firstLoadingStoryIndex === -1 || index <= firstLoadingStoryIndex
+
+        return <Story story={story} key={`${type}-${index}`} show={show} />
+      })}
+    </div>
+  )
 }

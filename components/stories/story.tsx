@@ -44,12 +44,10 @@ export default function Story({ story, show }: StoryProps) {
     setTitleLines(MAX_TITLE_LINES)
   }
 
-  const [faviconLoadError, setFaviconLoadError] = useState(false)
-
   const metadata = useRecoilValueLoadable(metadataQuery(id))
 
   const unescapedText = unescape(text || '').replace(/(<([^>]+)>)/gi, '')
-  const { description = unescapedText, imageUrls, favicon } = metadata.contents
+  const { description = unescapedText, imageUrls, favicon } = metadata.contents || {}
 
   const hideStory = filter && score < SCORE_THRESHOLD && descendants < COMMENTS_THRESHOLD
 
@@ -57,7 +55,11 @@ export default function Story({ story, show }: StoryProps) {
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
       <FadeTransition show={show && story.state !== 'loading'} hide={hideStory}>
         <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
-          <StoryImage imageUrls={imageUrls} />
+          <StoryImage
+            forceFallback={metadata.state === 'hasError' || (imageUrls && imageUrls.length === 0)}
+            imageUrls={imageUrls}
+            placeholderText={title}
+          />
           <StoryContent
             titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
             descriptionLines={isMobile ? MOBILE_DESCRIPTION_LINES : descriptionLines}
@@ -67,9 +69,7 @@ export default function Story({ story, show }: StoryProps) {
             url={url}
             score={score}
             favicon={favicon}
-            faviconLoadError={faviconLoadError}
-            setFaviconLoadError={setFaviconLoadError}
-            metadataState={metadata.state}
+            loading={metadata.state === 'loading'}
             commentsUrl={itemUrl}
             commentsCount={descendants}
           />

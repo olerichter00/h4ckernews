@@ -6,7 +6,11 @@ export const images = async (page, url, keywords) =>
   openGraphImages(page) || fallbackImages(page, url, keywords)
 
 const fallbackImages = async (page, url, keywords) => {
-  return [...pageImages(page, url), ...(await searchImages(keywords))].filter(image => image)
+  const pageImageUrls = pageImages(page, url)
+
+  if (pageImageUrls.length >= 1) return pageImageUrls
+
+  return [...pageImageUrls, ...(await searchImages(keywords))].filter(image => image)
 }
 
 const openGraphImages = page => {
@@ -21,7 +25,7 @@ const openGraphImages = page => {
   }
 }
 
-const searchImages = async keywords => {
+export const searchImages = async keywords => {
   try {
     const strippedKeywords = stripKeywords(keywords)
     const images = await fetchImagesFromSearch(strippedKeywords)
@@ -38,8 +42,8 @@ const stripKeywords = keywords =>
   keywords
     .split(',')
     .filter(keyword => !/[^a-zA-Z\- ]/i.test(keyword))
-    .filter(keyword => keyword !== '')
     .filter(keyword => keyword.length >= 3)
+    .filter(keyword => keyword !== 'ask' && keyword !== 'hn')
     .join(' ')
 
 const pageImages = (page, url) => {
