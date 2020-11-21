@@ -11,7 +11,12 @@ function MyApp({ Component, pageProps }) {
       <RecoilRoot>
         <Head>
           <title>H4ckernews</title>
-          <meta name="description" content="A beautiful hackernews client" />
+          <meta name="description" content="A beautiful hackernews client." />
+          <meta name="og:type" content="website" />
+          <meta name="og:url" content="https://h4ckernews.com" />
+          <meta name="og:description" content="A beautiful hackernews client." />
+          <meta name="og:image" content="https://h4ckernews.com/favicon.png" />
+          <meta name="keywords" content="hackernews" />
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
