@@ -1,9 +1,9 @@
-import { IMAGE_SEARCH_BASE_URL, CUTE_PANDA_IMAGE_URL } from '../config'
+import config from '../config'
 
 const fetchImagesFromSearch = async keywords => {
   // Return cute panda image in development mode
   if (process.env.NODE_ENV === 'development') {
-    return [CUTE_PANDA_IMAGE_URL]
+    return [config.cutePandaImageUrl]
   }
 
   const params = {
@@ -14,11 +14,11 @@ const fetchImagesFromSearch = async keywords => {
   }
 
   const headers = {
-    'x-rapidapi-key': process.env.X_RAPIDAPI_KEY,
-    'x-rapidapi-host': process.env.X_RAPIDAPI_HOST,
+    'x-rapidapi-key': config.xRapidapiKey,
+    'x-rapidapi-host': config.xRapidapiKey,
   }
 
-  const url = new URL(IMAGE_SEARCH_BASE_URL)
+  const url = new URL(config.imageSearchBaseUrl)
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
   const response = await fetch(url.toString(), { headers: headers })

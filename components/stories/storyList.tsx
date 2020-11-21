@@ -5,7 +5,7 @@ import Spinner from '../common/spinner'
 import Story from './story'
 import useFilter from '../../hooks/useFilter'
 import { storyTypeState, storyCountState, storiesState } from '../../lib/store/recoil'
-import { FILTER_SCORE_THRESHOLD, FILTER_COMMENTS_THRESHOLD } from '../../lib/config'
+import config from '../../lib/config'
 
 export default function StoryList() {
   const count = useRecoilValue(storyCountState)
@@ -25,8 +25,8 @@ export default function StoryList() {
           const hide =
             !story ||
             (filter &&
-              story.score >= FILTER_SCORE_THRESHOLD &&
-              story.descendants >= FILTER_COMMENTS_THRESHOLD)
+              story.score >= config.filterScoreThreshold &&
+              story.descendants >= config.filterCommentsThreshold)
           return (
             <FadeTransition hide={hide}>
               <Story story={story} key={`${type}-${story.id}`} />

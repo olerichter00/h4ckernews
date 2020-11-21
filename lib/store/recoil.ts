@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil'
 
-import { PAGE_SIZE, FILTER_PAGE_SIZE, DEFAULT_STORIES_TYPE } from '../config'
+import config from '../config'
 
 export type StoryType = {
   title: string
@@ -26,7 +26,7 @@ export const filterState = atom({
 
 export const typeState = atom({
   key: 'typeType',
-  default: DEFAULT_STORIES_TYPE,
+  default: config.defaultStoriesType,
 })
 
 export const storyTypeState = selector({
@@ -40,14 +40,14 @@ export const storyTypeState = selector({
 
 export const storyCountState = atom({
   key: 'storyCount',
-  default: PAGE_SIZE,
+  default: config.pageSize,
 })
 
 export const increaseStoryCountState = selector({
   key: 'increaseStoryCountState',
   get: () => {},
   set: ({ get, set }) => {
-    const pageSize = get(filterState) ? FILTER_PAGE_SIZE : PAGE_SIZE
+    const pageSize = get(filterState) ? config.filterPageSize : config.pageSize
     const newStoryCount = get(storyCountState) + pageSize
 
     history.replaceState({ count: newStoryCount }, '')

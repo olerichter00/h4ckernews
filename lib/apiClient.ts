@@ -1,13 +1,15 @@
-import { DEFAULT_STORIES_TYPE, HACKERNEWS_BASE_URL } from './config'
+import config from './config'
 
-export const fetchStories = async ({ type = DEFAULT_STORIES_TYPE } = {}): Promise<Array<any>> => {
-  const res = await fetch(`${HACKERNEWS_BASE_URL}/${type}stories.json`)
+export const fetchStories = async ({ type = config.defaultStoriesType } = {}): Promise<
+  Array<any>
+> => {
+  const res = await fetch(`${config.hackernewsBaseUrl}/${type}stories.json`)
 
   return await res.json()
 }
 
 export const fetchStory = async (id: string): Promise<any> => {
-  const res = await fetch(`${HACKERNEWS_BASE_URL}/item/${id}.json`)
+  const res = await fetch(`${config.hackernewsBaseUrl}/item/${id}.json`)
 
   return await res.json()
 }

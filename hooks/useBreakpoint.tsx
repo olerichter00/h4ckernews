@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
 import throttle from 'lodash.throttle'
 
-import { BREAKPOINTS } from '../lib/config'
+import config from '../lib/config'
 
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 const getDeviceConfig = (width: Number): Breakpoint => {
-  if (width < BREAKPOINTS.xs) {
+  if (width < config.breakpoints.xs) {
     return 'xs'
-  } else if (width >= BREAKPOINTS.xs && width < BREAKPOINTS.sm) {
+  } else if (width >= config.breakpoints.xs && width < config.breakpoints.sm) {
     return 'sm'
-  } else if (width >= BREAKPOINTS.sm && width < BREAKPOINTS.md) {
+  } else if (width >= config.breakpoints.sm && width < config.breakpoints.md) {
     return 'md'
-  } else if (width >= BREAKPOINTS.md && width < BREAKPOINTS.lg) {
+  } else if (width >= config.breakpoints.md && width < config.breakpoints.lg) {
     return 'lg'
   } else {
     return 'xl'

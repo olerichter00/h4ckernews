@@ -1,14 +1,14 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
+import config from '../../lib/config'
 import { fetchStories } from '../../lib/apiClient'
-import { MAX_STORIES } from '../../lib/config'
 
 export default async (req: NowRequest, res: NowResponse) => {
   process.setMaxListeners(100)
 
   const type = String(req.query.type || 'top')
   const page = Number(req.query.page || 0)
-  const pageSize = Number(req.query.pageSize || MAX_STORIES)
+  const pageSize = Number(req.query.pageSize || config.maxStories)
 
   const storyIds = await fetchStories({ type })
 
