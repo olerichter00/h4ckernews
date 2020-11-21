@@ -4,7 +4,7 @@ import { StoryType } from '../../lib/store/recoil'
 import PreloadedLink from '../common/preloadedLink'
 import StoryImage from './storyImage'
 import StoryContent from './storyContent'
-import useBreakpoint from '../../hooks/useBreakpoint'
+import useIsMobile from '../../hooks/useIsMobile'
 
 const MAX_LINES_DEKSTOP = 5
 const MIN_TITLE_LINES = 1
@@ -19,7 +19,7 @@ type StoryProps = {
 export default function Story({ story }: StoryProps) {
   const { title, url, score, text, id, descendants, description, imageUrls, favicon } = story
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
-  const { isMobile } = useBreakpoint()
+  const isMobile = useIsMobile()
 
   const itemUrl = `https://news.ycombinator.com/item?id=${id}`
   const maxLines = MAX_LINES_DEKSTOP

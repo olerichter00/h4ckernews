@@ -2,7 +2,7 @@ import { useReducer } from 'react'
 
 import FadeTransition from '../common/fadeTransition'
 import FallbackImage from './fallbackImage'
-import useBreakpoint from '../../hooks/useBreakpoint'
+import useIsMobile from '../../hooks/useIsMobile'
 
 type StoryImageProps = {
   imageUrls: string[]
@@ -12,7 +12,7 @@ type StoryImageProps = {
 export default function StoryImage({ imageUrls = [], placeholderText }: StoryImageProps) {
   const [loaded, setLoaded] = useReducer(() => true, false)
   const [failed, setFailed] = useReducer(() => true, false)
-  const { isMobile } = useBreakpoint()
+  const isMobile = useIsMobile()
 
   const onError = () => {
     setLoaded()
@@ -23,15 +23,15 @@ export default function StoryImage({ imageUrls = [], placeholderText }: StoryIma
     setLoaded()
   }
 
-  const noImages = imageUrls.length === 0
+  const hasNoImages = imageUrls.length === 0
 
   return (
-    <FadeTransition show={loaded || noImages}>
+    <FadeTransition show={loaded || hasNoImages}>
       <div
         className="flex justify-center flex-col overflow-hidden max-h-48 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none sm:rounded-md hover:opacity-75 transition-opacity duration-500 ease-in-out  bg-gray-800"
         style={{ minWidth: '200px', minHeight: isMobile ? '100px' : '138px', maxHeight: '240px' }}
       >
-        {failed || noImages ? (
+        {failed || hasNoImages ? (
           <FallbackImage placeholderText={placeholderText} />
         ) : (
           <img
