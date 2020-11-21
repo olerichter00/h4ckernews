@@ -28,7 +28,7 @@ export default function StoryImage({ imageUrls = [], placeholderText }: StoryIma
   return (
     <FadeTransition show={loaded || noImages}>
       <div
-        className="flex justify-center flex-col overflow-hidden max-h-48 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none sm:rounded-md hover:opacity-75 transition-opacity duration-500 ease-in-out"
+        className="flex justify-center flex-col overflow-hidden max-h-48 w-full mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none sm:rounded-md hover:opacity-75 transition-opacity duration-500 ease-in-out  bg-gray-800"
         style={{ minWidth: '200px', minHeight: isMobile ? '100px' : '138px', maxHeight: '240px' }}
       >
         {failed || noImages ? (

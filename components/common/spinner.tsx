@@ -1,6 +1,16 @@
+import { useState, useEffect } from 'react'
+
 export default function Spinner() {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => setShow(true), 0)
+  }, [])
+
   return (
-    <div>
+    <div
+      className={`ease-in-out duration-1000 animate-pulse ${show ? 'opacity-100' : 'opacity-0'}`}
+    >
       <svg className="animate-spin h-8 w-8 mx-auto my-24" viewBox="0 0 24 24">
         <path
           className="opacity-100"

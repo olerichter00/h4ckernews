@@ -1,7 +1,7 @@
 export const PAGE_SIZE = 15
 export const FILTER_PAGE_SIZE = 40
 
-export const DEFAULT_PAGE_SIZE = process.env.NODE_ENV === 'development' ? 20 : 100
+export const MAX_STORIES = process.env.NODE_ENV === 'development' ? 30 : 100
 
 export const FILTER_SCORE_THRESHOLD = 100
 export const FILTER_COMMENTS_THRESHOLD = 100

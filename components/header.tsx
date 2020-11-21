@@ -2,20 +2,19 @@ import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 import Router from 'next/router'
 
-import { storyTypeState, filterState } from '../lib/store/recoil'
+import { storyTypeState } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
+import useFilter from '../hooks/useFilter'
 
 export default function Header() {
   const [type, setType] = useRecoilState(storyTypeState)
-  const [filter, setFilter] = useRecoilState(filterState)
+  const [filter, switchFilter] = useFilter()
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
   const showStories = async type => {
     setType(type)
   }
-
-  const switchFilter = () => setFilter(!filter)
 
   const backgroundColorClass = colorScheme === 'light' ? 'bg-white' : 'bg-gray-900'
 

@@ -1,8 +1,6 @@
 import React from 'react'
 import Truncate from 'react-truncate'
 
-import FadeTransition from '../common/fadeTransition'
-
 type StoryContentProps = {
   titleLines: Number
   descriptionLines: Number
@@ -111,11 +109,9 @@ export default function StoryContent({
         </div>
       </div>
       <div className="sm:flex-1">
-        <FadeTransition show={!loading}>
-          <Truncate lines={descriptionLines} ellipsis={'...'}>
-            {description || title}
-          </Truncate>
-        </FadeTransition>
+        <Truncate lines={descriptionLines} ellipsis={'...'}>
+          {description || title}
+        </Truncate>
       </div>
     </div>
   )

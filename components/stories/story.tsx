@@ -36,7 +36,7 @@ export default function Story({ story }: StoryProps) {
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
       <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
-        <StoryImage imageUrls={imageUrls} placeholderText={title} />
+        <StoryImage imageUrls={imageUrls} placeholderText={title} key={`story-image-${id}`} />
         <StoryContent
           titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
           descriptionLines={isMobile ? MOBILE_DESCRIPTION_LINES : descriptionLines}
@@ -49,6 +49,7 @@ export default function Story({ story }: StoryProps) {
           commentsUrl={itemUrl}
           commentsCount={descendants}
           loading={false}
+          key={`story-content-${id}`}
         />
       </div>
     </PreloadedLink>
