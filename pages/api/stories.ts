@@ -4,7 +4,6 @@ import { fetchStories } from '../../lib/apiClient'
 import { DEFAULT_PAGE_SIZE } from '../../lib/config'
 
 export default async (req: NowRequest, res: NowResponse) => {
-  console.log('HEAAAA')
   process.setMaxListeners(100)
 
   const type = String(req.query.type || 'top')

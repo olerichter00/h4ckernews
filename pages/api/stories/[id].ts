@@ -21,7 +21,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     metadata = await scrape(storyUrl, keywords, timeoutFetch)
   } catch (error) {
     statusCode = 206
-    console.error(error)
+    console.error('Failed to load story: ', error)
   }
 
   res.setHeader('Cache-Control', 's-maxage=86400')

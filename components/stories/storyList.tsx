@@ -32,7 +32,7 @@ export default function StoryList() {
               story.descendants >= FILTER_COMMENTS_THRESHOLD),
         )
         .map((story, index) => (
-          <FadeTransition timeout={200 + (index % DEFAULT_PAGE_SIZE) * 200}>
+          <FadeTransition timeout={index < DEFAULT_PAGE_SIZE ? 200 + index * 200 : 0}>
             <Story story={story} key={`${type}-${index}`} />
           </FadeTransition>
         ))}

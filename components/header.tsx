@@ -109,7 +109,7 @@ export default function Header() {
             </div>
 
             <div className="sm:block ml-3 flex sm:mt-2">
-              <button onClick={() => switchFilter()} title="Filter unimportant stories.">
+              <button onClick={() => switchFilter()} title="Filter for important stories.">
                 {filter ? (
                   <svg
                     className="w-6 h-6"
