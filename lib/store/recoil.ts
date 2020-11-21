@@ -1,8 +1,18 @@
-import { atom, selector, selectorFamily, waitForNone } from 'recoil'
-import { DEFAULT_STORIES_TYPE, fetchStories } from '../apiClient'
+import { atom, selector } from 'recoil'
 
-export const PAGE_SIZE = 15
-export const FILTER_PAGE_SIZE = 30
+import { PAGE_SIZE, FILTER_PAGE_SIZE, DEFAULT_STORIES_TYPE } from '../config'
+
+export type StoryType = {
+  title: string
+  url: string
+  score: number
+  text: string
+  id: string
+  descendants: number
+  description: string
+  imageUrls: string[]
+  favicon: string
+}
 
 export const forceUpdateState = atom({
   key: 'forceUpdateState',
@@ -28,14 +38,6 @@ export const storyTypeState = selector({
   },
 })
 
-export const storyIdsState = selector({
-  key: 'storyIdsState',
-  get: async ({ get }) => {
-    get(forceUpdateState)
-    return await fetchStories({ type: get(typeState) })
-  },
-})
-
 export const storyCountState = atom({
   key: 'storyCount',
   default: PAGE_SIZE,
@@ -54,54 +56,15 @@ export const increaseStoryCountState = selector({
   },
 })
 
-export const storyQuery = selectorFamily({
-  key: 'storyQuery',
-  get: id => async () => {
-    if (!id) return {}
-
-    try {
-      const response = await fetch(`/api/stories/${String(id)}`)
-
-      if (response.ok) return await response.json()
-
-      throw new Error()
-    } catch {
-      console.warn("Couldn't fetch story.")
-      return {}
-    }
-  },
-})
-
-export const metadataQuery = selectorFamily({
-  key: 'metadataQuery',
-  get: id => async ({ get }) => {
-    const { url, title } = get(await storyQuery(id))
-
-    const itemUrl = `https://news.ycombinator.com/item?id=${id.toString()}`
-    const storyUrl = String(url || itemUrl)
-
-    if (!(storyUrl && title)) return {}
-
-    const keywords = encodeURIComponent(title.split(' '))
-
-    const response = await fetch(
-      `/api/metadata?url=${encodeURIComponent(storyUrl)}&keywords=${keywords}`,
-    )
-
-    if (!response.ok) throw new Error('Failed to load metadata.')
-
-    return await response.json()
-  },
-})
-
 export const storiesState = selector({
   key: 'storiesState',
-  get: ({ get }) => {
+  get: async ({ get }): Promise<{ value: StoryType }[]> => {
     if (!process.browser) return []
 
-    const ids = get(storyIdsState).slice(0, get(storyCountState))
-    const stories = get(waitForNone(ids.map(id => storyQuery(id))))
+    get(forceUpdateState)
 
-    return stories
+    const response = await fetch(`api/stories?type=${get(storyTypeState)}`)
+    const story = await response.json()
+    return story.data
   },
 })

@@ -1,50 +1,28 @@
 import fetchImagesFromSearch from './imageSearchApiClient'
-
+import fetchImagesFromUnsplash from './unsplashSearchApiClient'
 const MAX_IMAGES = 5
 
-export const images = async (page, url, keywords) =>
-  openGraphImages(page) || fallbackImages(page, url, keywords)
+export const images = async (page, url, keywords) => {
+  const pageImageUrls = [...openGraphImages(page), ...pageImages(page, url)]
+  if (pageImageUrls.length >= 1) return [...pageImageUrls, await searchUnsplashImages(keywords)]
 
-const fallbackImages = async (page, url, keywords) => {
-  const pageImageUrls = pageImages(page, url)
+  const searchImageUrls = await searchImages(keywords)
+  if (searchImageUrls.length >= 1) return searchImageUrls
 
-  if (pageImageUrls.length >= 1) return pageImageUrls
-
-  return [...pageImageUrls, ...(await searchImages(keywords))].filter(image => image)
+  return await searchUnsplashImages(keywords)
 }
 
 const openGraphImages = page => {
   try {
     const openGraphImage = page("meta[property='og:image']").attr('content')
 
-    if (!isImage(openGraphImage)) return
+    if (!isImage(openGraphImage)) return []
 
     return [openGraphImage]
   } catch (error) {
-    console.log(error)
-  }
-}
-
-export const searchImages = async keywords => {
-  try {
-    const strippedKeywords = stripKeywords(keywords)
-    const images = await fetchImagesFromSearch(strippedKeywords)
-
-    return images.slice(0, MAX_IMAGES)
-  } catch (error) {
-    console.log(error)
-
     return []
   }
 }
-
-const stripKeywords = keywords =>
-  keywords
-    .split(',')
-    .filter(keyword => !/[^a-zA-Z\- ]/i.test(keyword))
-    .filter(keyword => keyword.length >= 3)
-    .filter(keyword => keyword !== 'ask' && keyword !== 'hn')
-    .join(' ')
 
 const pageImages = (page, url) => {
   try {
@@ -71,11 +49,41 @@ const pageImages = (page, url) => {
 
     return pageImages
   } catch (error) {
-    console.log(error)
+    return []
+  }
+}
+
+export const searchUnsplashImages = async keywords => {
+  try {
+    const strippedKeywords = stripKeywords(keywords)
+    const images = await fetchImagesFromUnsplash(strippedKeywords)
+
+    return images.slice(0, MAX_IMAGES)
+  } catch (error) {
+    return []
+  }
+}
+
+export const searchImages = async keywords => {
+  try {
+    const strippedKeywords = stripKeywords(keywords)
+    const images = await fetchImagesFromSearch(strippedKeywords)
+
+    return images.slice(0, MAX_IMAGES)
+  } catch (error) {
+    console.error(error)
 
     return []
   }
 }
+
+const stripKeywords = keywords =>
+  keywords
+    .split(',')
+    // .filter(keyword => !/[^a-zA-Z\- ]/i.test(keyword))
+    .filter(keyword => keyword.length >= 3)
+    .filter(keyword => keyword !== 'ask' && keyword !== 'hn')
+    .join(' ')
 
 const stripFilenameFromUrl = url => url.replace(/[a-zA-Z]*\.html?$/g, '')
 

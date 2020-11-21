@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react'
 import throttle from 'lodash.throttle'
 
-const BREAKPOINTS = {
-  xs: 500,
-  sm: 768,
-  md: 1024,
-  lg: 1280,
-}
+import { BREAKPOINTS } from '../lib/config'
 
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 

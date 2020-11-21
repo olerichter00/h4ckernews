@@ -1,4 +1,3 @@
-const MIN_TEXT_LENGTH = 30
 const MAX_TEXT_LENGTH = 300
 
 export const description = (page: string, url: string): string | undefined => {

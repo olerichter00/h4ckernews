@@ -1,9 +1,9 @@
 import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
+import Router from 'next/router'
 
 import { storyTypeState, filterState } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
-import useBreakpoint from '../hooks/useBreakpoint'
 
 export default function Header() {
   const [type, setType] = useRecoilState(storyTypeState)
@@ -24,24 +24,48 @@ export default function Header() {
       <nav className={`pl-2 pr-4 py-1 sm:py-2 sticky top-0 z-10 ${backgroundColorClass}`}>
         <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-no-wrap">
           <div className="flex ml-1 items-center">
-            <a href="#" onClick={() => showStories('top')}>
+            <a
+              onClick={() => {
+                Router.push('top')
+                showStories('top')
+              }}
+              className="cursor-pointer"
+            >
               <img src={'favicon.png'} alt="Speak Everywhere" className="w-auto h-10" />
             </a>
 
             <div className="ml-2 sm:ml-5 mr-1">
-              <a href="#" onClick={() => showStories('top')}>
+              <a
+                onClick={() => {
+                  Router.push('top')
+                  showStories('top')
+                }}
+                className="cursor-pointer"
+              >
                 <span className={`${type === 'top' ? 'text-primary-700' : ''}`}>Top</span>
               </a>
             </div>
 
             <div className="mx-1">
-              <a href="#" onClick={() => showStories('ask')}>
+              <a
+                onClick={() => {
+                  Router.push('ask')
+                  showStories('ask')
+                }}
+                className="cursor-pointer"
+              >
                 <span className={`${type === 'ask' ? 'text-primary-700' : ''}`}>Ask</span>
               </a>
             </div>
 
             <div className="mx-1">
-              <a href="#" onClick={() => showStories('show')}>
+              <a
+                onClick={() => {
+                  Router.push('show')
+                  showStories('show')
+                }}
+                className="cursor-pointer"
+              >
                 <span className={`${type === 'show' ? 'text-primary-700' : ''}`}>Show</span>
               </a>
             </div>

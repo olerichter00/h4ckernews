@@ -1,6 +1,5 @@
 import React from 'react'
 import Truncate from 'react-truncate'
-import { useState } from 'react'
 
 import FadeTransition from '../common/fadeTransition'
 
@@ -11,8 +10,8 @@ type StoryContentProps = {
   title: string
   description: string
   url: string
-  score: string
-  favicon: string
+  score: number
+  favicon?: string
   loading: boolean
   commentsUrl: string
   commentsCount: number

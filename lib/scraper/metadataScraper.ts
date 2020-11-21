@@ -17,7 +17,7 @@ export const scrape = async (url: string, keywords: string, fetcher: Function = 
       favicon: favicon(page, url),
     }
   } catch (error) {
-    console.log('Failed to load metadata:', error)
+    console.error('Failed to load metadata:' + url, error)
 
     return { imageUrls: await searchImages(keywords) }
   }

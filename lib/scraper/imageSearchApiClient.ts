@@ -1,19 +1,16 @@
-const IMAGE_SEARCH_BASE_URL =
-  'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI'
+import { IMAGE_SEARCH_BASE_URL, CUTE_PANDA_IMAGE_URL } from '../config'
 
 const fetchImagesFromSearch = async keywords => {
   // Return cute panda image in development mode
   if (process.env.NODE_ENV === 'development') {
-    return [
-      'https://www.tagesspiegel.de/images/grosser-panda-meng-meng_zoo-berlin/24195486/2-format43.jpg',
-    ]
+    return [CUTE_PANDA_IMAGE_URL]
   }
 
   const params = {
     pageNumber: 1,
     pageSize: 10,
     q: keywords,
-    autoCorrect: false,
+    autoCorrect: true,
   }
 
   const headers = {

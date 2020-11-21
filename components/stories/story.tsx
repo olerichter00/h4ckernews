@@ -1,11 +1,9 @@
-import { useRecoilState, Loadable, useRecoilValueLoadable } from 'recoil'
+import { useState } from 'react'
 
-import { metadataQuery, filterState } from '../../lib/store/recoil'
-import FadeTransition from '../common/fadeTransition'
+import { StoryType } from '../../lib/store/recoil'
 import PreloadedLink from '../common/preloadedLink'
 import StoryImage from './storyImage'
 import StoryContent from './storyContent'
-import { useState } from 'react'
 import useBreakpoint from '../../hooks/useBreakpoint'
 
 const MAX_LINES_DEKSTOP = 5
@@ -14,25 +12,14 @@ const MAX_TITLE_LINES = 2
 const MOBILE_TITLE_LINES = 4
 const MOBILE_DESCRIPTION_LINES = 4
 
-const SCORE_THRESHOLD = 100
-const COMMENTS_THRESHOLD = 100
 type StoryProps = {
-  story: Loadable<any>
-  show: Boolean
+  story: StoryType
 }
 
-export default function Story({ story, show }: StoryProps) {
-  const {
-    title = null,
-    url = null,
-    score = null,
-    text = null,
-    id = null,
-    descendants = null,
-  } = story.contents
+export default function Story({ story }: StoryProps) {
+  const { title, url, score, text, id, descendants, description, imageUrls, favicon } = story
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const { isMobile } = useBreakpoint()
-  const [filter] = useRecoilState(filterState)
 
   const itemUrl = `https://news.ycombinator.com/item?id=${id}`
   const maxLines = MAX_LINES_DEKSTOP
@@ -44,37 +31,26 @@ export default function Story({ story, show }: StoryProps) {
     setTitleLines(MAX_TITLE_LINES)
   }
 
-  const metadata = useRecoilValueLoadable(metadataQuery(id))
-
   const unescapedText = unescape(text || '').replace(/(<([^>]+)>)/gi, '')
-  const { description = unescapedText, imageUrls, favicon } = metadata.contents || {}
-
-  const hideStory = filter && score < SCORE_THRESHOLD && descendants < COMMENTS_THRESHOLD
 
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <FadeTransition show={show && story.state !== 'loading'} hide={hideStory}>
-        <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
-          <StoryImage
-            forceFallback={metadata.state === 'hasError' || (imageUrls && imageUrls.length === 0)}
-            imageUrls={imageUrls}
-            placeholderText={title}
-          />
-          <StoryContent
-            titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
-            descriptionLines={isMobile ? MOBILE_DESCRIPTION_LINES : descriptionLines}
-            onTruncateTitle={onTruncateTitle}
-            title={title}
-            description={description}
-            url={url}
-            score={score}
-            favicon={favicon}
-            loading={metadata.state === 'loading'}
-            commentsUrl={itemUrl}
-            commentsCount={descendants}
-          />
-        </div>
-      </FadeTransition>
+      <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
+        <StoryImage imageUrls={imageUrls} placeholderText={title} />
+        <StoryContent
+          titleLines={isMobile ? MOBILE_TITLE_LINES : titleLines}
+          descriptionLines={isMobile ? MOBILE_DESCRIPTION_LINES : descriptionLines}
+          onTruncateTitle={onTruncateTitle}
+          title={title}
+          description={description || unescapedText}
+          url={url}
+          score={score}
+          favicon={favicon}
+          commentsUrl={itemUrl}
+          commentsCount={descendants}
+          loading={false}
+        />
+      </div>
     </PreloadedLink>
   )
 }

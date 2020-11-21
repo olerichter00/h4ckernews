@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
+import { PREFETCH_TIMEOUT } from '../../lib/config'
+
 export default function PreloadedLink({ children, url, className }) {
   const [timer, setTimer] = useState(null)
 
-  const onMouseEnter = () => setTimer(setTimeout(prefetchUrl, 100))
+  const onMouseEnter = () => setTimer(setTimeout(prefetchUrl, PREFETCH_TIMEOUT))
 
   const onMouseLeave = () => clearTimeout(timer)
 
