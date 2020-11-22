@@ -27,7 +27,7 @@ Since some pages don't show any images, [ContextualWeb Image Search API](<[https
 
 **Caching**
 
-To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and normal caching is used. With this technique instant page load can be guaranteed without any backend database. A cronjob refreshes the content every 15 minutes in order to not show outdated stale data.
+To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and [Russian doll caching](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html) is used. With this technique instant page load can be achieved without any backend database. An external cronjob service is used to refresh the content every 15 minutes in order to not show outdated stale data.
 
 **Link Prefetching**
 
