@@ -35,6 +35,7 @@ export const storyTypeState = selector({
   set: ({ set, get }, newValue) => {
     set(typeState, newValue)
     set(forceUpdateState, get(forceUpdateState) + 1)
+    set(storyCountState, config.pageSize)
   },
 })
 

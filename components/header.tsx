@@ -141,9 +141,22 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="hidden sm:block ml-3">
+            <div className="sm:block flex ml-3 sm:mt-2 mt-1">
               <a href="https://github.com/olerichter00/h4ckernews" target="_blank" rel="noopener">
-                <span className="text-md ">About</span>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 19 19"
+                    fill="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
               </a>
             </div>
           </div>

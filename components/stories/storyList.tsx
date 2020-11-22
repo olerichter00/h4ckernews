@@ -25,10 +25,10 @@ export default function StoryList() {
           const hide =
             !story ||
             (filter &&
-              story.score >= config.filterScoreThreshold &&
-              story.descendants >= config.filterCommentsThreshold)
+              story.score < config.filterScoreThreshold &&
+              story.descendants < config.filterCommentsThreshold)
           return (
-            <FadeTransition hide={hide}>
+            <FadeTransition hide={hide} duration={700}>
               <Story story={story} key={`${type}-${story.id}`} />
             </FadeTransition>
           )
