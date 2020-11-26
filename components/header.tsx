@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 import Router from 'next/router'
 
-import { storyTypeState } from '../lib/store/recoil'
+import { storyTypeState, Type } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
 import useFilter from '../hooks/useFilter'
 
@@ -12,15 +12,18 @@ export default function Header() {
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
-  const showStories = async type => {
+  const showStories = async (type: Type) => {
     setType(type)
   }
 
   const backgroundColorClass = colorScheme === 'light' ? 'bg-white' : 'bg-gray-900'
+  const borderColorClass = colorScheme === 'light' ? 'border-gray-300' : 'border-gray-800'
 
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav className={`pl-2 pr-4 py-1 sm:py-2 sticky top-0 z-10 ${backgroundColorClass}`}>
+      <nav
+        className={`pl-2 pr-4 py-1 sm:py-2 sticky top-0 z-10 ${backgroundColorClass} border-b ${borderColorClass}`}
+      >
         <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-no-wrap">
           <div className="flex ml-1 items-center">
             <a

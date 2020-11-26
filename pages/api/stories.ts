@@ -29,5 +29,5 @@ const fetchStory = async (req: NowRequest, id: string) => {
   return await response.json()
 }
 
-const baseUrl = req =>
+const baseUrl = (req: NowRequest) =>
   `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://${req.headers.host}/api`

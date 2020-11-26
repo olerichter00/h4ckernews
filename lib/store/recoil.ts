@@ -2,6 +2,8 @@ import { atom, selector } from 'recoil'
 
 import config from '../config'
 
+export type Type = 'top' | 'show' | 'ask'
+
 export type StoryType = {
   title: string
   url: string

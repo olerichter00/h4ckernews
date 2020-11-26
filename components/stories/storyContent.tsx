@@ -2,9 +2,9 @@ import React from 'react'
 import Truncate from 'react-truncate'
 
 type StoryContentProps = {
-  titleLines: Number
-  descriptionLines: Number
-  onTruncateTitle: Function
+  titleLines: number
+  descriptionLines: number
+  onTruncateTitle: (isTruncated: boolean) => void
   title: string
   description: string
   url: string
@@ -33,7 +33,7 @@ export default function StoryContent({
       style={{ marginTop: '0.1rem' }}
       className="h-full sm:w-full mx-3 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm"
     >
-      <div className="mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary-700">
+      <div className="bg-color-red mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary-700">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>

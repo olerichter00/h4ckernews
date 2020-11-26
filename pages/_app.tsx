@@ -5,17 +5,22 @@ import { CookiesProvider } from 'react-cookie'
 import Layout from '../components/layout'
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
+type MyAppProps = {
+  Component: React.FunctionComponent
+  pageProps: React.ComponentProps<any>
+}
+
+function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <CookiesProvider>
       <RecoilRoot>
         <Head>
           <title>H4ckernews</title>
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://h4ckernews.com" />
+          <meta property="og:description" content="A beautiful hackernews client." />
+          <meta property="og:image" content="https://h4ckernews.com/favicon.png" />
           <meta name="description" content="A beautiful hackernews client." />
-          <meta name="og:type" content="website" />
-          <meta name="og:url" content="https://h4ckernews.com" />
-          <meta name="og:description" content="A beautiful hackernews client." />
-          <meta name="og:image" content="https://h4ckernews.com/favicon.png" />
           <meta name="keywords" content="hackernews" />
           <meta
             name="viewport"

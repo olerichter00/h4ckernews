@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 
-const config = getConfig()
+const config = getConfig() || {}
 
 export default {
   ...config.publicRuntimeConfig,

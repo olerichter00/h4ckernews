@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from '@vercel/node'
 
 import { fetchStory } from '../../../lib/apiClient'
 import { timeoutFetch } from '../../../lib/utils'
-import { scrape } from '../../../lib/scraper/metadataScraper'
+import metadataScraper from '../../../lib/pageMetaScraper/metadataScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
   let statusCode = 200
@@ -16,9 +16,9 @@ export default async (req: NowRequest, res: NowResponse) => {
     const itemUrl = `https://news.ycombinator.com/item?id=${id}`
     const storyUrl = String(story.url || itemUrl)
 
-    const keywords = story.title
+    const keywords = story.title.split(',')
 
-    metadata = await scrape(storyUrl, keywords, timeoutFetch)
+    metadata = await metadataScraper(storyUrl, keywords, timeoutFetch)
   } catch (error) {
     statusCode = 206
     console.error('Failed to load story: ', error)

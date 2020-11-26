@@ -2,6 +2,7 @@ import { useRecoilValue, useRecoilValueLoadable } from 'recoil'
 import FadeTransition from '../common/fadeTransition'
 
 import Spinner from '../common/spinner'
+import Error from '../common/error'
 import Story from './story'
 import useFilter from '../../hooks/useFilter'
 import { storyTypeState, storyCountState, storiesState } from '../../lib/store/recoil'
@@ -14,7 +15,7 @@ export default function StoryList() {
   const [filter] = useFilter()
 
   if (stories.state === 'loading') return <Spinner />
-  if (stories.state === 'hasError') return <div>Error...</div>
+  if (stories.state === 'hasError') return <Error />
 
   return (
     <div className="sm:mx-3">

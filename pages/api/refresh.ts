@@ -10,5 +10,5 @@ export default async (req: NowRequest, res: NowResponse) => {
   res.status(200).send({ status: 'ok' })
 }
 
-const baseUrl = req =>
+const baseUrl = (req: NowRequest) =>
   `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://${req.headers.host}/api`

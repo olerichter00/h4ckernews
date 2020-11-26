@@ -19,7 +19,7 @@ export default function App({ type = 'top' }: AppProps) {
     setType(type)
   }, [type])
 
-  const loadMore = useRef(throttle(() => increaseStoryCount(null), 2000)).current
+  const loadMore = useRef(throttle(() => increaseStoryCount(undefined), 2000)).current
 
   useBottomScrollListener(loadMore, config.loadMoreScrollOffset)
 

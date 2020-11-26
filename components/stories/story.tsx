@@ -25,8 +25,8 @@ export default function Story({ story }: StoryProps) {
   const maxLines = MAX_LINES_DEKSTOP
   const descriptionLines = maxLines - titleLines
 
-  const onTruncateTitle = truncated => {
-    if (!truncated) return
+  const onTruncateTitle = (isTruncated: boolean) => {
+    if (!isTruncated) return
 
     setTitleLines(MAX_TITLE_LINES)
   }
