@@ -46,3 +46,7 @@ More stories are loaded when scrolling to the bottom.
 - Provide a `.env.local` file from `.env.example`.
 - Run `yarn install` to install dependencies.
 - Run `yarn dev` to run **h4ckernews** locally.
+
+### Test
+
+Run `yarn test` to run the test suite.

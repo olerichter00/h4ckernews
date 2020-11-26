@@ -16,7 +16,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const itemUrl = `https://news.ycombinator.com/item?id=${id}`
     const storyUrl = String(story.url || itemUrl)
 
-    const keywords = story.title.split(',')
+    const keywords = story.title.split(' ')
 
     metadata = await metadataScraper(storyUrl, keywords, timeoutFetch)
   } catch (error) {
