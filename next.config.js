@@ -10,7 +10,6 @@ const config = {
     filterScoreThreshold: 100,
     filterCommentsThreshold: 100,
     loadMoreScrollOffset: 3000,
-    prefetchTimeout: 0,
     defaultStoriesType: 'top',
     breakpoints: {
       xs: 500,
@@ -20,13 +19,13 @@ const config = {
     },
   },
   serverRuntimeConfig: {
-    xRapidapiKey: process.env.X_RAPIDAPI_KEY,
-    unsplashClientId: process.env.UNSPLASH_API_CLIENT_ID,
     hackernewsBaseUrl: 'https://hacker-news.firebaseio.com/v0',
     xRapidapiHost: 'contextualwebsearch-websearch-v1.p.rapidapi.com',
+    xRapidapiKey: process.env.X_RAPIDAPI_KEY,
     imageSearchBaseUrl:
       'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI',
     unsplashBaseUrl: 'https://api.unsplash.com/search/photos',
+    unsplashClientId: process.env.UNSPLASH_API_CLIENT_ID,
     cutePandaImageUrl:
       'https://www.tagesspiegel.de/images/grosser-panda-meng-meng_zoo-berlin/24195486/2-format43.jpg',
   },

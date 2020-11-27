@@ -73,8 +73,8 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex ml-2 items-center">
-            <div className="sm:block flex sm:mt-2">
+          <div className="flex ml-2 items-center ">
+            <div className="sm:block flex sm:mt-2 hover:text-primary-700">
               <button onClick={() => switchColorScheme()} title="Switch color scheme.">
                 {colorScheme === 'light' ? (
                   <svg
@@ -110,7 +110,7 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="sm:block ml-3 flex sm:mt-2">
+            <div className="sm:block ml-3 flex sm:mt-2 hover:text-primary-700">
               <button onClick={() => switchFilter()} title="Filter for important stories.">
                 {filter ? (
                   <svg
@@ -144,7 +144,7 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="sm:block flex ml-3 sm:mt-2 mt-1">
+            <div className="sm:block flex ml-3 sm:mt-2 mt-1 hover:text-primary-700">
               <a href="https://github.com/olerichter00/h4ckernews" target="_blank" rel="noopener">
                 <button>
                   <svg
