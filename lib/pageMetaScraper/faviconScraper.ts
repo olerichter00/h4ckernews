@@ -1,4 +1,4 @@
-import { getHref } from './herlper'
+import { getHref } from './helper'
 
 export default class FaviconScraper {
   private page: any

@@ -33,14 +33,14 @@ export default function StoryContent({
       style={{ marginTop: '0.1rem' }}
       className="h-full sm:w-full mx-3 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm"
     >
-      <div className="bg-color-red mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary-700">
+      <div className="bg-color-red mb-1 text-neutral font-semibold text-lg sm:text-md leading-tight hover:text-primary">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>
       </div>
 
       <div className="flex mb-1 text-smitems-center ">
-        <div className="text-primary-700 mr-3">
+        <div className="text-primary mr-3">
           <span className="inline-block align-middle mr-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"

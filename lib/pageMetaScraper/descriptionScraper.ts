@@ -1,4 +1,4 @@
-import { getContent, getText } from './herlper'
+import { getContent, getText } from './helper'
 
 export default class DescriptionScraper {
   private page: any

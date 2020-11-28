@@ -8,14 +8,10 @@ export default function Error() {
   }, [])
 
   return (
-    <div
-      className={`flex flex-col my-12 w-full ease-in-out duration-300 ${
-        show ? 'opacity-100' : 'opacity-0'
-      }`}
-    >
+    <div className={`flex flex-col my-12 w-full ${show ? 'opacity-100' : 'opacity-0'}`}>
       <div className="mx-auto">Oops. Something went wrong...</div>
       <button
-        className="text-primary-600 hover:text-primary-500 mx-auto m-4 outline-none ease-in-out duration-200"
+        className="text-primary hover:text-white mx-auto m-4 outline-none"
         onClick={() => window.location.reload()}
       >
         <svg

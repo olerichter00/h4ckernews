@@ -8,9 +8,7 @@ export default function Spinner() {
   }, [])
 
   return (
-    <div
-      className={`ease-in-out duration-1000 animate-pulse ${show ? 'opacity-100' : 'opacity-0'}`}
-    >
+    <div className={`duration-1000 animate-pulse ${show ? 'opacity-100' : 'opacity-0'}`}>
       <svg className="animate-spin h-8 w-8 mx-auto my-24" viewBox="0 0 24 24">
         <path
           className="opacity-100"

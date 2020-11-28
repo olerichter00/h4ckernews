@@ -14,7 +14,7 @@ export default function FadeTransition({
   show = true,
   hide = false,
   timeout = 0,
-  duration = 1000,
+  duration = 200,
 }: FadeTransitionProps) {
   const [startTransition, setStartTransition] = useState(false)
 
@@ -24,8 +24,8 @@ export default function FadeTransition({
 
   if (hide) return <div></div>
 
-  const classes = `transition-opacity duration-${duration} ease-in-out  ${
-    startTransition ? 'opacity-100' : 'opacity-0'
+  const classes = `transition-opacity duration-${duration} ${
+    startTransition && !hide ? 'opacity-100' : 'opacity-0'
   }`
 
   return <div className={classes}>{children}</div>

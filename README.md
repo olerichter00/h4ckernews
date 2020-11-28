@@ -47,17 +47,17 @@ More stories are loaded when scrolling to the bottom.
 - Run `yarn install` to install dependencies.
 - Run `yarn dev` to run **h4ckernews** locally.
 
-### Test
+**Test**
 
 Run `yarn test` or `yarn test:watch` to run the test suite.
 
-### Code Style
+**Code Style**
 
 Run `yarn lint` or `yarn lint:fix` to run prettier.
 
-## Deploy
+**Deploy**
 
-**Create the project with Vercel**
+Create a project with Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Folerichter00%2Fh4ckernews&project-name=h4ckernews&repository-name=h4ckernews)
 

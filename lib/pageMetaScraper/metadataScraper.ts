@@ -8,7 +8,7 @@ import FaviconScraper from './faviconScraper'
 type Metadata = {
   title?: string
   description?: string
-  imageUrls: string[]
+  imageUrls?: string[]
   favicon?: string
 }
 
@@ -47,26 +47,23 @@ export class MetadataScraper {
   }
 
   public async scrape(): Promise<Metadata> {
+    const metadata: Metadata = {}
+
     try {
-      return {
-        title: this.title(),
-        description: this.description(),
-        imageUrls: await this.images(),
-        favicon: this.favicon(),
-      }
+      metadata.title = this.title()
+      metadata.description = this.description()
+      metadata.favicon = this.favicon()
     } catch (error) {
       console.error('Failed to load metadata: ' + this.url, error)
-
-      return { imageUrls: await this.imageScraper().searchImages() }
     }
+
+    metadata.imageUrls = await this.images()
+
+    return metadata
   }
 
   private async images() {
-    return await this.imageScraper().images()
-  }
-
-  private imageScraper() {
-    return new ImageScraper(this.page, this.url, this.keywords)
+    return await new ImageScraper(this.page, this.url, this.keywords).images()
   }
 
   private title(): string | undefined {

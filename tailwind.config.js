@@ -2,8 +2,15 @@ const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: ['components/**/*.tsx', 'lib/**/*.tsx', 'pages/**/*.tsx'],
+  darkMode: 'class',
   theme: {
-    colors: { ...colors, primary: colors.orange },
+    textColor: { ...colors, primary: '#c05621' },
+    transitionDuration: {
+      DEFAULT: '200ms',
+    },
+    transitionTimingFunction: {
+      DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    },
     screens: {
       sm: '500px',
     },

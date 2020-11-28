@@ -16,16 +16,13 @@ export default function Header() {
     setType(type)
   }
 
-  const backgroundColorClass = colorScheme === 'light' ? 'bg-white' : 'bg-gray-900'
-  const borderColorClass = colorScheme === 'light' ? 'border-gray-300' : 'border-gray-800'
-
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav
-        className={`pl-2 pr-4 py-1 sm:py-2 sticky top-0 z-10 ${backgroundColorClass} border-b ${borderColorClass}`}
-      >
-        <div className="max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-no-wrap">
-          <div className="flex ml-1 items-center">
+      <nav className={`bg-white dark:bg-gray-900 sticky top-0 z-10 transition-colors`}>
+        <div
+          className={`py-1 sm:py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
+        >
+          <div className="flex ml-2 items-center">
             <a
               onClick={() => {
                 Router.push('top')
@@ -36,7 +33,7 @@ export default function Header() {
               <img src={'favicon.png'} alt="Speak Everywhere" className="w-auto h-10" />
             </a>
 
-            <div className="ml-2 sm:ml-5 mr-1">
+            <div className="mr-1 ml-3 sm:mr-2 sm:ml-5">
               <a
                 onClick={() => {
                   Router.push('top')
@@ -44,11 +41,11 @@ export default function Header() {
                 }}
                 className="cursor-pointer"
               >
-                <span className={`${type === 'top' ? 'text-primary-700' : ''}`}>Top</span>
+                <span className={`${type === 'top' ? 'text-primary' : ''}`}>top</span>
               </a>
             </div>
 
-            <div className="mx-1">
+            <div className="mx-1 sm:mx-2">
               <a
                 onClick={() => {
                   Router.push('ask')
@@ -56,11 +53,11 @@ export default function Header() {
                 }}
                 className="cursor-pointer"
               >
-                <span className={`${type === 'ask' ? 'text-primary-700' : ''}`}>Ask</span>
+                <span className={`${type === 'ask' ? 'text-primary' : ''}`}>ask</span>
               </a>
             </div>
 
-            <div className="mx-1">
+            <div className="mx-1 sm:mx-2">
               <a
                 onClick={() => {
                   Router.push('show')
@@ -68,13 +65,13 @@ export default function Header() {
                 }}
                 className="cursor-pointer"
               >
-                <span className={`${type === 'show' ? 'text-primary-700' : ''}`}>Show</span>
+                <span className={`${type === 'show' ? 'text-primary' : ''}`}>show</span>
               </a>
             </div>
           </div>
 
-          <div className="flex ml-2 items-center ">
-            <div className="sm:block flex sm:mt-2 hover:text-primary-700">
+          <div className="flex ml-2 items-center">
+            <div className="sm:block flex sm:mt-2 hover:text-primary">
               <button onClick={() => switchColorScheme()} title="Switch color scheme.">
                 {colorScheme === 'light' ? (
                   <svg
@@ -110,7 +107,7 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="sm:block ml-3 flex sm:mt-2 hover:text-primary-700">
+            <div className="sm:block ml-3 flex sm:mt-2 hover:text-primary">
               <button onClick={() => switchFilter()} title="Filter for important stories.">
                 {filter ? (
                   <svg
@@ -144,7 +141,7 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="sm:block flex ml-3 sm:mt-2 mt-1 hover:text-primary-700">
+            <div className="sm:block flex ml-3 sm:mt-2 mt-1 hover:text-primary">
               <a href="https://github.com/olerichter00/h4ckernews" target="_blank" rel="noopener">
                 <button>
                   <svg

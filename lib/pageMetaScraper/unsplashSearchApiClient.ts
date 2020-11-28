@@ -13,10 +13,10 @@ type JsonResponse = {
   }[]
 }
 
-const fetchImagesFromSearch = async (keywords: string[]) => {
+const fetchImagesFromSearch = async (keywords: string[]): Promise<string[]> => {
   // Return cute panda image in development mode
   if (process.env.NODE_ENV === 'development') {
-    return [config.cutePandaImageUrl]
+    return [config.cuteKoalaImageUrl]
   }
 
   const params: Params = {

@@ -3,6 +3,7 @@ import FadeTransition from '../common/fadeTransition'
 
 import Spinner from '../common/spinner'
 import Error from '../common/error'
+import NoStories from '../common/noStories'
 import Story from './story'
 import useFilter from '../../hooks/useFilter'
 import { storyTypeState, storyCountState, storiesState } from '../../lib/store/recoil'
@@ -17,23 +18,29 @@ export default function StoryList() {
   if (stories.state === 'loading') return <Spinner />
   if (stories.state === 'hasError') return <Error />
 
+  const storyList = stories.contents
+    .slice(0, count)
+    .map(story => story.value)
+    .map(story => ({
+      story: story,
+      hide:
+        !story ||
+        (filter &&
+          story.score < config.filterScoreThreshold &&
+          story.descendants < config.filterCommentsThreshold),
+    }))
+
+  if (storyList.filter(story => !story.hide).length === 0) return <NoStories />
+
   return (
     <div className="sm:mx-3">
-      {stories.contents
-        .slice(0, count)
-        .map(story => story.value)
-        .map(story => {
-          const hide =
-            !story ||
-            (filter &&
-              story.score < config.filterScoreThreshold &&
-              story.descendants < config.filterCommentsThreshold)
-          return (
-            <FadeTransition hide={hide} duration={700}>
-              <Story story={story} key={`${type}-${story.id}`} />
-            </FadeTransition>
-          )
-        })}
+      {storyList.map(story => {
+        return (
+          <FadeTransition hide={story.hide} key={`${type}-${story.story.id}`}>
+            <Story story={story.story} />
+          </FadeTransition>
+        )
+      })}
     </div>
   )
 }
