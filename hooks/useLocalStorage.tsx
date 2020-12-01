@@ -24,7 +24,7 @@ export default function useLocalStorage<T>(
         item ? JSON.parse(item) : initialValue instanceof Function ? initialValue() : initialValue,
       )
     } catch (error) {
-      console.error(error)
+      // console.error(error)
 
       setStoredValue(initialValue instanceof Function ? initialValue() : initialValue)
     }
@@ -39,7 +39,7 @@ export default function useLocalStorage<T>(
       setStoredValue(valueToStore)
       storeItem(valueToStore)
     } catch (error) {
-      console.error(error)
+      // console.error(error)
     }
   }
 

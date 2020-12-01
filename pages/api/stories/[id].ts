@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from '@vercel/node'
 
 import { fetchStory } from '../../../lib/apiClient'
 import { timeoutFetch } from '../../../lib/utils'
-import metadataScraper from '../../../lib/pageMetaScraper/metadataScraper'
+import metadataScraper from '../../../lib/pageMetaScraper/pageMetaScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
   let statusCode = 200
@@ -21,7 +21,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     metadata = await metadataScraper(storyUrl, keywords, timeoutFetch)
   } catch (error) {
     statusCode = 206
-    console.error('Failed to load story: ', error)
+    // console.error('Failed to load story: ', error)
   }
 
   res.setHeader('Cache-Control', 's-maxage=86400')

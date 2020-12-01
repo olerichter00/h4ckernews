@@ -1,6 +1,6 @@
-import { getContent, getText } from './helper'
+import { getContent, getText } from '../utils/helper'
 
-export default class DescriptionScraper {
+export default class MetaDescriptionScraper {
   private page: any
   private url: string
   private truncateLength: number
@@ -16,8 +16,8 @@ export default class DescriptionScraper {
   public description(): string | undefined {
     if (this.isAPdf()) return ''
 
-    const descriptions = this.rules
-      .map(([selector, handler]) => handler(this.page(selector)))
+    const descriptions = this.strategies
+      .map(([selector, handler]) => handler(this.page, selector))
       .map(
         description =>
           description && description.replace(/(<([^>]+)>)/gi, ' ').replace(/&.*;/g, ' '),
@@ -32,7 +32,7 @@ export default class DescriptionScraper {
     return this.url.endsWith('.pdf')
   }
 
-  private rules: [string, (element: cheerio.Cheerio) => string | undefined][] = [
+  private strategies: [string, (page: cheerio.Root, element: string) => string | undefined][] = [
     ["meta[property='og:description']", getContent],
     ["meta[property='twitter:description']", getContent],
     ["meta[name='description']", getContent],

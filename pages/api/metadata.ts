@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
-import metadataScraper from '../../lib/pageMetaScraper/metadataScraper'
+import metadataScraper from '../../lib/pageMetaScraper/pageMetaScraper'
 import { timeoutFetch } from '../../lib/utils'
 
 export default async (req: NowRequest, res: NowResponse) => {

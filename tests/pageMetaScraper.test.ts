@@ -1,4 +1,4 @@
-import metadataScraper from '../lib/pageMetaScraper/metadataScraper'
+import pageMetaScraper from '../lib/pageMetaScraper/pageMetaScraper'
 import fs from 'fs'
 
 const fetcherMock = () => ({
@@ -10,7 +10,7 @@ let testFile = ''
 const url = 'www.test.test'
 const keywords = ['key1', 'key2']
 
-const metadata = async () => metadataScraper(url, keywords, fetcherMock)
+const metadata = async () => pageMetaScraper(url, keywords, fetcherMock)
 
 describe('description', () => {
   test('with og metadata', async () => {
@@ -63,6 +63,7 @@ describe('imageUrls', () => {
       'www.test.test/article-image',
       'www.test.test/content-image',
       'www.test.test/an-image',
+      'www.test.test/article-image',
     ])
   })
 })
