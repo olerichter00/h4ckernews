@@ -6,6 +6,8 @@ The project started as a playground to try out new technology and play around wi
 
 The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 
+![CI status](https://github.com/olerichter00/h4ckernews/workflows/CI/badge.svg)
+
 ## Tech Stack
 
 - [React](https://reactjs.org/)
@@ -27,7 +29,7 @@ Since some pages don't show any images, [ContextualWeb Image Search API](<[https
 
 **Caching**
 
-To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and [Russian doll caching](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html) is used. With this technique instant page load can be achieved without any backend database. An external cronjob service is used to refresh the content every 15 minutes in order to not show outdated stale data.
+To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and [Russian doll caching](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html) is used. With this technique instant page load can be achieved without any backend database. An external cronjob service is used to refresh the content in order to not show outdated stale data.
 
 **Link Prefetching**
 
