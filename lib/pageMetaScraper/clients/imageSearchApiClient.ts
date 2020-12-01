@@ -28,8 +28,8 @@ const fetchImagesFromSearch = async (keywords: string[]): Promise<string[]> => {
   }
 
   const headers = {
+    'x-rapidapi-host': config.xRapidapiHost,
     'x-rapidapi-key': config.xRapidapiKey,
-    'x-rapidapi-host': config.xRapidapiKey,
   }
 
   const url = new URL(config.imageSearchBaseUrl)
