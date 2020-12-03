@@ -25,7 +25,7 @@ export default function FadeTransition({
   if (hide) return <div></div>
 
   const classes = `transition-opacity duration-${duration} ${
-    startTransition && !hide ? 'opacity-100' : 'opacity-0'
+    startTransition ? 'opacity-100' : 'opacity-0'
   }`
 
   return <div className={classes}>{children}</div>

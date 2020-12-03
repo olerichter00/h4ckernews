@@ -61,7 +61,7 @@ export const increaseStoryCountState = selector({
 
 export const storiesState = selector({
   key: 'storiesState',
-  get: async ({ get }): Promise<{ value: StoryType }[]> => {
+  get: async ({ get }): Promise<StoryType[]> => {
     if (!process.browser) return []
 
     get(forceUpdateState)

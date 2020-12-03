@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
 import { fetchStory } from '../../../lib/apiClient'
-import { timeoutFetch } from '../../../lib/utils'
+import { createTimeoutFetch } from '../../../lib/utils/timeoutFetch'
 import metadataScraper from '../../../lib/pageMetaScraper/pageMetaScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -18,7 +18,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
     const keywords = story.title.split(' ')
 
-    metadata = await metadataScraper(storyUrl, keywords, timeoutFetch)
+    metadata = await metadataScraper(storyUrl, keywords, createTimeoutFetch(8000))
   } catch (error) {
     statusCode = 206
     // console.error('Failed to load story: ', error)

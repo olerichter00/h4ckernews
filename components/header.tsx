@@ -22,7 +22,7 @@ export default function Header() {
         <div
           className={`py-1 sm:py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
         >
-          <div className="flex ml-2 items-center">
+          <div className="flex items-center">
             <a
               onClick={() => {
                 Router.push('top')

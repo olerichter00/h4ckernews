@@ -18,17 +18,14 @@ export default function StoryList() {
   if (stories.state === 'loading') return <Spinner />
   if (stories.state === 'hasError') return <Error />
 
-  const storyList = stories.contents
-    .slice(0, count)
-    .map(story => story.value)
-    .map(story => ({
-      story: story,
-      hide:
-        !story ||
-        (filter &&
-          story.score < config.filterScoreThreshold &&
-          story.descendants < config.filterCommentsThreshold),
-    }))
+  const storyList = stories.contents.slice(0, count).map(story => ({
+    story: story,
+    hide:
+      !story ||
+      (filter &&
+        story.score < config.filterScoreThreshold &&
+        story.descendants < config.filterCommentsThreshold),
+  }))
 
   if (storyList.filter(story => !story.hide).length === 0) return <NoStories />
 

@@ -48,11 +48,11 @@ export default class MetaImageScraper {
 
     if (imageUrls.length >= 2) return imageUrls.slice(0, this.MAX_IMAGES)
 
-    for (const strategy of this.fallbackStrategies) {
-      imageUrls.push(...(await this.fallbackImages(strategy)))
+    // for (const strategy of this.fallbackStrategies) {
+    //   imageUrls.push(...(await this.fallbackImages(strategy)))
 
-      if (imageUrls.length >= 1) return imageUrls.slice(0, this.MAX_IMAGES)
-    }
+    //   if (imageUrls.length >= 1) return imageUrls.slice(0, this.MAX_IMAGES)
+    // }
 
     return imageUrls.slice(0, this.MAX_IMAGES)
   }

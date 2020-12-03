@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
 import metadataScraper from '../../lib/pageMetaScraper/pageMetaScraper'
-import { timeoutFetch } from '../../lib/utils'
+import { createTimeoutFetch } from '../../lib/utils/timeoutFetch'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const { url, keywords } = req.query
@@ -10,7 +10,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const metadata = await metadataScraper(
       url as string,
       (keywords as string).split(','),
-      timeoutFetch,
+      createTimeoutFetch(1000),
     )
 
     res.setHeader('Cache-Control', 's-maxage=86400')

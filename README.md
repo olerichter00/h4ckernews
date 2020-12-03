@@ -25,7 +25,7 @@ The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 
 Per default the Open Graph protocol is used to enrich the stories. If no metadata is provided, [cheerio](<[https://cheerio.js.org/](https://cheerio.js.org/)>) is used to scrape the page and provide a suitable image and text that can be shown as a description.
 
-Since some pages don't show any images, [ContextualWeb Image Search API](<[https://contextualweb.io/image-search-api/](https://contextualweb.io/image-search-api/)>) and [Unsplash Image API](<[https://unsplash.com/developers](https://unsplash.com/developers)>) are used as fallback solutions.
+Since some pages don't show any images, [ContextualWeb Image Search API](https://contextualweb.io/image-search-api/) and [Unsplash Image API](https://unsplash.com/developers) are used as fallback solutions.
 
 **Caching**
 

@@ -18,5 +18,3 @@ export default function useIsMobile(): boolean {
 
   return isMobile
 }
-
-useIsMobile

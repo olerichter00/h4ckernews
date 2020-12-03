@@ -1,10 +1,10 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 
-import { timeoutFetch } from '../../lib/utils'
+import { timeoutFetch } from '../../lib/utils/timeoutFetch'
 
 export default async (req: NowRequest, res: NowResponse) => {
   ;['top', 'ask', 'show'].forEach(type => {
-    fetch(`${baseUrl(req)}/stories?type=${type}`)
+    timeoutFetch(`${baseUrl(req)}/stories?type=${type}`, { timeout: 100 })
   })
 
   res.status(200).send({ status: 'ok' })
