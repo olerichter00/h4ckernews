@@ -1,26 +1,7 @@
-import fetchImagesFromSearch from '../clients/imageSearchApiClient'
-import fetchImagesFromUnsplash from '../clients/unsplashSearchApiClient'
 import { getContent, getSrc, normalizeUrl } from '../utils/helper'
+import cleanKeywords from '../utils/keywordCleaner'
 
-const EXCLUDE_KEYWORDS = [
-  'ask',
-  'show',
-  'hn',
-  'the',
-  'a',
-  'that',
-  'this',
-  'as',
-  'and',
-  'or',
-  'for',
-  'in',
-  'out',
-  'new',
-  'i',
-]
-
-type SelectorStrategy = [
+type Strategy = [
   string,
   (element: cheerio.Root, selector: string) => string | undefined | (string | undefined)[],
 ]
@@ -36,7 +17,7 @@ export default class MetaImageScraper {
   public constructor(page: cheerio.Root, url: string, keywords: string[]) {
     this.page = page
     this.url = url
-    this.keywords = this.stripKeywords(keywords)
+    this.keywords = cleanKeywords(keywords)
   }
 
   public async images(): Promise<string[]> {
@@ -47,12 +28,6 @@ export default class MetaImageScraper {
     } catch {}
 
     if (imageUrls.length >= 2) return imageUrls.slice(0, this.MAX_IMAGES)
-
-    // for (const strategy of this.fallbackStrategies) {
-    //   imageUrls.push(...(await this.fallbackImages(strategy)))
-
-    //   if (imageUrls.length >= 1) return imageUrls.slice(0, this.MAX_IMAGES)
-    // }
 
     return imageUrls.slice(0, this.MAX_IMAGES)
   }
@@ -72,25 +47,7 @@ export default class MetaImageScraper {
     return []
   }
 
-  private async fallbackImages(strategy: ServiceStrategy): Promise<string[]> {
-    try {
-      const [keywords, handler] = strategy
-
-      return await handler(keywords)
-    } catch (error) {
-      console.log('Fallback strategy failed.')
-      return []
-    }
-  }
-
-  private stripKeywords(keywords: string[]): string[] {
-    return keywords
-      .map(keyword => keyword.replace(/[^A-Za-z\s]/g, '').replace(/\s{2,}/g, ' '))
-      .filter(keyword => keyword.length >= 4)
-      .filter(keyword => !EXCLUDE_KEYWORDS.includes(keyword.toLowerCase()))
-  }
-
-  private strategies: SelectorStrategy[] = [
+  private strategies: Strategy[] = [
     ['meta[property="og:image:secure_url"]', getContent],
     ['meta[property="og:image:url"]', getContent],
     ['meta[property="og:image"]', getContent],
@@ -101,10 +58,5 @@ export default class MetaImageScraper {
     ['#content img[src]', getSrc],
     ['img[alt*="author" i]', getSrc],
     ['img[src]:not([aria-hidden="true"])', getSrc],
-  ]
-
-  private fallbackStrategies: ServiceStrategy[] = [
-    [this.keywords, fetchImagesFromSearch],
-    [this.keywords, fetchImagesFromUnsplash],
   ]
 }

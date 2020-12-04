@@ -4,7 +4,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
   publicRuntimeConfig: {
-    maxStories: process.env.NODE_ENV === 'development' ? 20 : 100,
+    maxStories: process.env.NODE_ENV === 'development' ? 20 : 200,
     pageSize: 15,
     filterPageSize: 30,
     filterScoreThreshold: 100,

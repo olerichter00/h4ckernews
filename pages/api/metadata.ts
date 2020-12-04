@@ -1,3 +1,4 @@
+import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 
 import metadataScraper from '../../lib/pageMetaScraper/pageMetaScraper'
@@ -14,9 +15,9 @@ export default async (req: NowRequest, res: NowResponse) => {
     )
 
     res.setHeader('Cache-Control', 's-maxage=86400')
-    res.status(200).json(metadata)
+    res.status(Status.OK).json(metadata)
   } catch (error) {
-    res.status(500).json({
+    res.status(Status.NOT_FOUND).json({
       error: error.message,
     })
   }

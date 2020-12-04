@@ -1,8 +1,10 @@
+import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 
 import config from '../../lib/config'
 import { fetchStories } from '../../lib/apiClient'
 import { timeoutFetch } from '../../lib/utils/timeoutFetch'
+import baseUrl from '../../lib/utils/baseUrl'
 
 export default async (req: NowRequest, res: NowResponse) => {
   process.setMaxListeners(100)
@@ -15,24 +17,23 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const stories = (
     await Promise.allSettled(
-      storyIds.slice(page * pageSize, pageSize).map(async id => await fetchStory(req, id)),
+      storyIds
+        .slice(page * pageSize, pageSize)
+        .map(async id => await fetchStory(req.headers.host, id)),
     )
   )
     .map(story => story.status === 'fulfilled' && story.value)
     .filter(story => story)
 
-  res.setHeader('Cache-Control', 'public, s-max-age=1, stale-while-revalidate')
-  res.status(200).json({ data: stories })
+  res.setHeader('Cache-Control', 'public, s-max-age=900, stale-while-revalidate')
+  res.status(Status.OK).json({ data: stories })
 }
 
-const fetchStory = async (req: NowRequest, id: string) => {
-  const requestUrl = `${baseUrl(req)}/stories/${id}`
+const fetchStory = async (host: string | undefined, id: string) => {
+  const requestUrl = `${baseUrl(host)}/stories/${id}`
   const response = await timeoutFetch(requestUrl)
 
   if (!response.ok) throw new Error('Failed to load story.')
 
   return await response.json()
 }
-
-const baseUrl = (req: NowRequest) =>
-  `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://${req.headers.host}/api`

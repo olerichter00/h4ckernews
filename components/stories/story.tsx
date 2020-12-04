@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 import { StoryType } from '../../lib/store/recoil'
 import PreloadedLink from '../common/preloadedLink'
@@ -17,7 +17,7 @@ type StoryProps = {
 }
 
 export default function Story({ story }: StoryProps) {
-  const { title, url, score, text, id, descendants, description, imageUrls, favicon } = story
+  const { title, url, score, text, id, descendants, description, imageUrls } = story
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const isMobile = useIsMobile()
 
@@ -25,13 +25,9 @@ export default function Story({ story }: StoryProps) {
   const maxLines = MAX_LINES_DEKSTOP
   const descriptionLines = maxLines - titleLines
 
-  const onTruncateTitle = (isTruncated: boolean) => {
-    if (!isTruncated) return
+  const onTruncateTitle = (isTruncated: boolean) => isTruncated && setTitleLines(MAX_TITLE_LINES)
 
-    setTitleLines(MAX_TITLE_LINES)
-  }
-
-  const unescapedText = unescape(text || '').replace(/(<([^>]+)>)/gi, '')
+  const unescapedText = useMemo(() => unescape(text || '').replace(/(<([^>]+)>)/gi, ''), [text])
 
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
@@ -50,10 +46,8 @@ export default function Story({ story }: StoryProps) {
           description={description || unescapedText}
           url={url}
           score={score}
-          favicon={favicon}
           commentsUrl={itemUrl}
           commentsCount={descendants}
-          loading={false}
           key={`story-content-${id}`}
         />
       </div>

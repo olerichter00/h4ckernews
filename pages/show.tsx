@@ -1,5 +1,5 @@
 import App from '../components/app'
 
-export default function Home() {
+export default function Show() {
   return <App type="show" />
 }

@@ -15,6 +15,7 @@
     "deploy:staging": "vercel"
   },
   "dependencies": {
+    "@olerichter00/use-localstorage": "^0.0.5",
     "@types/cheerio": "^0.22.22",
     "@types/lodash.throttle": "^4.1.6",
     "@types/react-headroom": "^2.2.1",
@@ -22,6 +23,7 @@
     "@vercel/node": "^1.8.0",
     "autoprefixer": "^10.0.4",
     "cheerio": "^1.0.0-rc.3",
+    "http-status-codes": "^2.1.4",
     "js-cookie": "^2.2.1",
     "lodash.throttle": "^4.1.1",
     "next": "^10.0.0",

@@ -18,23 +18,26 @@ export default function StoryList() {
   if (stories.state === 'loading') return <Spinner />
   if (stories.state === 'hasError') return <Error />
 
-  const storyList = stories.contents.slice(0, count).map(story => ({
-    story: story,
-    hide:
-      !story ||
-      (filter &&
-        story.score < config.filterScoreThreshold &&
-        story.descendants < config.filterCommentsThreshold),
-  }))
+  const storyList = stories.contents
+    .slice(0, count)
+    .filter(
+      story =>
+        story &&
+        !(
+          filter &&
+          story.score < config.filterScoreThreshold &&
+          story.descendants < config.filterCommentsThreshold
+        ),
+    )
 
-  if (storyList.filter(story => !story.hide).length === 0) return <NoStories />
+  if (storyList.length === 0) return <NoStories />
 
   return (
     <div className="sm:mx-3">
       {storyList.map(story => {
         return (
-          <FadeTransition hide={story.hide} key={`${type}-${story.story.id}`}>
-            <Story story={story.story} />
+          <FadeTransition key={`${type}-${story.id}`}>
+            <Story story={story} />
           </FadeTransition>
         )
       })}

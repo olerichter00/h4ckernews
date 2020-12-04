@@ -67,7 +67,7 @@ export const storiesState = selector({
     get(forceUpdateState)
 
     const response = await fetch(`api/stories?type=${get(storyTypeState)}`)
-    const story = await response.json()
-    return story.data
+    const stories = await response.json()
+    return stories.data
   },
 })

@@ -1,49 +1,39 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, Dispatch } from 'react'
 
-export default function useLocalStorage<T>(
+export default function useLocalStorage(
   key: string,
-  initialValue: T | Function,
-): [any, Function] {
+  initialValue: any | Function,
+): [any, Dispatch<any>] {
   const [storedValue, setStoredValue] = useState()
 
-  const handleUpdateItem = useCallback((e: StorageEvent) => {
-    if (key !== e.key) return
+  const handleItemUpdate = (event: StorageEvent) => {
+    if (key !== event.key) return
 
     const item = window.localStorage.getItem(key)
 
-    setStoredValue(item ? JSON.parse(item) : undefined)
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('storage', handleUpdateItem)
-
-    try {
-      const item = window.localStorage.getItem(key)
-
-      setStoredValue(
-        item ? JSON.parse(item) : initialValue instanceof Function ? initialValue() : initialValue,
-      )
-    } catch (error) {
-      // console.error(error)
-
-      setStoredValue(initialValue instanceof Function ? initialValue() : initialValue)
-    }
-
-    return () => window.removeEventListener('storage', handleUpdateItem)
-  }, [handleUpdateItem])
-
-  const setValue = (value: T) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value
-
-      setStoredValue(valueToStore)
-      storeItem(valueToStore)
-    } catch (error) {
-      // console.error(error)
-    }
+    setStoredValue(item ? JSON.parse(item) : initialItem())
   }
 
-  const storeItem = (item: T) => {
+  const initialItem = () => (initialValue instanceof Function ? initialValue() : initialValue)
+
+  useEffect(() => {
+    window.addEventListener('storage', handleItemUpdate)
+
+    const item = window.localStorage.getItem(key)
+
+    setStoredValue(item ? JSON.parse(item) : initialItem())
+
+    return () => window.removeEventListener('storage', handleItemUpdate)
+  }, [])
+
+  const setValue = (newValue: any) => {
+    const valueToStore = newValue instanceof Function ? newValue() : newValue
+
+    storeItem(valueToStore)
+    setStoredValue(valueToStore)
+  }
+
+  const storeItem = (item: any) => {
     window.localStorage.setItem(key, JSON.stringify(item))
 
     const event = new StorageEvent('storage', { key: key })

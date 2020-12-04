@@ -7,6 +7,7 @@ The project started as a playground to try out new technology and play around wi
 The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 
 ![CI status](https://github.com/olerichter00/h4ckernews/workflows/CI/badge.svg)
+[![DeepScan grade](https://deepscan.io/api/teams/11955/projects/14907/branches/288655/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11955&pid=14907&bid=288655)
 
 ## Tech Stack
 

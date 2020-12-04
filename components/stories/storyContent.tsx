@@ -9,8 +9,6 @@ type StoryContentProps = {
   description: string
   url: string
   score: number
-  favicon?: string
-  loading: boolean
   commentsUrl: string
   commentsCount: number
 }
@@ -23,8 +21,6 @@ export default function StoryContent({
   description,
   url,
   score,
-  favicon,
-  loading,
   commentsUrl,
   commentsCount,
 }: StoryContentProps) {
@@ -104,7 +100,9 @@ export default function StoryContent({
               </svg>
             </span>
 
-            <span className="inline-block align-middle">{commentsCount} Comments</span>
+            <span className="inline-block align-middle">
+              {commentsCount || 0} {commentsCount === 1 ? 'Comment' : 'Comments'}
+            </span>
           </a>
         </div>
       </div>
