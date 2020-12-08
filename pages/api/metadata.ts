@@ -1,14 +1,14 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 
-import metadataScraper from '../../lib/pageMetaScraper/pageMetaScraper'
+import metadataScraper from '../../lib/metadataScraper'
 import { createTimeoutFetch } from '../../lib/utils/timeoutFetch'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const { url, keywords } = req.query
 
   try {
-    const metadata = await metadataScraper(
+    const metadata = await metadataScraper.scrape(
       url as string,
       (keywords as string).split(','),
       createTimeoutFetch(1000),

@@ -1,16 +1,11 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
-
-import fetchImagesFromSearch from '../../lib/clients/imageSearchApiClient'
-import fetchImagesFromUnsplash from '../../lib/clients/unsplashSearchApiClient'
-import cleanKeywords from '../../lib/pageMetaScraper/utils/keywordCleaner'
+import pageMetaScraper from '../../lib/metadataScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
-  const keywordParams = decodeURIComponent(String(req.query.keywords))
+  const keywords = decodeURIComponent(String(req.query.keywords)).split(',')
 
-  const keywords = cleanKeywords(keywordParams.split(','))
-
-  for (const url of await fallbackImages(keywords)) {
+  for (const url of await pageMetaScraper.fallbackImages(keywords)) {
     const imageResponse = await fetch(url)
 
     if (imageResponse.ok) {
@@ -22,12 +17,4 @@ export default async (req: NowRequest, res: NowResponse) => {
       return
     }
   }
-}
-
-const fallbackImages = async (keywords: string[]): Promise<string[]> => {
-  const imageUrls = await fetchImagesFromUnsplash(keywords)
-
-  if (imageUrls.length === 0) imageUrls.push(...(await fetchImagesFromSearch(keywords)))
-
-  return imageUrls
 }

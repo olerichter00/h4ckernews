@@ -15,7 +15,7 @@
     "deploy:staging": "vercel"
   },
   "dependencies": {
-    "@olerichter00/use-localstorage": "^0.0.5",
+    "@olerichter00/use-localstorage": "0.1.0",
     "@types/cheerio": "^0.22.22",
     "@types/lodash.throttle": "^4.1.6",
     "@types/react-headroom": "^2.2.1",
@@ -28,7 +28,7 @@
     "lodash.throttle": "^4.1.1",
     "next": "^10.0.0",
     "next-pwa": "^3.1.3",
-    "page-meta-scraper": "^0.0.1",
+    "page-meta-scraper": "0.1.1",
     "postcss": "^8.1.10",
     "postcss-preset-env": "^6.7.0",
     "quicklink": "^2.0.0",

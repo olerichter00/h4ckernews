@@ -1,7 +1,7 @@
 import useLocalStorage from '@olerichter00/use-localstorage'
 
 export default function useFilter(): [boolean, Function] {
-  const [filter, setFilter] = useLocalStorage('filter', false)
+  const [filter, setFilter] = useLocalStorage<boolean>('filter', false)
 
   const switchFilter = () => {
     const newFilter = !filter
@@ -9,5 +9,5 @@ export default function useFilter(): [boolean, Function] {
     setFilter(newFilter)
   }
 
-  return [filter, switchFilter]
+  return [filter as boolean, switchFilter]
 }

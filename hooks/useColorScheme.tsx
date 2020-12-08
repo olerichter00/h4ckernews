@@ -6,7 +6,10 @@ const systemColorScheme = (): 'dark' | 'light' =>
   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
 export default function useColorScheme(): [ColorScheme, Function] {
-  const [colorScheme, setColorScheme] = useLocalStorage('colorScheme', systemColorScheme)
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>(
+    'colorScheme',
+    systemColorScheme,
+  )
 
   const switchColorScheme = () => {
     const newColorScheme = colorScheme === 'dark' ? 'light' : 'dark'
@@ -14,5 +17,5 @@ export default function useColorScheme(): [ColorScheme, Function] {
     setColorScheme(newColorScheme)
   }
 
-  return [colorScheme, switchColorScheme]
+  return [colorScheme as ColorScheme, switchColorScheme]
 }

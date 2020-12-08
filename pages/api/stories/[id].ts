@@ -3,7 +3,7 @@ import { NowRequest, NowResponse } from '@vercel/node'
 
 import { fetchStory } from '../../../lib/apiClient'
 import { createTimeoutFetch } from '../../../lib/utils/timeoutFetch'
-import metadataScraper from '../../../lib/pageMetaScraper/pageMetaScraper'
+import metadataScraper from '../../../lib/metadataScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const id = req.query.id.toString()
@@ -24,7 +24,7 @@ const getMetadata = async (id: string, url: string, title: string) => {
 
     const keywords = title.split(' ')
 
-    return await metadataScraper(storyUrl, keywords, createTimeoutFetch(8000))
+    return await metadataScraper.scrape(storyUrl, keywords, createTimeoutFetch(8000))
   } catch (error) {
     return undefined
   }
