@@ -20,7 +20,7 @@ export default function Header() {
     <Headroom upTolerance={10} downTolerance={10}>
       <nav className={`bg-white dark:bg-gray-900 sticky top-0 z-10`}>
         <div
-          className={`py-1 sm:py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-lg sm:text-xl font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
+          className={`py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-xl sm:font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
         >
           <div className="flex items-center">
             <a
@@ -75,7 +75,7 @@ export default function Header() {
               <button onClick={() => switchColorScheme()} title="Switch color scheme.">
                 {colorScheme === 'light' ? (
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ export default function Header() {
                   </svg>
                 ) : (
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ export default function Header() {
               <button onClick={() => switchFilter()} title="Filter for important stories.">
                 {filter ? (
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 19 19"
                     fill="currentColor"
@@ -124,7 +124,7 @@ export default function Header() {
                   </svg>
                 ) : (
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ export default function Header() {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 19 19"
                     fill="currentColor"
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                   >
                     <path
                       fillRule="evenodd"
