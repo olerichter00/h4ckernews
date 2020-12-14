@@ -6,7 +6,7 @@ import StoryImage from './storyImage'
 import StoryContent from './storyContent'
 import useIsMobile from '../../hooks/useIsMobile'
 
-const MAX_LINES_DEKSTOP = 5
+const MAX_LINES_DEKSTOP = 4
 const MIN_TITLE_LINES = 1
 const MAX_TITLE_LINES = 2
 const MOBILE_TITLE_LINES = 4
@@ -31,7 +31,7 @@ export default function Story({ story }: StoryProps) {
 
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <div className="flex flex-col sm:mb-6 sm:flex-row w-full max-w-full my-8 max-w-full">
+      <div className="m-3 flex flex-col mb-4 sm:mb-6 sm:bg-transparent sm:dark:bg-transparent bg-gray-100 dark:bg-gray-800 rounded-xl sm:rounded-none overflow-hidden pb-4 sm:pb-0 sm:flex-row sm:w-full max-w-full sm:my-8 max-w-full">
         <StoryImage
           imageUrls={imageUrls}
           keywords={title.split(' ')}
@@ -44,7 +44,7 @@ export default function Story({ story }: StoryProps) {
           onTruncateTitle={onTruncateTitle}
           title={title}
           description={description || unescapedText}
-          url={url}
+          url={url || itemUrl}
           score={score}
           commentsUrl={itemUrl}
           commentsCount={descendants}

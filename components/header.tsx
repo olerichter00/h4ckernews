@@ -12,8 +12,10 @@ export default function Header() {
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
-  const showStories = async (type: Type) => {
+  const showStories = (type: Type) => {
+    Router.push(type)
     setType(type)
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -23,48 +25,24 @@ export default function Header() {
           className={`py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-xl sm:font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
         >
           <div className="flex items-center">
-            <a
-              onClick={() => {
-                Router.push('top')
-                showStories('top')
-              }}
-              className="cursor-pointer"
-            >
+            <a onClick={() => showStories('top')} className="cursor-pointer">
               <img src={'favicon.png'} alt="Speak Everywhere" className="w-auto h-10" />
             </a>
 
             <div className="mr-1 ml-3 sm:mr-2 sm:ml-5">
-              <a
-                onClick={() => {
-                  Router.push('top')
-                  showStories('top')
-                }}
-                className="cursor-pointer"
-              >
+              <a onClick={() => showStories('top')} className="cursor-pointer">
                 <span className={`${type === 'top' ? 'text-primary' : ''}`}>top</span>
               </a>
             </div>
 
             <div className="mx-1 sm:mx-2">
-              <a
-                onClick={() => {
-                  Router.push('ask')
-                  showStories('ask')
-                }}
-                className="cursor-pointer"
-              >
+              <a onClick={() => showStories('ask')} className="cursor-pointer">
                 <span className={`${type === 'ask' ? 'text-primary' : ''}`}>ask</span>
               </a>
             </div>
 
             <div className="mx-1 sm:mx-2">
-              <a
-                onClick={() => {
-                  Router.push('show')
-                  showStories('show')
-                }}
-                className="cursor-pointer"
-              >
+              <a onClick={() => showStories('show')} className="cursor-pointer">
                 <span className={`${type === 'show' ? 'text-primary' : ''}`}>show</span>
               </a>
             </div>

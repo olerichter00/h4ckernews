@@ -11,7 +11,7 @@ export default function Error() {
     <div className={`flex flex-col my-12 w-full ${show ? 'opacity-100' : 'opacity-0'}`}>
       <div className="mx-auto">Oops. Something went wrong...</div>
       <button
-        className="text-primary hover:text-white mx-auto m-4 outline-none"
+        className="text-primary dark:hover:text-white hover:text-white mx-auto m-4 outline-none"
         onClick={() => window.location.reload()}
       >
         <svg
