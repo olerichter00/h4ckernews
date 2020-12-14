@@ -19,6 +19,7 @@ const config = {
     },
   },
   serverRuntimeConfig: {
+    mongoUri: process.env.MONGODB_URI,
     hackernewsBaseUrl: 'https://hacker-news.firebaseio.com/v0',
     xRapidapiHost: 'contextualwebsearch-websearch-v1.p.rapidapi.com',
     xRapidapiKey: process.env.X_RAPIDAPI_KEY,
