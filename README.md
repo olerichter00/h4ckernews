@@ -28,6 +28,8 @@ Per default the Open Graph protocol is used to enrich the stories. If no metadat
 
 Since some pages don't show any images, [ContextualWeb Image Search API](https://contextualweb.io/image-search-api/) and [Unsplash Image API](https://unsplash.com/developers) are used as fallback solutions.
 
+**Note:** The code has been moved to a separate npm package ([page-meta-scraper](https://www.npmjs.com/package/page-meta-scraper))/
+
 **Caching**
 
 To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and [Russian doll caching](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html) is used. With this technique instant page load can be achieved without any backend database. An external cronjob service is used to refresh the content in order to not show outdated stale data.
@@ -42,9 +44,11 @@ The app is a PWA and can be installed.
 
 **Infinite Scroll**
 
-More stories are loaded when scrolling to the bottom.
+More stories are loaded when scrolling to the bottom of the page.
 
 ## Development
+
+**Install dependencies:**
 
 - Provide a `.env.local` file from `.env.example`.
 - Run `yarn install` to install dependencies.
@@ -60,7 +64,7 @@ Run `yarn lint` or `yarn lint:fix` to run prettier.
 
 **Deploy**
 
-Create a project with Vercel:
+Create the project with Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Folerichter00%2Fh4ckernews&project-name=h4ckernews&repository-name=h4ckernews)
 
