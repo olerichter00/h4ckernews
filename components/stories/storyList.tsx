@@ -26,6 +26,7 @@ export default function StoryList() {
         !(
           filter &&
           story.score < config.filterScoreThreshold &&
+          story.descendants &&
           story.descendants < config.filterCommentsThreshold
         ),
     )

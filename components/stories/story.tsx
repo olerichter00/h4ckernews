@@ -34,7 +34,7 @@ export default function Story({ story }: StoryProps) {
       <div className="m-3 flex flex-col mb-4 sm:mb-6 sm:bg-transparent sm:dark:bg-transparent bg-gray-100 dark:bg-gray-800 rounded-xl sm:rounded-none overflow-hidden pb-4 sm:pb-0 sm:flex-row sm:w-full max-w-full sm:my-8 max-w-full">
         <StoryImage
           imageUrls={imageUrls}
-          keywords={title.split(' ')}
+          keywords={title ? title.split(' ') : []}
           placeholderText={title}
           key={`story-image-${id}`}
         />
