@@ -4,17 +4,25 @@ import { NowRequest, NowResponse } from '@vercel/node'
 import { fetchStory } from '../../../lib/apiClient'
 import { createTimeoutFetch } from '../../../lib/utils/timeoutFetch'
 import metadataScraper from '../../../lib/metadataScraper'
+import { withCache } from '../../../lib/cache/mongoCache'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const id = req.query.id.toString()
 
+  const cacheKey = `${process.env.NODE_ENV}-story-${id}`
+
+  const story = await withCache(cacheKey, buildGetStory(id), { maxAge: 86400 })
+
+  res.setHeader('Cache-Control', 's-maxage=86400')
+  res.json(story)
+}
+
+const buildGetStory = (id: string) => async () => {
   const story = await fetchStory(id)
 
   let metadata = await getMetadata(id, story.url, story.title)
 
-  res.status(metadata ? Status.OK : Status.PARTIAL_CONTENT)
-  res.setHeader('Cache-Control', 's-maxage=86400')
-  res.json({ ...(metadata || {}), ...story })
+  return { ...story, ...metadata }
 }
 
 const getMetadata = async (id: string, url: string, title: string) => {
@@ -24,8 +32,8 @@ const getMetadata = async (id: string, url: string, title: string) => {
 
     const keywords = title.split(' ')
 
-    return await metadataScraper.scrape(storyUrl, keywords, createTimeoutFetch(8000))
+    return await metadataScraper.scrape(storyUrl, keywords, createTimeoutFetch(2000))
   } catch (error) {
-    return undefined
+    return {}
   }
 }
