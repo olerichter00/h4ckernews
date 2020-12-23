@@ -44,19 +44,17 @@ const buildGetStories = (type: string) => async () => {
 
 const buildGetStory = (id: string) => async () => {
   const story = await fetchStory(id)
-  const metadata = (await getMetadata(id, story.url, story.title)) || {}
+  const metadata = (await getMetadata(id, story.url, story.title.split(' '))) || {}
 
   return { ...story, ...metadata }
 }
 
-const getMetadata = async (id: string, url: string, title: string) => {
+const getMetadata = async (id: string, url: string, keywords: string[]) => {
   try {
     const itemUrl = `https://news.ycombinator.com/item?id=${id}`
     const storyUrl = String(url || itemUrl)
 
-    const keywords = title.split(' ')
-
-    return await metadataScraper.scrape(storyUrl, keywords, createTimeoutFetch(2000))
+    return await metadataScraper.scrape(storyUrl, keywords, createTimeoutFetch(500))
   } catch (error) {
     return {}
   }
