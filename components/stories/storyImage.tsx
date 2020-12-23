@@ -1,8 +1,12 @@
-import { useReducer, useEffect, useRef } from 'react'
+import { useReducer, useEffect, useRef, SyntheticEvent } from 'react'
 
 import FallbackImage from './fallbackImage'
 import useIsMobile from '../../hooks/useIsMobile'
 import FadeTransition from '../common/fadeTransition'
+
+const YCOMBINATOR_IMAGE =
+  'https://www.workatastartup.com/assets/ycombinator-logo-b603b0a270e12b1d42b7cca9d4527a9b206adf8293a77f9f3e8b6cb542fcbfa7.png'
+const MIN_IMAGE_WITH = 300
 
 type StoryImageProps = {
   imageUrls: string[]
@@ -37,6 +41,12 @@ export default function StoryImage({
     }
   }
 
+  const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    if ((event.target as HTMLImageElement).naturalWidth < MIN_IMAGE_WITH) return onError()
+
+    setLoaded()
+  }
+
   useEffect(() => {
     if (imageUrls.length === 0) setFailed()
 
@@ -61,10 +71,14 @@ export default function StoryImage({
           <FallbackImage placeholderText={placeholderText} />
         ) : (
           <img
-            src={imageUrl}
+            src={
+              imageUrl && imageUrl.startsWith('https://news.ycombinator.com')
+                ? YCOMBINATOR_IMAGE
+                : imageUrl
+            }
             className="min-h-full min-w-full"
             style={{ objectFit: 'cover' }}
-            onLoad={() => setLoaded()}
+            onLoad={onLoad}
             onError={onError}
           />
         )}
