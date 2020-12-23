@@ -12,7 +12,7 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <div className={dark}>
-      <div className="max-w-full min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div className="max-w-full min-h-screen bg-gray-100 sm:bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
         <Header />
         <main className="max-w-3xl mx-auto overflow-hidden">{children}</main>
       </div>

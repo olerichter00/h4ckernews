@@ -22,7 +22,7 @@ export default function Header() {
     <Headroom upTolerance={10} downTolerance={10}>
       <nav className={`bg-white dark:bg-gray-900 sticky top-0 z-10`}>
         <div
-          className={`py-2 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-xl sm:font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
+          className={`py-1 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-neutral text-xl sm:font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800`}
         >
           <div className="flex items-center">
             <a onClick={() => showStories('top')} className="cursor-pointer">
