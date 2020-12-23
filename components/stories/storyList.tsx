@@ -19,7 +19,6 @@ export default function StoryList() {
   if (stories.state === 'hasError') return <Error />
 
   const storyList = stories.contents
-    .slice(0, count)
     .filter(
       story =>
         story &&
@@ -30,6 +29,7 @@ export default function StoryList() {
           story.descendants < config.filterCommentsThreshold
         ),
     )
+    .slice(0, count)
 
   if (storyList.length === 0) return <NoStories />
 
