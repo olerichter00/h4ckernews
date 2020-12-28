@@ -25,25 +25,22 @@ export default function StoryContent({
   commentsCount,
 }: StoryContentProps) {
   return (
-    <div
-      style={{ marginTop: '0.1rem' }}
-      className="mt-2 sm:mt-0 h-full sm:w-full mx-3 mr-4 sm:mr-3 pt-1 sm:pt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm sm:text-tiny"
-    >
+    <div className="mt-2 sm:mt-0 h-full sm:w-full mx-3 mr-4 sm:mr-3 pt-1 sm:pt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm sm:text-tiny">
       <div className="mt-2 sm:mt-0 text-neutral font-bold sm:font-semibold text-base sm:text-lg leading-tight hover:text-primary">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>
       </div>
       <div className="flex flex-col-reverse sm:flex-col mt-1 sm:mt-1">
-        <div className="flex max-w-full overflow-hidden mb-1 items-center sm:m-0 m-auto pb-0 sm:pb-1 pt-5 sm:pt-0">
-          <div className="text-primary mr-3 flex flex-row flex-nowrap flex-none">
-            <span className="inline-block align-middle mr-1">
+        <div className="flex max-w-full overflow-hidden mb-1 items-center sm:m-0 m-auto pb-0 sm:pb-1 pt-5 sm:pt-0 text-gray-500 dark:text-gray-400">
+          <div className="mr-3 flex flex-row flex-nowrap">
+            <span className="m-auto mr-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 24 24"
+                viewBox="0 0 23 23"
                 stroke="currentColor"
-                className="w-4 h-4"
+                className="w-3 h-3"
               >
                 <path
                   strokeLinecap="round"
@@ -53,63 +50,53 @@ export default function StoryContent({
                 />
               </svg>
             </span>
-            <span className="inline-block align-middle">{score}</span>
+            {score}
           </div>
-
-          {url && (
-            <div className="flex-grow sm:flex-grow-0 overflow-hidden sm:mr-0">
-              <a href={url}>
-                <div className="text-gray-500 dark:text-gray-400 flex flex-row flex-nowrap">
-                  <span className="inline-block align-middle w-3 mr-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </span>
-
-                  <span className="inline-block align-middle overflow-ellipsis overflow-hidden ">
-                    {new URL(url).hostname}
-                  </span>
-                </div>
-              </a>
+          <a href={url}>
+            <div className="mr-3 flex flex-row flex-nowrap flex-grow sm:flex-grow-0 overflow-hidden">
+              <span className="m-auto mr-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 23 23"
+                  stroke="currentColor"
+                  className="w-3 h-3"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  />
+                </svg>
+              </span>
+              <span className="overflow-ellipsis overflow-hidden">
+                {url && new URL(url).hostname}
+              </span>
             </div>
-          )}
-          <div className="flex-none">
-            <a href={commentsUrl}>
-              <div className="text-gray-500 dark:text-gray-400 ml-3 flex flex-row flex-nowrap">
-                <span className="inline-block align-middle mr-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                    />
-                  </svg>
-                </span>
+          </a>
 
-                <span className="inline-block align-middle whitespace-nowrap">
-                  {commentsCount || 0}
-                </span>
-              </div>
-            </a>
-          </div>
+          <a href={commentsUrl}>
+            <div className="mr-3 flex flex-row flex-nowrap">
+              <span className="m-auto mr-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 23 23"
+                  stroke="currentColor"
+                  className="w-3 h-3"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                  />
+                </svg>
+              </span>
+              {commentsCount || 0}
+            </div>
+          </a>
         </div>
         <div className="sm:flex-1 pt-2 sm:pt-0">
           <Truncate lines={descriptionLines} ellipsis={'...'}>
