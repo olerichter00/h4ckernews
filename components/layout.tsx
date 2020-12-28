@@ -1,6 +1,6 @@
 import React, { ReactChildren, ReactChild } from 'react'
 
-import Header from './header'
+import Navigation from './navigation'
 import useColorScheme from '../hooks/useColorScheme'
 
 type LayoutProps = { children: ReactChildren | ReactChild }
@@ -13,7 +13,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <div className={dark}>
       <div className="max-w-full min-h-screen bg-gray-100 sm:bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-        <Header />
+        <Navigation />
         <main className="max-w-3xl mx-auto overflow-hidden">{children}</main>
       </div>
     </div>
