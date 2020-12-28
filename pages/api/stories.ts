@@ -7,7 +7,7 @@ import { createTimeoutFetch } from '../../lib/utils/timeoutHelper'
 import metadataScraper from '../../lib/metadataScraper'
 import { withCache } from '../../lib/cache/mongoCache'
 
-const MAX_AGE = 600
+const MAX_AGE = 60 * 60 * 24
 const MAX_STORIES = 300
 const TIMEOUT = 5000
 
