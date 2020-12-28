@@ -15,7 +15,7 @@ export default function NoStories() {
       <div className="mx-auto">Nothing to show...</div>
       {filter && (
         <button
-          className="text-primary-600 hover:text-primary-500 mx-auto m-4 outline-none"
+          className="text-primary-600 hover:text-primary-500 m-4 mx-auto outline-none"
           onClick={() => switchFilter()}
         >
           Reset Filter

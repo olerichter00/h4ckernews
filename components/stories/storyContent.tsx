@@ -25,15 +25,15 @@ export default function StoryContent({
   commentsCount,
 }: StoryContentProps) {
   return (
-    <div className="mt-2 sm:mt-0 h-full sm:w-full mx-3 mr-4 sm:mr-3 pt-1 sm:pt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm sm:text-tiny">
-      <div className="mt-2 sm:mt-0 text-neutral font-bold sm:font-semibold text-base sm:text-lg leading-tight hover:text-primary">
+    <div className="flex flex-col justify-between mr-4 mt-2 mx-3 pt-1 h-full text-sm leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full sm:text-tiny">
+      <div className="text-neutral mt-2 hover:text-primary text-base font-bold leading-tight sm:mt-0 sm:text-lg sm:font-semibold">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>
       </div>
-      <div className="flex flex-col-reverse sm:flex-col mt-1 sm:mt-1">
-        <div className="flex max-w-full overflow-hidden mb-1 items-center sm:m-0 m-auto pb-0 sm:pb-1 pt-5 sm:pt-0 text-gray-500 dark:text-gray-400">
-          <div className="mr-3 flex flex-row flex-nowrap">
+      <div className="flex flex-col-reverse mt-1 sm:flex-col sm:mt-1">
+        <div className="flex items-center m-auto mb-1 pb-0 pt-5 max-w-full dark:text-gray-400 text-gray-500 overflow-hidden sm:m-0 sm:pb-1 sm:pt-0">
+          <div className="flex flex-row flex-nowrap mr-3">
             <span className="m-auto mr-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ export default function StoryContent({
             {score}
           </div>
           <a href={url}>
-            <div className="mr-3 flex flex-row flex-nowrap flex-grow sm:flex-grow-0 overflow-hidden">
+            <div className="flex flex-row flex-grow flex-nowrap mr-3 overflow-hidden sm:flex-grow-0">
               <span className="m-auto mr-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -70,14 +70,14 @@ export default function StoryContent({
                   />
                 </svg>
               </span>
-              <span className="overflow-ellipsis overflow-hidden">
+              <span className="overflow-hidden overflow-ellipsis">
                 {url && new URL(url).hostname}
               </span>
             </div>
           </a>
 
           <a href={commentsUrl}>
-            <div className="mr-3 flex flex-row flex-nowrap">
+            <div className="flex flex-row flex-nowrap mr-3">
               <span className="m-auto mr-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ export default function StoryContent({
             </div>
           </a>
         </div>
-        <div className="sm:flex-1 pt-2 sm:pt-0">
+        <div className="pt-2 sm:flex-1 sm:pt-0">
           <Truncate lines={descriptionLines} ellipsis={'...'}>
             {description || title}
           </Truncate>

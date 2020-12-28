@@ -60,7 +60,7 @@ export default function StoryImage({
   return (
     <FadeTransition show={loaded} duration={0}>
       <div
-        className="flex justify-center flex-col overflow-hidden max-h-48 mb-2 sm:mb-0 sm:h-32 sm:w-48 flex-none sm:rounded-md hover:opacity-75 transition-opacity bg-gray-500 dark:bg-gray-700"
+        className="flex flex-none flex-col justify-center mb-2 max-h-48 bg-gray-500 dark:bg-gray-700 hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
         style={{
           minWidth: '200px',
           minHeight: isMobile ? '140px' : '138px',
@@ -77,7 +77,7 @@ export default function StoryImage({
                 ? YCOMBINATOR_IMAGE
                 : imageUrl
             }
-            className="min-h-full min-w-full"
+            className="min-w-full min-h-full"
             style={{ objectFit: 'cover' }}
             onLoad={onLoad}
             onError={onError}
