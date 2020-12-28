@@ -71,6 +71,7 @@ export default function StoryImage({
           <FallbackImage placeholderText={placeholderText} />
         ) : (
           <img
+            // Hack to load high resolution ycombinator images
             src={
               imageUrl && imageUrl.startsWith('https://news.ycombinator.com')
                 ? YCOMBINATOR_IMAGE

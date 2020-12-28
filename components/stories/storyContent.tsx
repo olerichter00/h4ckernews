@@ -27,7 +27,7 @@ export default function StoryContent({
   return (
     <div
       style={{ marginTop: '0.1rem' }}
-      className="mt-2 h-full sm:w-full mx-3 mr-4 sm:mr-3 pt-1 sm:pt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm sm:text-tiny"
+      className="mt-2 sm:mt-0 h-full sm:w-full mx-3 mr-4 sm:mr-3 pt-1 sm:pt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pl-4 flex flex-col justify-between leading-normal text-sm sm:text-tiny"
     >
       <div className="mt-2 sm:mt-0 text-neutral font-bold sm:font-semibold text-base sm:text-lg leading-tight hover:text-primary">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>

@@ -31,7 +31,7 @@ export default function Story({ story }: StoryProps) {
 
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <div className="m-3 flex flex-col mb-4 sm:mb-6 bg-white dark:bg-gray-800 sm:bg-transparent sm:dark:bg-transparent rounded-xl sm:rounded-none overflow-hidden pb-4 sm:pb-0 sm:flex-row sm:w-full max-w-full sm:my-8 max-w-full">
+      <div className="m-2 flex flex-col mb-3 sm:mb-6 bg-white dark:bg-gray-800 sm:bg-transparent sm:dark:bg-transparent rounded-xl sm:rounded-none overflow-hidden pb-4 sm:pb-0 sm:flex-row sm:w-full max-w-full sm:my-8 max-w-full">
         <StoryImage
           imageUrls={imageUrls}
           keywords={title.split(' ')}
