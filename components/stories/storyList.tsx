@@ -2,7 +2,7 @@ import { useRecoilValue, useRecoilValueLoadable } from 'recoil'
 import FadeTransition from '../common/fadeTransition'
 
 import Spinner from '../common/spinner'
-import Error from '../common/error'
+import Error from '../common/errorMessage'
 import NoStories from '../common/noStories'
 import Story from './story'
 import useFilter from '../../hooks/useFilter'

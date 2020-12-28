@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Error() {
+export default function ErrorMessage() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
