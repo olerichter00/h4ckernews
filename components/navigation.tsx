@@ -2,14 +2,13 @@ import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 import Router from 'next/router'
 
-import { storyTypeState, Type } from '../lib/store/recoil'
+import { filterState, storyTypeState, Type } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
-import useFilter from '../hooks/useFilter'
 import NavItem from './navItem'
 
 export default function Navigation() {
   const [type, setType] = useRecoilState(storyTypeState)
-  const [filter, switchFilter] = useFilter()
+  const [filter, setFilter] = useRecoilState(filterState)
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
@@ -21,10 +20,10 @@ export default function Navigation() {
 
   return (
     <Headroom upTolerance={10} downTolerance={10}>
-      <nav className={`bg-white dark:bg-gray-900 sticky top-0 z-10`}>
+      <nav className="sticky z-10 top-0 dark:bg-gray-900 bg-white border-b border-gray-300 dark:border-gray-800">
         <div
           className={
-            'py-1 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap border-b border-gray-300 dark:border-gray-800'
+            'py-1 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap'
           }
         >
           <div className="flex items-center">
@@ -70,7 +69,7 @@ export default function Navigation() {
               </svg>
             </NavItem>
 
-            <NavItem onClick={() => switchFilter()} title="Filter for important stories.">
+            <NavItem onClick={() => setFilter(!filter)} title="Filter for important stories.">
               {filter ? (
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6"

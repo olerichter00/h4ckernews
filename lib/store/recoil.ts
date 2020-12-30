@@ -4,7 +4,7 @@ import config from '../config'
 
 export type Type = 'top' | 'show' | 'ask'
 
-export type StoryType = {
+export type TStory = {
   title: string
   url: string
   score: number
@@ -38,7 +38,6 @@ export const storyTypeState = selector({
     set(typeState, newValue)
     set(storyCountState, config.pageSize)
     set(forceUpdateState, get(forceUpdateState) + 1)
-    set(storyCountState, config.pageSize)
   },
 })
 
@@ -62,13 +61,34 @@ export const increaseStoryCountState = selector({
 
 export const storiesState = selector({
   key: 'storiesState',
-  get: async ({ get }): Promise<StoryType[]> => {
+  get: async ({ get }): Promise<TStory[]> => {
     if (!process.browser) return []
 
     get(forceUpdateState)
 
     const response = await fetch(`api/stories?type=${get(storyTypeState)}`)
     const stories = await response.json()
+
     return stories.data
   },
 })
+
+export const filteredStoriesState = selector({
+  key: 'filteredStoriesState',
+  get: async ({ get }): Promise<TStory[]> => {
+    const filter = get(filterState)
+    let stories = await get(storiesState)
+
+    if (filter) stories = filterStories(stories)
+
+    return stories.slice(0, get(storyCountState))
+  },
+})
+
+const filterStories = (stories: TStory[]) =>
+  stories.filter(
+    story =>
+      story &&
+      (story.score >= config.filterScoreThreshold ||
+        (story.descendants && story.descendants >= config.filterCommentsThreshold)),
+  )

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 
-import { StoryType } from '../../lib/store/recoil'
+import { TStory } from '../../lib/store/recoil'
 import PreloadedLink from '../common/preloadedLink'
 import StoryImage from './storyImage'
 import StoryContent from './storyContent'
@@ -13,7 +13,7 @@ const MOBILE_TITLE_LINES = 4
 const MOBILE_DESCRIPTION_LINES = 3
 
 type StoryProps = {
-  story: StoryType
+  story: TStory
 }
 
 export default function Story({ story }: StoryProps) {
