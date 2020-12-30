@@ -11,8 +11,9 @@ import { TStory, Type } from '../../lib/store/recoil'
 export type StoryListProps = {
   stories: Loadable<TStory[]>
   type: Type
+  count: number
 }
-export default function StoryList({ stories, type }: StoryListProps) {
+export default function StoryList({ stories, type, count }: StoryListProps) {
   if (stories.state === 'loading') return <Spinner />
   if (stories.state === 'hasError') return <Error />
 
@@ -20,7 +21,7 @@ export default function StoryList({ stories, type }: StoryListProps) {
 
   return (
     <div className="sm:mx-3">
-      {stories.contents.map(story => {
+      {stories.contents.slice(0, count).map(story => {
         return (
           <FadeTransition key={`${type}-${story.id}`}>
             <Story story={story} />

@@ -81,7 +81,7 @@ export const filteredStoriesState = selector({
 
     if (filter) stories = filterStories(stories)
 
-    return stories.slice(0, get(storyCountState))
+    return stories
   },
 })
 
