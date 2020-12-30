@@ -29,9 +29,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 const resizeImage = async (imageArrayBuffer: ArrayBuffer) => {
   const imageBuffer = Buffer.from(await imageArrayBuffer)
 
-  return await sharp(imageBuffer).resize({ width: 500 }).jpeg({
-    quality: 90,
-  })
+  return await sharp(imageBuffer).resize({ width: 500 })
 }
 
 const fetchFallbackImage = async (keywords: string[]) => {
