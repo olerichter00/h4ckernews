@@ -12,7 +12,9 @@
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "deploy": "vercel --prod",
-    "deploy:staging": "vercel"
+    "deploy:staging": "vercel",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
   },
   "dependencies": {
     "@olerichter00/use-localstorage": "0.1.0",
@@ -49,6 +51,13 @@
     "prettier": "^2.2.1",
     "prettier-plugin-tailwind": "^2.2.8",
     "ts-jest": "^26.4.4",
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/react": "^6.0.28",
+    "babel-loader": "^8.1.0",
+    "react-is": "^17.0.1",
     "typescript": "^4.0.2"
   }
 }
