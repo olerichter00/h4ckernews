@@ -14,6 +14,7 @@ The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Storybook](https://storybook.js.org/)
 - [Recoil State Management](https://recoiljs.org/)
 - [Vercel Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)
 - [Cheerio](https://cheerio.js.org/)

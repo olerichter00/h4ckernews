@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import { TStory } from '../../lib/store/recoil'
 import PreloadedLink from '../common/preloadedLink'
@@ -12,7 +12,7 @@ const MAX_TITLE_LINES = 2
 const MOBILE_TITLE_LINES = 4
 const MOBILE_DESCRIPTION_LINES = 3
 
-type StoryProps = {
+export type StoryProps = {
   story: TStory
 }
 
@@ -31,7 +31,7 @@ export default function Story({ story }: StoryProps) {
 
   return (
     <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <div className="sm:dark:bg-transparent flex flex-col m-2 mb-3 pb-4 max-w-full max-w-full dark:bg-gray-800 bg-white rounded-xl overflow-hidden sm:flex-row sm:mb-6 sm:my-8 sm:pb-0 sm:w-full sm:bg-transparent sm:rounded-none">
+      <div className="sm:dark:bg-transparent flex flex-col m-2 mb-3 pb-4 max-w-full dark:bg-gray-800 bg-white rounded-xl overflow-hidden sm:flex-row sm:mb-6 sm:my-8 sm:pb-0 sm:w-full sm:bg-transparent sm:rounded-none">
         <StoryImage
           imageUrls={imageUrls}
           keywords={title.split(' ')}

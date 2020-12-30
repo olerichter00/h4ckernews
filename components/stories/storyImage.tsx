@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useRef, SyntheticEvent } from 'react'
+import React, { useReducer, useEffect, useRef, SyntheticEvent } from 'react'
 
 import FallbackImage from './fallbackImage'
 import useIsMobile from '../../hooks/useIsMobile'
