@@ -1,16 +1,18 @@
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil'
+import React from 'react'
+import { Loadable } from 'recoil'
 import FadeTransition from '../common/fadeTransition'
 
 import Spinner from '../common/spinner'
 import Error from '../common/errorMessage'
 import NoStories from '../common/noStories'
 import Story from './story'
-import { storyTypeState, filteredStoriesState } from '../../lib/store/recoil'
+import { TStory, Type } from '../../lib/store/recoil'
 
-export default function StoryList() {
-  const stories = useRecoilValueLoadable(filteredStoriesState)
-  const type = useRecoilValue(storyTypeState)
-
+export type StoryListProps = {
+  stories: Loadable<TStory[]>
+  type: Type
+}
+export default function StoryList({ stories, type }: StoryListProps) {
   if (stories.state === 'loading') return <Spinner />
   if (stories.state === 'hasError') return <Error />
 
