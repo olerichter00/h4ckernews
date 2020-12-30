@@ -53,9 +53,9 @@ export default function StoryImage({
     setTimeout(() => onError(), imageLoadTimeout)
   }, [])
 
-  const imageUrl = failed
-    ? `api/image?keywords=${encodeURIComponent(keywords.join(','))}`
-    : imageUrls[0]
+  const imageUrl = `api/image2?url=${encodeURIComponent(
+    imageUrls[0],
+  )}&keywords=${encodeURIComponent(keywords.join(','))}`
 
   return (
     <FadeTransition show={loaded} duration={0}>
