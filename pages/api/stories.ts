@@ -25,7 +25,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     .map(story => story.status === 'fulfilled' && story.value)
     .filter(story => story)
 
-  res.setHeader('Cache-Control', 'public, s-max-age=86400, stale-while-revalidate')
+  res.setHeader('Cache-Control', 'public, s-max-age=0, stale-while-revalidate')
   res.status(Status.OK).json({ data: stories })
 }
 
