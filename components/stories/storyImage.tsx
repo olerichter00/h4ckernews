@@ -4,22 +4,16 @@ import FallbackImage from './fallbackImage'
 import useIsMobile from '../../hooks/useIsMobile'
 import FadeTransition from '../common/fadeTransition'
 
-const YCOMBINATOR_IMAGE =
-  'https://www.workatastartup.com/assets/ycombinator-logo-b603b0a270e12b1d42b7cca9d4527a9b206adf8293a77f9f3e8b6cb542fcbfa7.png'
-const MIN_IMAGE_WITH = 300
-
 type StoryImageProps = {
   imageUrls: string[]
   keywords: string[]
   placeholderText: string
-  imageLoadTimeout?: number
 }
 
 export default function StoryImage({
   imageUrls = [],
   keywords = [],
   placeholderText,
-  imageLoadTimeout = 1000,
 }: StoryImageProps) {
   const [loaded, setLoaded] = useReducer(() => true, false)
   const [failed, setFailed] = useReducer(() => true, false)
@@ -31,8 +25,6 @@ export default function StoryImage({
   }
 
   const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
-    if ((event.target as HTMLImageElement).naturalWidth < MIN_IMAGE_WITH) return onError()
-
     setLoaded()
   }
 
@@ -42,7 +34,8 @@ export default function StoryImage({
 
   // Hack to load high resolution ycombinator images
   if (imageUrls[0] && imageUrls[0].startsWith('https://news.ycombinator.com'))
-    imageUrl = YCOMBINATOR_IMAGE
+    imageUrl =
+      'https://www.workatastartup.com/assets/ycombinator-logo-b603b0a270e12b1d42b7cca9d4527a9b206adf8293a77f9f3e8b6cb542fcbfa7.png'
 
   return (
     <FadeTransition show={loaded} duration={0}>
