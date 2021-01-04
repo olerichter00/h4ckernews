@@ -9,7 +9,12 @@ export const withCache = async <T>(
 
   const { content = undefined, updatedAt = 0 } = (await Cache.find({ key }))[0] || {}
 
-  if (!content || currentTime - updatedAt > maxAge * 1000) return await set<T>(key, getContent)
+  if (
+    currentTime - updatedAt > maxAge * 1000 ||
+    !content ||
+    (content.length && content.length === 0)
+  )
+    return await set<T>(key, getContent)
 
   if (staleWhileInvalidate) set(key, getContent)
 

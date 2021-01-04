@@ -1,4 +1,4 @@
-const asyncTimeout = (timeout: number) => new Promise(reject => setTimeout(reject, timeout))
+export const asyncTimeout = (timeout: number) => new Promise(reject => setTimeout(reject, timeout))
 
 export const timeoutFetch = async (
   url: RequestInfo,

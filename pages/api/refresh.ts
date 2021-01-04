@@ -1,7 +1,7 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 
-import { timeoutFetch } from '../../lib/utils/timeoutFetch'
+import { timeoutFetch } from '../../lib/utils/timeoutHelper'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const types = ['top', 'ask', 'show']

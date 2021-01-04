@@ -18,6 +18,9 @@ export type StoryProps = {
 
 const Story: React.FC<StoryProps> = ({ story }) => {
   const { title, url, score, text, id, descendants, description, imageUrls } = story
+
+  if (!title) return <></>
+
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const isMobile = useIsMobile()
 

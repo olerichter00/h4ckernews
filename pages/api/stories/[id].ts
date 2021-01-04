@@ -2,7 +2,7 @@ import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 
 import { fetchStory } from '../../../lib/apiClient'
-import { createTimeoutFetch } from '../../../lib/utils/timeoutFetch'
+import { createTimeoutFetch } from '../../../lib/utils/timeoutHelper'
 import metadataScraper from '../../../lib/metadataScraper'
 import { withCache } from '../../../lib/cache/mongoCache'
 
