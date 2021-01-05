@@ -30,8 +30,8 @@ export default function Story({ story }: StoryProps) {
   const unescapedText = useMemo(() => unescape(text || '').replace(/(<([^>]+)>)/gi, ''), [text])
 
   return (
-    <PreloadedLink url={url || itemUrl} className="hover:text-current">
-      <div className="sm:dark:bg-transparent flex flex-col m-2 mb-3 pb-4 max-w-full dark:bg-gray-800 bg-white rounded-xl overflow-hidden sm:flex-row sm:mb-6 sm:my-8 sm:pb-0 sm:w-full sm:bg-transparent sm:rounded-none">
+    <PreloadedLink url={url || itemUrl}>
+      <div className="group sm:dark:bg-transparent flex flex-col m-2 mb-3 pb-4 max-w-full dark:bg-gray-800 bg-white rounded-xl overflow-hidden sm:flex-row sm:mb-6 sm:my-8 sm:pb-0 sm:w-full sm:bg-transparent sm:rounded-none">
         <StoryImage
           imageUrls={imageUrls}
           keywords={title.split(' ')}

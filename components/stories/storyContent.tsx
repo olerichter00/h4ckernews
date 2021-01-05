@@ -39,7 +39,7 @@ export default function StoryContent({
           commentsUrl={commentsUrl}
           commentsCount={commentsCount}
         />
-        <div className="pt-2 sm:flex-1 sm:pt-0">
+        <div className="dark:group-hover:text-gray-300 pt-2 group-hover:text-gray-600 sm:flex-1 sm:pt-0">
           <Truncate lines={descriptionLines} ellipsis={'...'}>
             {description || title}
           </Truncate>
