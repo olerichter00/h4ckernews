@@ -11,7 +11,7 @@ export default function NavItem({ active = false, onClick, children, ...rest }: 
   return (
     <a
       onClick={onClick}
-      className={`cursor-pointer mx-1 sm:mx-2 ${active ? 'text-primary' : ''}`}
+      className={`cursor-pointer mx-2 ${active ? 'text-primary' : ''}`}
       {...rest}
     >
       {children}
