@@ -40,7 +40,7 @@ export default function StoryImage({
   return (
     <FadeTransition show={loaded} duration={0}>
       <div
-        className="flex flex-none flex-col justify-center max-h-48 bg-gray-500 dark:bg-gray-700 group-hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
+        className="flex flex-none flex-col justify-center max-h-48 dark:bg-gray-100 bg-gray-900 group-hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
         style={{
           minWidth: '200px',
           minHeight: isMobile ? '160px' : '138px',

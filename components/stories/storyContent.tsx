@@ -32,14 +32,14 @@ export default function StoryContent({
           {title}
         </Truncate>
       </div>
-      <div className="flex flex-col-reverse sm:flex-col">
+      <div className="flex flex-col-reverse sm:flex-col sm:pt-1">
         <StoryMeta
           url={url}
           score={score}
           commentsUrl={commentsUrl}
           commentsCount={commentsCount}
         />
-        <div className="dark:group-hover:text-gray-300 pt-2 group-hover:text-gray-600 sm:flex-1 sm:pt-0">
+        <div className="dark:group-hover:text-gray-300 pt-2 group-hover:text-gray-600 sm:flex-1 sm:pt-1">
           <Truncate lines={descriptionLines} ellipsis={'...'}>
             {description || title}
           </Truncate>
