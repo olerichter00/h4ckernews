@@ -1,4 +1,5 @@
 import React from 'react'
+import PreloadedLink from '../common/preloadedLink'
 
 type StoryMetaProps = {
   url: string
@@ -50,7 +51,7 @@ const StoryMeta: React.FC<StoryMetaProps> = ({ url, score, commentsUrl, comments
           <span className="overflow-hidden overflow-ellipsis">{url && new URL(url).hostname}</span>
         </div>
 
-        <a href={commentsUrl}>
+        <PreloadedLink url={commentsUrl}>
           <div className="flex flex-row flex-nowrap mr-3">
             <span className="m-auto mr-1">
               <svg
@@ -70,7 +71,7 @@ const StoryMeta: React.FC<StoryMetaProps> = ({ url, score, commentsUrl, comments
             </span>
             {commentsCount || 0}
           </div>
-        </a>
+        </PreloadedLink>
       </div>
     </div>
   )

@@ -27,7 +27,7 @@ const StoryContent: React.FC<StoryContentProps> = ({
 }) => {
   return (
     <div className="flex flex-col justify-between ml-3 mr-4 mt-4 h-full text-tiny leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full">
-      <div className="text-neutral hover:text-primary text-base font-bold leading-tight sm:text-lg sm:font-semibold">
+      <div className="text-neutral hover:text-primary text-base font-bold leading-tight transition-all sm:text-lg sm:font-semibold">
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>
