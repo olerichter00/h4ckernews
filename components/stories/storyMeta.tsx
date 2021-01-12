@@ -7,7 +7,7 @@ type StoryMetaProps = {
   commentsCount: number
 }
 
-export default function StoryMeta({ url, score, commentsUrl, commentsCount }: StoryMetaProps) {
+const StoryMeta: React.FC<StoryMetaProps> = ({ url, score, commentsUrl, commentsCount }) => {
   return (
     <div className="flex flex-col-reverse sm:flex-col sm:mt-1">
       <div className="flex items-center m-auto mb-1 pb-0 pt-5 max-w-full text-gray-400 dark:text-gray-500 overflow-hidden sm:m-0 sm:pb-1 sm:pt-0">
@@ -75,3 +75,5 @@ export default function StoryMeta({ url, score, commentsUrl, commentsCount }: St
     </div>
   )
 }
+
+export default StoryMeta

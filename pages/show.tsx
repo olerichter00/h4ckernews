@@ -1,5 +1,7 @@
 import App from '../components/app'
 
-export default function Show() {
+const Show = () => {
   return <App initialType="show" />
 }
+
+export default Show

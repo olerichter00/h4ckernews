@@ -10,7 +10,7 @@ type MyAppProps = {
   pageProps: React.ComponentProps<any>
 }
 
-function MyApp({ Component, pageProps }: MyAppProps) {
+const MyApp: React.FC<MyAppProps> = ({ Component, pageProps }) => {
   return (
     <CookiesProvider>
       <RecoilRoot>

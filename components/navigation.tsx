@@ -1,12 +1,11 @@
 import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
-import Router from 'next/router'
 
 import { filterState, storyTypeState, Type } from '../lib/store/recoil'
 import useColorScheme from '../hooks/useColorScheme'
 import NavItem from './navItem'
 
-export default function Navigation() {
+const Navigation: React.FC = () => {
   const [type, setType] = useRecoilState(storyTypeState)
   const [filter, setFilter] = useRecoilState(filterState)
 
@@ -126,3 +125,5 @@ export default function Navigation() {
     </Headroom>
   )
 }
+
+export default Navigation

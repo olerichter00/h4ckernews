@@ -7,7 +7,7 @@ type NavItemProps = {
   [x: string]: any
 }
 
-export default function NavItem({ active = false, onClick, children, ...rest }: NavItemProps) {
+const NavItem: React.FC<NavItemProps> = ({ active = false, onClick, children, ...rest }) => {
   return (
     <a
       onClick={onClick}
@@ -18,3 +18,5 @@ export default function NavItem({ active = false, onClick, children, ...rest }: 
     </a>
   )
 }
+
+export default NavItem

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Spinner() {
+const Spinner: React.FC = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -19,3 +19,5 @@ export default function Spinner() {
     </div>
   )
 }
+
+export default Spinner

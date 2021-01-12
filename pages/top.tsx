@@ -1,5 +1,7 @@
 import App from '../components/app'
 
-export default function Top() {
+const Top = () => {
   return <App initialType="top" />
 }
+
+export default Top

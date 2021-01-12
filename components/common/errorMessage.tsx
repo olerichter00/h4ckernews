@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function ErrorMessage() {
+const ErrorMessage: React.FC = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -32,3 +32,5 @@ export default function ErrorMessage() {
     </div>
   )
 }
+
+export default ErrorMessage

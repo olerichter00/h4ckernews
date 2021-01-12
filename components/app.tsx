@@ -16,7 +16,7 @@ type AppProps = {
   initialType?: string
 }
 
-export default function App({ initialType = 'top' }: AppProps) {
+const App: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const stories = useRecoilValueLoadable(filteredStoriesState)
   const count = useRecoilValue(storyCountState)
   const [type, setType] = useRecoilState(typeState)
@@ -33,5 +33,7 @@ export default function App({ initialType = 'top' }: AppProps) {
     triggerOnNoScroll: true,
   })
 
-  return <StoryList stories={stories} type={type} count={count} />
+  return <StoryList stories={stories} count={count} />
 }
+
+export default App

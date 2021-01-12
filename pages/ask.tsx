@@ -1,5 +1,7 @@
 import App from '../components/app'
 
-export default function Ask() {
+const Ask = () => {
   return <App initialType="ask" />
 }
+
+export default Ask

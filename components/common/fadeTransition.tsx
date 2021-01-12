@@ -1,7 +1,7 @@
 import React, { ReactChildren, ReactChild } from 'react'
 import { useState, useEffect } from 'react'
 
-type FadeTransitionProps = {
+export type FadeTransitionProps = {
   children: ReactChildren | ReactChild
   show?: boolean
   hide?: boolean
@@ -9,13 +9,13 @@ type FadeTransitionProps = {
   duration?: number
 }
 
-export default function FadeTransition({
+const FadeTransition: React.FC<FadeTransitionProps> = ({
   children,
   show = true,
   hide = false,
   timeout = 0,
   duration = 200,
-}: FadeTransitionProps) {
+}) => {
   const [startTransition, setStartTransition] = useState(false)
 
   useEffect(() => {
@@ -30,3 +30,5 @@ export default function FadeTransition({
 
   return <div className={classes}>{children}</div>
 }
+
+export default FadeTransition

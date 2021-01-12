@@ -4,16 +4,14 @@ import FadeTransition from '../common/fadeTransition'
 
 import Spinner from '../common/spinner'
 import ErrorMessage from '../common/errorMessage'
-import NoStories from '../common/noStories'
 import Story from './story'
 import { filterState, TStory, Type } from '../../lib/store/recoil'
 
 export type StoryListProps = {
   stories: Loadable<TStory[]>
-  type: Type
   count: number
 }
-export default function StoryList({ stories, type, count }: StoryListProps) {
+const StoryList: React.FC<StoryListProps> = ({ stories, count }) => {
   const [refresh, setRefresh] = useState(0)
   const [loading, setLoading] = useState(true)
   const [showSpinner, setShowSpinner] = useState(false)
@@ -63,3 +61,5 @@ export default function StoryList({ stories, type, count }: StoryListProps) {
     </div>
   )
 }
+
+export default StoryList

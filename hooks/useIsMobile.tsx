@@ -3,11 +3,11 @@ import throttle from 'lodash.throttle'
 
 import config from '../lib/config'
 
-export default function useIsMobile(): boolean {
+const useIsMobile = (): boolean => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < config.breakpoints.xs)
 
   useEffect(() => {
-    const calculateInnerWidth = throttle(function () {
+    const calculateInnerWidth = throttle(() => {
       setIsMobile(window.innerWidth < config.breakpoints.xs)
     }, 200)
 
@@ -18,3 +18,5 @@ export default function useIsMobile(): boolean {
 
   return isMobile
 }
+
+export default useIsMobile

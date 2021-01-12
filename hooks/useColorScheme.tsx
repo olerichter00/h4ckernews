@@ -5,7 +5,7 @@ export type ColorScheme = 'dark' | 'light'
 const systemColorScheme = (): 'dark' | 'light' =>
   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
-export default function useColorScheme(): [ColorScheme, Function] {
+const useColorScheme = (): [ColorScheme, Function] => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>(
     'colorScheme',
     systemColorScheme,
@@ -19,3 +19,5 @@ export default function useColorScheme(): [ColorScheme, Function] {
 
   return [colorScheme as ColorScheme, switchColorScheme]
 }
+
+export default useColorScheme

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import useFilter from '../../hooks/useFilter'
 
-export default function NoStories() {
+const NoStories: React.FC = () => {
   const [show, setShow] = useState(false)
   const [filter, switchFilter] = useFilter()
 
@@ -24,3 +24,5 @@ export default function NoStories() {
     </div>
   )
 }
+
+export default NoStories

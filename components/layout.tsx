@@ -5,7 +5,7 @@ import useColorScheme from '../hooks/useColorScheme'
 
 type LayoutProps = { children: ReactChildren | ReactChild }
 
-function Layout({ children }: LayoutProps) {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [colorScheme] = useColorScheme()
 
   const dark = colorScheme === 'light' ? '' : 'dark'

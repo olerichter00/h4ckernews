@@ -16,7 +16,7 @@ export type StoryProps = {
   story: TStory
 }
 
-export default function Story({ story }: StoryProps) {
+const Story: React.FC<StoryProps> = ({ story }) => {
   const { title, url, score, text, id, descendants, description, imageUrls } = story
   const [titleLines, setTitleLines] = useState(MIN_TITLE_LINES)
   const isMobile = useIsMobile()
@@ -56,3 +56,5 @@ export default function Story({ story }: StoryProps) {
     </div>
   )
 }
+
+export default Story

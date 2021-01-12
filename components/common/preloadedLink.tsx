@@ -6,7 +6,7 @@ type PreloadedLinkProps = {
   className?: string
 }
 
-export default function PreloadedLink({ children, url, className }: PreloadedLinkProps) {
+const PreloadedLink: React.FC<PreloadedLinkProps> = ({ children, url, className }) => {
   const prefetchUrl = async () => {
     const { prefetch } = require('quicklink')
 
@@ -21,3 +21,5 @@ export default function PreloadedLink({ children, url, className }: PreloadedLin
     </a>
   )
 }
+
+export default PreloadedLink

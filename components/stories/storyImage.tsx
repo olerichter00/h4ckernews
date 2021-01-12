@@ -10,11 +10,11 @@ type StoryImageProps = {
   placeholderText: string
 }
 
-export default function StoryImage({
+const StoryImage: React.FC<StoryImageProps> = ({
   imageUrls = [],
   keywords = [],
   placeholderText,
-}: StoryImageProps) {
+}) => {
   const [loaded, setLoaded] = useReducer(() => true, false)
   const [failed, setFailed] = useReducer(() => true, false)
   const isMobile = useIsMobile()
@@ -63,3 +63,5 @@ export default function StoryImage({
     </FadeTransition>
   )
 }
+
+export default StoryImage

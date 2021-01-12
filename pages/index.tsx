@@ -1,5 +1,7 @@
 import App from '../components/app'
 
-export default function Home() {
+const Home = () => {
   return <App />
 }
+
+export default Home

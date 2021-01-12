@@ -1,9 +1,6 @@
 import { useState, useEffect, Dispatch } from 'react'
 
-export default function useLocalStorage(
-  key: string,
-  initialValue: any | Function,
-): [any, Dispatch<any>] {
+const useLocalStorage = (key: string, initialValue: any | Function): [any, Dispatch<any>] => {
   const [storedValue, setStoredValue] = useState()
 
   const handleItemUpdate = (event: StorageEvent) => {
@@ -42,3 +39,5 @@ export default function useLocalStorage(
 
   return [storedValue, setValue]
 }
+
+export default useLocalStorage
