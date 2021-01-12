@@ -13,7 +13,7 @@ export default function Navigation() {
   const [colorScheme, switchColorScheme] = useColorScheme()
 
   const showStories = (type: Type) => {
-    Router.push(type)
+    window.history.pushState('', '', type)
     setType(type)
     window.scrollTo(0, 0)
   }
@@ -23,11 +23,11 @@ export default function Navigation() {
       <nav className="sticky z-10 top-0 dark:bg-gray-900 bg-white border-b border-gray-300 dark:border-gray-800">
         <div
           className={
-            'py-1 pl-2 pr-4 max-w-3xl sm:px-2 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap'
+            'py-3 px-3 max-w-3xl sm:px-2 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap'
           }
         >
           <div className="flex items-center">
-            <NavItem onClick={() => showStories('top')}>
+            <NavItem onClick={() => showStories('top')} className="mx-2">
               <img src={'favicon.png'} className="h-10" />
             </NavItem>
 
