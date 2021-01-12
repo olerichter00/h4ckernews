@@ -3,7 +3,7 @@ import React, { ReactChildren, ReactChild } from 'react'
 type PreloadedLinkProps = {
   children: ReactChildren | ReactChild
   url: string
-  className: string
+  className?: string
 }
 
 export default function PreloadedLink({ children, url, className }: PreloadedLinkProps) {
