@@ -7,9 +7,9 @@ import { createTimeoutFetch } from '../../lib/utils/timeoutHelper'
 import metadataScraper from '../../lib/metadataScraper'
 import { withCache } from '../../lib/cache/mongoCache'
 
-const MAX_AGE = 60 * 60 * 24
+const MAX_AGE = 60 * 60 * 12
 const MAX_STORIES = 300
-const TIMEOUT = 5000
+const TIMEOUT = 6000
 
 export default async (req: NowRequest, res: NowResponse) => {
   process.setMaxListeners(100)
@@ -23,12 +23,20 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const stories = await withCache(cacheKey, buildGetStories(type, page, pageSize), {
     maxAge,
-    staleWhileInvalidate: true,
+    staleWhileRevalidate: false,
+    validator,
   })
+
+  console.log(`Loaded ${(stories as Array<string>).length} of type ${type}`)
+
+  if (!validator(stories))
+    return res.status(Status.INTERNAL_SERVER_ERROR).send({ error: 'no content.' })
 
   res.setHeader('Cache-Control', 'public, s-max-age=1, stale-while-revalidate')
   res.status(Status.OK).json({ data: stories })
 }
+
+const validator = (stories: any) => stories && stories.length > 10
 
 const forceValidate = (req: NowRequest): boolean =>
   req.headers['pragma'] === 'no-cache' || req.headers['cache-control'] === 'no-cache'

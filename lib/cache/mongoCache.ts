@@ -3,20 +3,28 @@ import { Cache } from './cacheModel'
 export const withCache = async <T>(
   key: string,
   getContent: Function,
-  { maxAge = 0, staleWhileInvalidate = false } = {},
+  { maxAge = 0, staleWhileRevalidate = false, validator = (content: any) => !!content } = {},
 ): Promise<T> => {
   const currentTime = new Date().getTime()
 
-  const { content = undefined, updatedAt = 0 } = (await Cache.find({ key }))[0] || {}
+  let cacheContent
+
+  try {
+    cacheContent = (await Cache.find({ key }))[0]
+  } catch {
+    console.error('Loading from cache failed.')
+  }
+
+  const { content = undefined, updatedAt = 0 } = cacheContent || {}
 
   if (
     currentTime - updatedAt > maxAge * 1000 ||
-    !content ||
+    !validator(content) ||
     (content.length && content.length === 0)
   )
     return await set<T>(key, getContent)
 
-  if (staleWhileInvalidate) set(key, getContent)
+  if (staleWhileRevalidate) set(key, getContent)
 
   return content
 }
