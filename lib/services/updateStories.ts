@@ -15,10 +15,8 @@ const updateStories = async (type: StoryType) => {
   )
 }
 
-const addStory = async (collection: Model<any, {}>, id: string, index: number) => {
+const addStory = async (collection: Model<any, unknown>, id: string, index: number) => {
   const story = await geStory(id)
-
-  debugger
 
   await collection.replaceOne({ index }, { index, ...story }, { upsert: true })
 }
