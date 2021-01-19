@@ -28,9 +28,9 @@ const MyApp: React.FC<MyAppProps> = ({ Component, pageProps }) => {
           />
           <link rel="icon" href="/favicon.png" />
           <link rel="manifest" href="/manifest.json" />
-          <link href="/favicon.png" rel="icon" type="image/png" sizes="16x16" />
-          <link href="/favicon.png" rel="icon" type="image/png" sizes="48x48" />
-          <link href="/favicon.png" rel="apple-touch-icon"></link>
+          <link href="/favicon.svg" rel="icon" type="image/png" sizes="16x16" />
+          <link href="/favicon.svg" rel="icon" type="image/png" sizes="48x48" />
+          <link href="/favicon.svg" rel="apple-touch-icon"></link>
           <meta name="theme-color" content="#FFFFFF" />
         </Head>
         <Layout>

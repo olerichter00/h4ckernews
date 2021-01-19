@@ -1,4 +1,6 @@
 import React from 'react'
+import { format } from 'timeago.js'
+
 import PreloadedLink from '../common/preloadedLink'
 
 type StoryMetaProps = {
@@ -6,12 +8,17 @@ type StoryMetaProps = {
   score: number
   commentsUrl: string
   commentsCount: number
+  time: number
 }
 
-const StoryMeta: React.FC<StoryMetaProps> = ({ url, score, commentsUrl, commentsCount }) => {
+const StoryMeta: React.FC<StoryMetaProps> = ({ time, url, score, commentsUrl, commentsCount }) => {
   return (
     <div className="flex flex-col-reverse sm:flex-col sm:mt-1">
       <div className="flex items-center m-auto mb-1 pb-0 pt-5 max-w-full text-gray-400 dark:text-gray-500 overflow-hidden sm:m-0 sm:pb-1 sm:pt-0">
+        <div className="flex flex-row flex-grow flex-nowrap mr-3 hover:text-primary overflow-hidden sm:flex-grow-0">
+          {!!time && format(time * 1000)}
+        </div>
+
         <div className="flex flex-row flex-nowrap mr-3">
           <span className="m-auto mr-1">
             <svg

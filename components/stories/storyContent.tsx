@@ -12,6 +12,7 @@ export type StoryContentProps = {
   score: number
   commentsUrl: string
   commentsCount: number
+  time: number
 }
 
 const StoryContent: React.FC<StoryContentProps> = ({
@@ -24,6 +25,7 @@ const StoryContent: React.FC<StoryContentProps> = ({
   score,
   commentsUrl,
   commentsCount,
+  time,
 }) => {
   return (
     <div className="flex flex-col justify-between ml-3 mr-4 mt-4 h-full text-tiny leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full">
@@ -38,6 +40,7 @@ const StoryContent: React.FC<StoryContentProps> = ({
           score={score}
           commentsUrl={commentsUrl}
           commentsCount={commentsCount}
+          time={time}
         />
         <div className="dark:group-hover:text-gray-300 pt-2 group-hover:text-gray-600 sm:flex-1 sm:pt-1">
           <Truncate lines={descriptionLines} ellipsis={'...'}>

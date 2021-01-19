@@ -5,8 +5,8 @@ import FadeTransition from '../common/fadeTransition'
 import Spinner from '../common/spinner'
 import ErrorMessage from '../common/errorMessage'
 import Story from './story'
-import { filterState, TStory, Type } from '../../lib/store/recoil'
-
+import { filterState } from '../../lib/store/recoil'
+import { Story as TStory } from '../../lib/types'
 export type StoryListProps = {
   stories: Loadable<TStory[]>
   count: number
@@ -44,7 +44,8 @@ const StoryList: React.FC<StoryListProps> = ({ stories, count }) => {
 
   if (showSpinner) return <Spinner />
 
-  if (stories.state === 'hasValue' && stories.contents.length === 0) return <ErrorMessage />
+  if (stories.state === 'hasValue' && stories.contents && stories.contents.length === 0)
+    return <ErrorMessage />
   if (stories.state === 'hasError') return <ErrorMessage />
 
   return (

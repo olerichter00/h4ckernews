@@ -32,6 +32,7 @@ const config = {
       'https://www.tagesspiegel.de/images/grosser-panda-meng-meng_zoo-berlin/24195486/2-format43.jpg',
     cuteKoalaImageUrl:
       'https://www.motherjones.com/wp-content/uploads/2019/08/koala-8-20-19.jpg?resize=1536,863',
+    maxStories: 300,
   },
   pwa: {
     dest: 'public',

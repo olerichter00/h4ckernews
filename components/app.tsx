@@ -12,6 +12,8 @@ import {
 } from '../lib/store/recoil'
 import config from '../lib/config'
 
+const TYPES = ['top', 'show', 'ask']
+
 type AppProps = {
   initialType?: string
 }
@@ -22,8 +24,18 @@ const App: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const [type, setType] = useRecoilState(typeState)
   const increaseStoryCount = useSetRecoilState(increaseStoryCountState)
 
+  const prefetchTypes = () => {
+    const { prefetch } = require('quicklink')
+
+    TYPES.forEach(type => {
+      if (type !== initialType) prefetch(`/api/stories/${type}`)
+    })
+  }
+
   useEffect(() => {
     setType(initialType)
+
+    prefetchTypes()
   }, [initialType])
 
   const loadMore = useRef(throttle(() => increaseStoryCount(undefined), 2000)).current

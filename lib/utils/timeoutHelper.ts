@@ -6,9 +6,15 @@ export const timeoutFetch = async (
 ) => {
   const { timeout } = options
 
-  const response = (await Promise.race([fetch(url, options), asyncTimeout(timeout)])) as Response
+  const response = (await Promise.race([fetch(url), asyncTimeout(timeout)])) as Response
 
   return response
+}
+
+export const withTimeout = (promise: Promise<any>, timeout: number) => {
+  const timer = asyncTimeout(timeout)
+
+  return Promise.race([promise, timer])
 }
 
 export const createTimeoutFetch = (timeout: number) => (
