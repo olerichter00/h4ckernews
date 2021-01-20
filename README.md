@@ -1,15 +1,29 @@
-![H4ckernews](./public/logo.png)
+<!-- ![H4ckernews](./public/logo.png) -->
 
-**H4ckernews** is a Hackernews client app inspired by the [HNPWA](https://hnpwa.com/) project and an attempt to make hackernews more beautiful by enriching stories with preview images and descriptions.
+<br />
+  <h1 align="center">H4ckernews</h1>
 
-The project started as a playground to try out new technology and play around with [Recoil.js](https://recoiljs.org/) and [Tailwind CSS](https://tailwindcss.com/).
+  <p align="center">
+    A beautiful hackernews client build with NextJS and Tailwind CSS.
+    <br />
+    <br />
+    <a href="https://h4ckernews.com/">View App</a>
+    ·
+    <a href="https://github.com/olerichter00/h4ckernews/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/olerichter00/h4ckernews/issues">Request Feature</a>
+  </p>
+  <br />
+</p>
 
-The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
+## About The Project
+
+[**H4ckernews**](https://h4ckernews.com/) is a Hackernews client app inspired by the [HNPWA](https://hnpwa.com/) project and an attempt to make hackernews more beautiful by enriching stories with preview images and descriptions.
 
 ![CI status](https://github.com/olerichter00/h4ckernews/workflows/CI/badge.svg)
 [![DeepScan grade](https://deepscan.io/api/teams/11955/projects/14907/branches/288655/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11955&pid=14907&bid=288655)
 
-## Tech Stack
+## Build With
 
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
@@ -24,50 +38,89 @@ The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 
 ## Features
 
-**Metadata**
+#### Metadata
 
-Per default the Open Graph protocol is used to enrich the stories. If no metadata is provided, [cheerio](<[https://cheerio.js.org/](https://cheerio.js.org/)>) is used to scrape the page and provide a suitable image and text that can be shown as a description.
+Each story is enriched with a preview image and a description. If no open graph meta tags are provided, several fallback strategies are used to make sure every story has an image.
 
-Since some pages don't show any images, [ContextualWeb Image Search API](https://contextualweb.io/image-search-api/) and [Unsplash Image API](https://unsplash.com/developers) are used as fallback solutions.
+**Note:** The code has been moved to a separate npm package ([page-meta-scraper](https://www.npmjs.com/package/page-meta-scraper)).
 
-**Note:** The code has been moved to a separate npm package ([page-meta-scraper](https://www.npmjs.com/package/page-meta-scraper))/
+#### Database
 
-**Database**
+H4ckernews uses a MongoDB to store stories. The newest stories can be loaded with a cron job scheduler using the endpoint `/api/stories/[type]/refresh`.
 
-H4ckernews uses a MongoDB to store the stories.
-
-**Link Prefetching**
+#### Link Prefetching
 
 External links are prefetched on hover using [quicklink](https://github.com/GoogleChromeLabs/quicklink).
 
-**Installable PWA**
+#### Installable PWA
 
 The app is a PWA and can be installed.
 
-**Infinite Scroll**
+#### Infinite Scroll
 
 More stories are loaded when scrolling to the bottom of the page.
 
 ## Development
 
-**Install dependencies:**
+#### Installation
 
-- Provide a `.env.local` file from `.env.example`.
-- Run `yarn install` to install dependencies.
-- Run `yarn dev` to run **h4ckernews** locally.
+Clone the repository:
 
-**Test**
+```sh
+https://github.com/olerichter00/h4ckernews.git
+```
 
-Run `yarn test` or `yarn test:watch` to run the test suite.
+Provide environment variables:
 
-**Code Style**
+```sh
+cp .env.example .env.local
+```
 
-Run `yarn lint` or `yarn lint:fix` to run prettier.
+Install dependencies:
 
-**Deploy**
+```sh
+yarn install
+```
+
+Run the project:
+
+```sh
+yarn dev
+```
+
+#### Testing
+
+Run Tests with jest:
+
+```sh
+yarn test
+yarn test:watch
+
+```
+
+#### Code Style
+
+Run prettier:
+
+```sh
+yarn lint
+yarn lint:fix
+```
+
+#### Deploy
 
 Create the project with Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Folerichter00%2Fh4ckernews&project-name=h4ckernews&repository-name=h4ckernews)
 
-Run `yarn deploy` or `yarn deploy:staging` to deploy to Vercel.
+Deploy on staging:
+
+```sh
+yarn deploy:staging
+```
+
+Deploy on production:
+
+```sh
+yarn deploy
+```
