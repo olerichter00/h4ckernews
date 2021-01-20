@@ -18,3 +18,5 @@ export type StoryMetadata = {
 export type Story = StoryBase & StoryMetadata
 
 export type StoryType = 'top' | 'show' | 'ask'
+
+export type ColorScheme = 'dark' | 'light'

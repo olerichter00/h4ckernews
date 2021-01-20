@@ -5,7 +5,4 @@ next({ dev: true })
 
 import config from './next.config'
 
-setConfig({
-  publicRuntimeConfig: config.publicRuntimeConfig,
-  serverRuntimeConfig: config.serverRuntimeConfig,
-})
+setConfig({ config })

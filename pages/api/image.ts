@@ -6,19 +6,19 @@ export default async (req: NowRequest, res: NowResponse) => {
   const url = decodeURIComponent(String(req.query.url))
   const keywords = decodeURIComponent(String(req.query.keywords)).split(',')
 
-  let image
+  let image: unknown
 
   try {
-    const response = await fetch(url)
+    const imageResponse = await fetch(url)
 
-    if (!response.ok) throw new Error("Coudln't load image")
+    if (!imageResponse.ok) throw new Error("Couldn't load image.")
 
-    const contentType = response.headers.get('content-type')
-    if (contentType) res.setHeader('content-type', contentType)
+    image = await resizeImage(await imageResponse.arrayBuffer())
 
-    image = await resizeImage(await response.arrayBuffer())
+    res.setHeader('content-type', imageResponse.headers.get('content-type') || '')
   } catch (error) {
     const fallbackImage = await fetchFallbackImage(keywords)
+
     if (fallbackImage) image = await resizeImage(fallbackImage)
   }
 

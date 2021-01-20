@@ -1,5 +1,5 @@
 import { createMocks } from 'node-mocks-http'
-import refreshStories from '../../pages/api/stories/[type]/refresh'
+import refreshStories from '../../../pages/api/stories/[type]/refresh'
 
 describe('/api/stories/[type]/refresh', () => {
   describe('with unkown type', () => {

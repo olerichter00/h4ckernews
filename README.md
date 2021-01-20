@@ -20,6 +20,7 @@ The app is available at [www.h4ckernews.com](https://h4ckernews.com/).
 - [Cheerio](https://cheerio.js.org/)
 - [Quicklink](https://github.com/GoogleChromeLabs/quicklink)
 - [Headroom.js](https://wicky.nillia.ms/headroom.js/)
+- [mongoose](https://mongoosejs.com/)
 
 ## Features
 
@@ -31,9 +32,9 @@ Since some pages don't show any images, [ContextualWeb Image Search API](https:/
 
 **Note:** The code has been moved to a separate npm package ([page-meta-scraper](https://www.npmjs.com/package/page-meta-scraper))/
 
-**Caching**
+**Database**
 
-To compensate the long loading time due to scraping the pages for metadata, a mix of [stale-while-invalid](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate) and [Russian doll caching](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html) is used. With this technique instant page load can be achieved without any backend database. An external cronjob service is used to refresh the content in order to not show outdated stale data.
+H4ckernews uses a MongoDB to store the stories.
 
 **Link Prefetching**
 

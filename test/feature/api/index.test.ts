@@ -1,5 +1,5 @@
 import { createMocks } from 'node-mocks-http'
-import getStories from '../../pages/api/stories/[type]/index'
+import getStories from '../../../pages/api/stories/[type]/index'
 
 const TYPES = ['top', 'show', 'ask']
 

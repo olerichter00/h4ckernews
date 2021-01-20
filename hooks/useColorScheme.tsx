@@ -1,9 +1,5 @@
 import useLocalStorage from '@olerichter00/use-localstorage'
-
-export type ColorScheme = 'dark' | 'light'
-
-const systemColorScheme = (): 'dark' | 'light' =>
-  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+import { ColorScheme } from '../lib/types'
 
 const useColorScheme = (): [ColorScheme, Function] => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>(
@@ -19,5 +15,8 @@ const useColorScheme = (): [ColorScheme, Function] => {
 
   return [colorScheme as ColorScheme, switchColorScheme]
 }
+
+const systemColorScheme = (): ColorScheme =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
 export default useColorScheme
