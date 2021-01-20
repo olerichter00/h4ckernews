@@ -4,7 +4,8 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
   publicRuntimeConfig: {
-    maxStories: process.env.NODE_ENV === 'development' ? 10 : 200,
+    appUrl: process.env.APP_URL,
+    maxStories: process.env.NODE_ENV === 'development' ? 80 : 200,
     pageSize: 15,
     filterPageSize: 30,
     filterScoreThreshold: 100,
@@ -19,6 +20,7 @@ const config = {
     },
   },
   serverRuntimeConfig: {
+    mongoUri: process.env.MONGODB_URI,
     hackernewsBaseUrl: 'https://hacker-news.firebaseio.com/v0',
     xRapidapiHost: 'contextualwebsearch-websearch-v1.p.rapidapi.com',
     xRapidapiKey: process.env.X_RAPIDAPI_KEY,
@@ -30,6 +32,7 @@ const config = {
       'https://www.tagesspiegel.de/images/grosser-panda-meng-meng_zoo-berlin/24195486/2-format43.jpg',
     cuteKoalaImageUrl:
       'https://www.motherjones.com/wp-content/uploads/2019/08/koala-8-20-19.jpg?resize=1536,863',
+    maxStories: 300,
   },
   pwa: {
     dest: 'public',

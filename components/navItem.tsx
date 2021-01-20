@@ -11,7 +11,7 @@ const NavItem: React.FC<NavItemProps> = ({ active = false, onClick, children, ..
   return (
     <a
       onClick={onClick}
-      className={`cursor-pointer mx-2 ${active ? 'text-primary' : ''}`}
+      className={`focus:outline-none cursor-pointer mx-2 ${active ? 'text-primary' : ''}`}
       {...rest}
     >
       {children}

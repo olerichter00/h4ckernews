@@ -1,7 +1,6 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { RecoilRoot } from 'recoil'
-import { TStory } from '../lib/store/recoil'
 
 import StoryListComponent, { StoryListProps } from '../components/stories/storyList'
 

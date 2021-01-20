@@ -1,20 +1,9 @@
 import { atom, selector } from 'recoil'
 
 import config from '../config'
+import { Story } from '../types'
 
 export type Type = 'top' | 'show' | 'ask'
-
-export type TStory = {
-  title: string
-  url: string
-  score: number
-  text: string
-  id: string
-  descendants: number
-  description: string
-  imageUrls: string[]
-  favicon: string
-}
 
 export const forceUpdateState = atom({
   key: 'forceUpdateState',
@@ -61,12 +50,12 @@ export const increaseStoryCountState = selector({
 
 export const storiesState = selector({
   key: 'storiesState',
-  get: async ({ get }): Promise<TStory[]> => {
+  get: async ({ get }): Promise<Story[]> => {
     if (!process.browser) return []
 
     get(forceUpdateState)
 
-    const response = await fetch(`api/stories?type=${get(storyTypeState)}`)
+    const response = await fetch(`api/stories/${get(storyTypeState)}`)
     const stories = await response.json()
 
     return stories.data
@@ -75,7 +64,7 @@ export const storiesState = selector({
 
 export const filteredStoriesState = selector({
   key: 'filteredStoriesState',
-  get: async ({ get }): Promise<TStory[]> => {
+  get: async ({ get }): Promise<Story[]> => {
     const filter = get(filterState)
     let stories = await get(storiesState)
 
@@ -85,7 +74,7 @@ export const filteredStoriesState = selector({
   },
 })
 
-const filterStories = (stories: TStory[]) =>
+const filterStories = (stories: Story[]): Story[] =>
   stories.filter(
     story =>
       story &&
