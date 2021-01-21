@@ -32,7 +32,7 @@ const Navigation: React.FC = () => {
             </NavItem>
 
             {config.storyTypes.map((type: Type) => (
-              <NavItem onClick={() => showStories(type)} active={currentType === type}>
+              <NavItem key={type} onClick={() => showStories(type)} active={currentType === type}>
                 {type}
               </NavItem>
             ))}
