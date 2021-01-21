@@ -27,7 +27,7 @@ const StoryImage: React.FC<StoryImageProps> = ({
     setFailed()
   }
 
-  const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+  const onLoad = () => {
     setLoaded()
   }
 

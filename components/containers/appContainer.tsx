@@ -20,7 +20,7 @@ type AppProps = {
 const AppContainer: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const stories = useRecoilValueLoadable(filteredStoriesState)
   const count = useRecoilValue(storyCountState)
-  const [type, setType] = useRecoilState(typeState)
+  const [_, setType] = useRecoilState(typeState)
   const increaseStoryCount = useSetRecoilState(increaseStoryCountState)
 
   const prefetchTypes = () => {
