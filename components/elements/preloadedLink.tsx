@@ -14,7 +14,7 @@ const PreloadedLink: React.FC<PreloadedLinkProps> = ({ children, url, ...rest })
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener" onMouseEnter={prefetchUrl} {...rest}>
+    <a href={url} target="_blank" rel="noreferrer" onMouseEnter={prefetchUrl} {...rest}>
       {children}
     </a>
   )

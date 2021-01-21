@@ -1,6 +1,7 @@
-import config from '../config'
+import { StoryType } from '../types'
+import { STORY_TYPES } from '../utils/constants'
 
-const validateType = (type: unknown): boolean =>
-  typeof type === 'string' && config.storyTypes.includes(type)
+const validateType = (type: StoryType): boolean =>
+  typeof type === 'string' && STORY_TYPES.includes(type)
 
 export default validateType

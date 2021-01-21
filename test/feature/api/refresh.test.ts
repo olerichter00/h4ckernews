@@ -1,4 +1,4 @@
-import { createMocks } from 'node-mocks-http'
+import httpMocks from 'node-mocks-http'
 import refreshStories from '../../../pages/api/stories/[type]/refresh'
 
 describe('/api/stories/[type]/refresh', () => {
@@ -14,7 +14,7 @@ describe('/api/stories/[type]/refresh', () => {
 })
 
 const buildMocks = (type: string) =>
-  createMocks({
+  httpMocks.createMocks({
     method: 'GET',
     query: {
       type: type,

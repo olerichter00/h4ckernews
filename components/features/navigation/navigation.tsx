@@ -1,10 +1,11 @@
 import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 
-import { filterState, storyTypeState, Type } from '../../../lib/store/recoil'
+import { filterState, storyTypeState } from '../../../lib/store/recoil'
 import useColorScheme from '../../../hooks/useColorScheme'
 import NavItem from './navItem'
-import config from '../../../lib/config'
+import { STORY_TYPES } from '../../../lib/utils/constants'
+import { StoryType } from '../../../lib/types'
 
 const Navigation: React.FC = () => {
   const [currentType, setCurrentType] = useRecoilState(storyTypeState)
@@ -12,7 +13,7 @@ const Navigation: React.FC = () => {
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
-  const showStories = (type: Type) => {
+  const showStories = (type: StoryType) => {
     window.history.pushState('', '', type)
     setCurrentType(type)
     window.scrollTo(0, 0)
@@ -31,7 +32,7 @@ const Navigation: React.FC = () => {
               <img src={'logo.svg'} className="h-5" />
             </NavItem>
 
-            {config.storyTypes.map((type: Type) => (
+            {STORY_TYPES.map(type => (
               <NavItem key={type} onClick={() => showStories(type)} active={currentType === type}>
                 {type}
               </NavItem>
@@ -104,7 +105,7 @@ const Navigation: React.FC = () => {
             <NavItem
               href="https://github.com/olerichter00/h4ckernews"
               target="_blank"
-              rel="noopener"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

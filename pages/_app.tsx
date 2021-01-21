@@ -15,7 +15,7 @@ const MyApp: React.FC<MyAppProps> = ({ Component, pageProps }) => {
     <CookiesProvider>
       <RecoilRoot>
         <Head>
-          <title>H4ckernews</title>
+          <title>{'H4ckernews'}</title>
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://h4ckernews.com" />
           <meta property="og:description" content="A beautiful hackernews client." />

@@ -61,7 +61,7 @@ Default.args = {
   },
 }
 
-export const loading = Template.bind({})
+export const loading = Template
 loading.args = {
   type: 'top',
   stories: {
@@ -69,7 +69,7 @@ loading.args = {
   },
 }
 
-export const error = Template.bind({})
+export const error = Template
 error.args = {
   type: 'top',
   stories: {

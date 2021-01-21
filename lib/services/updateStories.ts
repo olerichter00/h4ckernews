@@ -1,4 +1,5 @@
 import { Model } from 'mongoose'
+
 import { fetchStoryIds } from '../clients/hackernewsClient'
 import storyCollections from '../collections/stories'
 import { StoryType } from '../types'

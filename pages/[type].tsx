@@ -1,6 +1,6 @@
-import config from '../lib/config'
 import App from '../components/containers/appContainer'
 import { StoryType } from '../lib/types'
+import { STORY_TYPES } from '../lib/utils/constants'
 
 type TypePageProps = { type: StoryType }
 
@@ -14,7 +14,7 @@ export const getStaticProps = async ({ params }: any) => {
 
 export const getStaticPaths = async () => {
   return {
-    paths: config.storyTypes.map((type: StoryType) => ({ params: { type } })),
+    paths: STORY_TYPES.map((type: StoryType) => ({ params: { type } })),
     fallback: false,
   }
 }

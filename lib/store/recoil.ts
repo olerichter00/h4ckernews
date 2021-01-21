@@ -3,8 +3,6 @@ import { atom, selector } from 'recoil'
 import config from '../config'
 import { Story } from '../types'
 
-export type Type = 'top' | 'show' | 'ask'
-
 export const forceUpdateState = atom({
   key: 'forceUpdateState',
   default: 0,

@@ -13,7 +13,8 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const type = String(req.query.type || 'top')
 
-  if (!validateType(type)) return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
+  if (!validateType(type as StoryType))
+    return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
 
   await dbConnect()
 

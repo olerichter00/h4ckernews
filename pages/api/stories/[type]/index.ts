@@ -1,5 +1,6 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
+
 import dbConnect from '../../../../lib/database/dbConnect'
 import storyCollections from '../../../../lib/collections/stories'
 import { StoryType, Story } from '../../../../lib/types'
@@ -10,7 +11,8 @@ import config from '../../../../lib/config'
 export default async (req: NowRequest, res: NowResponse) => {
   const type = req.query.type
 
-  if (!validateType(type)) return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
+  if (!validateType(type as StoryType))
+    return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
 
   await dbConnect()
 

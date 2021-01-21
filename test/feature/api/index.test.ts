@@ -1,10 +1,10 @@
-import { createMocks } from 'node-mocks-http'
-import config from '../../../lib/config'
+import httpMocks from 'node-mocks-http'
 import { StoryType } from '../../../lib/types'
+import { STORY_TYPES } from '../../../lib/utils/constants'
 import getStories from '../../../pages/api/stories/[type]/index'
 
 describe('/api/stories/[type]', () => {
-  config.storyTypes.forEach((type: StoryType) => {
+  STORY_TYPES.forEach((type: StoryType) => {
     test('returns stories', async () => {
       const { req, res } = buildMocks(type)
 
@@ -30,7 +30,7 @@ describe('/api/stories/[type]', () => {
 })
 
 const buildMocks = (type: string) =>
-  createMocks({
+  httpMocks.createMocks({
     method: 'GET',
     query: {
       type: type,

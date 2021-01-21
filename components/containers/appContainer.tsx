@@ -11,7 +11,7 @@ import {
   typeState,
 } from '../../lib/store/recoil'
 import config from '../../lib/config'
-import { StoryType } from '../../lib/types'
+import { STORY_TYPES } from '../../lib/utils/constants'
 
 type AppProps = {
   initialType?: string
@@ -26,7 +26,7 @@ const AppContainer: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const prefetchTypes = () => {
     const { prefetch } = require('quicklink')
 
-    config.storyTypes.forEach((type: StoryType) => {
+    STORY_TYPES.forEach(type => {
       if (type !== initialType) prefetch(`/api/stories/${type}`)
     })
   }

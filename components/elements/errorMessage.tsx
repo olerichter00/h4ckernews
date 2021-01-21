@@ -9,7 +9,7 @@ const ErrorMessage: React.FC = () => {
 
   return (
     <div className={`flex flex-col my-12 w-full ${show ? 'opacity-100' : 'opacity-0'}`}>
-      <div className="mx-auto">Oops. Something went wrong...</div>
+      <div className="mx-auto">{'Oops. Something went wrong...'}</div>
       <button
         className="dark:hover:text-gray-300 hover:text-700 m-4 mx-auto text-primary outline-none"
         onClick={() => window.location.reload()}
