@@ -18,7 +18,7 @@ const Template: Story = args => (
   </RecoilRoot>
 )
 
-export const Default = Template.bind({})
+export const Default = Template
 Default.args = {
   show: true,
   story: {
@@ -35,7 +35,7 @@ Default.args = {
   },
 }
 
-export const WithoutImage = Template.bind({})
+export const WithoutImage = Template
 WithoutImage.args = {
   show: true,
   story: {

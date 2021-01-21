@@ -18,7 +18,7 @@ const Template: Story = args => (
   </RecoilRoot>
 )
 
-export const Default = Template.bind({})
+export const Default = Template
 Default.args = {
   type: 'top',
   stories: {
