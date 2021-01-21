@@ -20,7 +20,6 @@
 
 [**H4ckernews**](https://h4ckernews.com/) is a Hackernews client app inspired by the [HNPWA](https://hnpwa.com/) project and an attempt to make hackernews more beautiful by enriching stories with preview images and descriptions.
 
-![CI status](https://github.com/olerichter00/h4ckernews/workflows/CI/badge.svg)
 [![DeepScan grade](https://deepscan.io/api/teams/11955/projects/14907/branches/288655/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11955&pid=14907&bid=288655)
 
 ## Build With
