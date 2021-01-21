@@ -1,12 +1,12 @@
 import React from 'react'
 import { Loadable, useRecoilValue } from 'recoil'
-import FadeTransition from '../common/fadeTransition'
-import useTransition from '../../hooks/useTransition'
-import Spinner from '../common/spinner'
-import ErrorMessage from '../common/errorMessage'
+import FadeTransition from '../../elements/fadeTransition'
+import useTransition from '../../../hooks/useTransition'
+import Spinner from '../../elements/spinner'
+import ErrorMessage from '../../elements/errorMessage'
 import Story from './story'
-import { filterState } from '../../lib/store/recoil'
-import { Story as TStory } from '../../lib/types'
+import { filterState } from '../../../lib/store/recoil'
+import { Story as TStory } from '../../../lib/types'
 export type StoryListProps = {
   stories: Loadable<TStory[]>
   count: number

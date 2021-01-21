@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import sharp from 'sharp'
-import pageMetaScraper from '../../lib/metadataScraper'
+import pageMetaScraper from '../../lib/services/metadataScraper'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const url = decodeURIComponent(String(req.query.url))

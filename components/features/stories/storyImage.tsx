@@ -1,19 +1,22 @@
 import React, { useReducer, SyntheticEvent } from 'react'
 
 import FallbackImage from './fallbackImage'
-import useIsMobile from '../../hooks/useIsMobile'
-import FadeTransition from '../common/fadeTransition'
+import useIsMobile from '../../../hooks/useIsMobile'
+import FadeTransition from '../../elements/fadeTransition'
+import PreloadedLink from '../../elements/preloadedLink'
 
 type StoryImageProps = {
   imageUrls: string[]
   keywords: string[]
   placeholderText: string
+  url: string
 }
 
 const StoryImage: React.FC<StoryImageProps> = ({
   imageUrls = [],
   keywords = [],
   placeholderText,
+  url,
 }) => {
   const [loaded, setLoaded] = useReducer(() => true, false)
   const [failed, setFailed] = useReducer(() => true, false)
@@ -39,27 +42,29 @@ const StoryImage: React.FC<StoryImageProps> = ({
 
   return (
     <FadeTransition show={loaded} duration={0}>
-      <div
-        className="flex flex-none flex-col justify-center max-h-48 dark:bg-gray-100 bg-gray-900 rounded-t-xl group-hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
-        style={{
-          minWidth: '200px',
-          minHeight: isMobile ? '160px' : '138px',
-          maxHeight: isMobile ? '160px' : '240px',
-        }}
-      >
-        {failed ? (
-          <FallbackImage placeholderText={placeholderText} />
-        ) : (
-          <img
-            src={imageUrl}
-            className="min-w-full min-h-full"
-            style={{ objectFit: 'cover' }}
-            onLoad={onLoad}
-            onError={onError}
-            loading="lazy"
-          />
-        )}
-      </div>
+      <PreloadedLink url={url}>
+        <div
+          className="flex flex-none flex-col justify-center max-h-48 dark:bg-gray-100 bg-gray-900 rounded-t-xl hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
+          style={{
+            minWidth: '200px',
+            minHeight: isMobile ? '160px' : '138px',
+            maxHeight: isMobile ? '160px' : '240px',
+          }}
+        >
+          {failed ? (
+            <FallbackImage placeholderText={placeholderText} />
+          ) : (
+            <img
+              src={imageUrl}
+              className="min-w-full min-h-full"
+              style={{ objectFit: 'cover' }}
+              onLoad={onLoad}
+              onError={onError}
+              loading="lazy"
+            />
+          )}
+        </div>
+      </PreloadedLink>
     </FadeTransition>
   )
 }

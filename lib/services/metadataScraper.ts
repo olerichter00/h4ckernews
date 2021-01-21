@@ -1,5 +1,5 @@
 import pageMetaScraper from 'page-meta-scraper'
-import config from './config'
+import config from '../config'
 
 const isDevEnvironment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 

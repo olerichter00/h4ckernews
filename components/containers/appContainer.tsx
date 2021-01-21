@@ -3,22 +3,21 @@ import { useBottomScrollListener } from 'react-bottom-scroll-listener'
 import throttle from 'lodash.throttle'
 import { useSetRecoilState, useRecoilState, useRecoilValueLoadable, useRecoilValue } from 'recoil'
 
-import StoryList from './stories/storyList'
+import StoryList from '../features/stories/storyList'
 import {
   filteredStoriesState,
   increaseStoryCountState,
   storyCountState,
   typeState,
-} from '../lib/store/recoil'
-import config from '../lib/config'
-
-const TYPES = ['top', 'show', 'ask']
+} from '../../lib/store/recoil'
+import config from '../../lib/config'
+import { StoryType } from '../../lib/types'
 
 type AppProps = {
   initialType?: string
 }
 
-const App: React.FC<AppProps> = ({ initialType = 'top' }) => {
+const AppContainer: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const stories = useRecoilValueLoadable(filteredStoriesState)
   const count = useRecoilValue(storyCountState)
   const [type, setType] = useRecoilState(typeState)
@@ -27,7 +26,7 @@ const App: React.FC<AppProps> = ({ initialType = 'top' }) => {
   const prefetchTypes = () => {
     const { prefetch } = require('quicklink')
 
-    TYPES.forEach(type => {
+    config.storyTypes.forEach((type: StoryType) => {
       if (type !== initialType) prefetch(`/api/stories/${type}`)
     })
   }
@@ -48,4 +47,4 @@ const App: React.FC<AppProps> = ({ initialType = 'top' }) => {
   return <StoryList stories={stories} count={count} />
 }
 
-export default App
+export default AppContainer

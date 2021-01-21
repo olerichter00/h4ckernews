@@ -1,5 +1,6 @@
 import React from 'react'
 import Truncate from 'react-truncate'
+import PreloadedLink from '../../elements/preloadedLink'
 import StoryMeta from './storyMeta'
 
 export type StoryContentProps = {
@@ -29,11 +30,14 @@ const StoryContent: React.FC<StoryContentProps> = ({
 }) => {
   return (
     <div className="flex flex-col justify-between ml-3 mr-4 mt-4 h-full text-tiny leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full">
-      <div className="text-neutral hover:text-primary text-base font-bold leading-tight transition-all sm:text-lg sm:font-semibold">
+      <PreloadedLink
+        url={url}
+        className="text-neutral hover:text-primary text-base font-bold leading-tight transition-all sm:text-lg sm:font-semibold"
+      >
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}
         </Truncate>
-      </div>
+      </PreloadedLink>
       <div className="flex flex-col-reverse sm:flex-col sm:pt-1">
         <StoryMeta
           url={url}

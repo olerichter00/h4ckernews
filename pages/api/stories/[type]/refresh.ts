@@ -1,7 +1,7 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
 import { withTimeout } from '../../../../lib/utils/timeoutHelper'
-import dbConnect from '../../../../lib/utils/dbConnect'
+import dbConnect from '../../../../lib/database/dbConnect'
 import { StoryType } from '../../../../lib/types'
 import updateStories from '../../../../lib/services/updateStories'
 import validateType from '../../../../lib/validator/storyTypeValidator'

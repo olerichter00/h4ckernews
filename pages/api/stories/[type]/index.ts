@@ -1,9 +1,9 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
-import dbConnect from '../../../../lib/utils/dbConnect'
+import dbConnect from '../../../../lib/database/dbConnect'
 import storyCollections from '../../../../lib/collections/stories'
 import { StoryType, Story } from '../../../../lib/types'
-import serializeStories from '../../../../lib/serializer/storySerializer'
+import { serializeStories } from '../../../../lib/serializer/storySerializer'
 import validateType from '../../../../lib/validator/storyTypeValidator'
 import config from '../../../../lib/config'
 

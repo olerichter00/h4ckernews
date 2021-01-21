@@ -1,10 +1,10 @@
 import { createMocks } from 'node-mocks-http'
+import config from '../../../lib/config'
+import { StoryType } from '../../../lib/types'
 import getStories from '../../../pages/api/stories/[type]/index'
 
-const TYPES = ['top', 'show', 'ask']
-
 describe('/api/stories/[type]', () => {
-  TYPES.forEach(type => {
+  config.storyTypes.forEach((type: StoryType) => {
     test('returns stories', async () => {
       const { req, res } = buildMocks(type)
 

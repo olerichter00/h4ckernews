@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
 import { CookiesProvider } from 'react-cookie'
 
-import Layout from '../components/layout'
+import Layout from '../components/layouts/layout'
 import '../styles/globals.css'
 
 type MyAppProps = {

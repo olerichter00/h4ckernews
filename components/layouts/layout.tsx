@@ -1,7 +1,7 @@
 import React, { ReactChildren, ReactChild } from 'react'
 
-import Navigation from './navigation'
-import useColorScheme from '../hooks/useColorScheme'
+import Navigation from '../features/navigation/navigation'
+import useColorScheme from '../../hooks/useColorScheme'
 
 type LayoutProps = { children: ReactChildren | ReactChild }
 

@@ -1,5 +1,5 @@
 import { fetchStory } from '../clients/hackernewsClient'
-import metadataScraper from '../metadataScraper'
+import metadataScraper from '../services/metadataScraper'
 import { StoryMetadata, Story } from '../types'
 
 const geStory = async (id: string): Promise<Story> => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { RecoilRoot } from 'recoil'
 
-import StoryListComponent, { StoryListProps } from '../components/stories/storyList'
+import StoryListComponent, { StoryListProps } from '../components/features/stories/storyList'
 
 export default {
   title: 'StoryList',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'timeago.js'
 
-import PreloadedLink from '../common/preloadedLink'
+import PreloadedLink from '../../elements/preloadedLink'
 
 type StoryMetaProps = {
   url: string
@@ -13,9 +13,9 @@ type StoryMetaProps = {
 
 const StoryMeta: React.FC<StoryMetaProps> = ({ time, url, score, commentsUrl, commentsCount }) => {
   return (
-    <div className="flex flex-col-reverse sm:flex-col sm:mt-1">
+    <div className="flex flex-col-reverse text-sm sm:flex-col sm:mt-1">
       <div className="flex items-center m-auto mb-1 pb-0 pt-5 max-w-full text-gray-400 dark:text-gray-500 overflow-hidden sm:m-0 sm:pb-1 sm:pt-0">
-        <div className="flex flex-row flex-grow flex-nowrap mr-3 hover:text-primary overflow-hidden sm:flex-grow-0">
+        <div className="flex-grow mr-3 whitespace-nowrap overflow-ellipsis sm:flex-grow-0">
           {!!time && format(time * 1000)}
         </div>
 
@@ -38,7 +38,7 @@ const StoryMeta: React.FC<StoryMetaProps> = ({ time, url, score, commentsUrl, co
           </span>
           {score}
         </div>
-        <div className="flex flex-row flex-grow flex-nowrap mr-3 hover:text-primary overflow-hidden sm:flex-grow-0">
+        <div className="white-space: nowrap; flex flex-row flex-grow flex-nowrap mr-3 hover:text-primary overflow-hidden sm:flex-grow-0">
           <span className="m-auto mr-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,9 @@ const StoryMeta: React.FC<StoryMetaProps> = ({ time, url, score, commentsUrl, co
               />
             </svg>
           </span>
-          <span className="overflow-hidden overflow-ellipsis">{url && new URL(url).hostname}</span>
+          <span className="overflow-hidden overflow-ellipsis">
+            <a href={url}>{url && new URL(url).hostname}</a>
+          </span>
         </div>
 
         <PreloadedLink url={commentsUrl}>

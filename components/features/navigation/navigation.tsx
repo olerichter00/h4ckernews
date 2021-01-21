@@ -1,19 +1,20 @@
 import { useRecoilState } from 'recoil'
 import Headroom from 'react-headroom'
 
-import { filterState, storyTypeState, Type } from '../lib/store/recoil'
-import useColorScheme from '../hooks/useColorScheme'
+import { filterState, storyTypeState, Type } from '../../../lib/store/recoil'
+import useColorScheme from '../../../hooks/useColorScheme'
 import NavItem from './navItem'
+import config from '../../../lib/config'
 
 const Navigation: React.FC = () => {
-  const [type, setType] = useRecoilState(storyTypeState)
+  const [currentType, setCurrentType] = useRecoilState(storyTypeState)
   const [filter, setFilter] = useRecoilState(filterState)
 
   const [colorScheme, switchColorScheme] = useColorScheme()
 
   const showStories = (type: Type) => {
     window.history.pushState('', '', type)
-    setType(type)
+    setCurrentType(type)
     window.scrollTo(0, 0)
   }
 
@@ -26,19 +27,15 @@ const Navigation: React.FC = () => {
           }
         >
           <div className="flex items-center">
-            <NavItem onClick={() => showStories('top')} className="mb-1 mx-2">
+            <NavItem onClick={() => showStories('top')} className="mb-1 mx-2 w-9 cursor-pointer">
               <img src={'logo.svg'} className="h-5" />
             </NavItem>
 
-            <NavItem onClick={() => showStories('top')} active={type === 'top'}>
-              top
-            </NavItem>
-            <NavItem onClick={() => showStories('ask')} active={type === 'ask'}>
-              ask
-            </NavItem>
-            <NavItem onClick={() => showStories('show')} active={type === 'show'}>
-              show
-            </NavItem>
+            {config.storyTypes.map((type: Type) => (
+              <NavItem onClick={() => showStories(type)} active={currentType === type}>
+                {type}
+              </NavItem>
+            ))}
           </div>
 
           <div className="flex items-center">

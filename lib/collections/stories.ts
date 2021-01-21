@@ -1,4 +1,6 @@
 import * as mongoose from 'mongoose'
+import config from '../config'
+import { StoryType } from '../types'
 
 const StorySchema = new mongoose.Schema({
   index: { type: Number, required: true },
@@ -14,14 +16,20 @@ const StorySchema = new mongoose.Schema({
   time: { type: Number, required: true },
 })
 
-export const TopList = mongoose.models.TopList || mongoose.model('TopList', StorySchema)
-export const ShowList = mongoose.models.ShowList || mongoose.model('ShowList', StorySchema)
-export const AskList = mongoose.models.AskList || mongoose.model('AskList', StorySchema)
+// export const TopList = mongoose.models.TopList || mongoose.model('TopList', StorySchema)
+// export const ShowList = mongoose.models.ShowList || mongoose.model('ShowList', StorySchema)
+// export const AskList = mongoose.models.AskList || mongoose.model('AskList', StorySchema)
 
-const storyCollections = {
-  top: TopList,
-  show: ShowList,
-  ask: AskList,
-}
+const types = config.storyTypes
+
+const createCollectionName = (type: string) => type.charAt(0).toUpperCase() + type.slice(1) + 'List'
+
+const storyCollections = types.reduce((collection: any, type: StoryType) => {
+  const collectionName = createCollectionName(type)
+
+  collection[type] = mongoose.models[collectionName] || mongoose.model(collectionName, StorySchema)
+
+  return collection
+}, {})
 
 export default storyCollections
