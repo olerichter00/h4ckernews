@@ -1,5 +1,4 @@
-import React, { useReducer, SyntheticEvent } from 'react'
-
+import React, { useReducer } from 'react'
 import FallbackImage from './fallbackImage'
 import useIsMobile from '../../../hooks/useIsMobile'
 import FadeTransition from '../../elements/fadeTransition'

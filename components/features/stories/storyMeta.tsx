@@ -1,6 +1,5 @@
 import React from 'react'
 import { format } from 'timeago.js'
-
 import PreloadedLink from '../../elements/preloadedLink'
 
 type StoryMetaProps = {

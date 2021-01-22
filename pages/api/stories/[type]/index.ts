@@ -1,43 +1,28 @@
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
-
-import dbConnect from '../../../../lib/database/dbConnect'
-import storyCollections from '../../../../lib/collections/stories'
-import { StoryType, Story } from '../../../../lib/types'
+import { StoryType } from '../../../../lib/types'
 import { serializeStories } from '../../../../lib/serializer/storySerializer'
 import validateType from '../../../../lib/validator/storyTypeValidator'
-import config from '../../../../lib/config'
+import DIContainer from '../../../../lib/di-container'
+import StoryQuery from '../../../../lib/services/storyQuery'
+import { uniquifyStories } from '../../../../lib/utils/storiesHelper'
+import DBConnection from '../../../../lib/database/dbConnection'
 
 export default async (req: NowRequest, res: NowResponse) => {
-  const type = req.query.type
+  const storyQuery = DIContainer.resolve<StoryQuery>(StoryQuery)
+  const dbConnection = DIContainer.resolve<DBConnection>(DBConnection)
 
-  if (!validateType(type as StoryType))
-    return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
+  await dbConnection.connect()
 
-  await dbConnect()
+  const type = req.query.type as StoryType
 
-  const collection = await storyCollections[type as StoryType]
+  if (!validateType(type)) return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
 
-  let stories = await collection.find({ index: { $lte: config.maxStories } }).sort({ index: 1 })
-
-  stories = uniquifyStories(stories)
+  let stories = await storyQuery.getStories(type)
 
   res.setHeader('Cache-Control', 'public, s-max-age=900')
   res.status(Status.OK)
   res.json({
-    count: stories.length,
-    data: serializeStories(stories as Story[]),
+    data: serializeStories(uniquifyStories(stories)),
   })
-}
-
-const uniquifyStories = (stories: Story[]): Story[] => {
-  const uniquifiedStories = []
-
-  for (const story of stories) {
-    if (uniquifiedStories.map(story => story.id).includes(story.id)) continue
-
-    uniquifiedStories.push(story)
-  }
-
-  return uniquifiedStories
 }

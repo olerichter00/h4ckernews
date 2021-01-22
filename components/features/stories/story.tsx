@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react'
-
 import { Story as TStory } from '../../../lib/types'
 import StoryImage from './storyImage'
 import StoryContent from './storyContent'

@@ -7,10 +7,12 @@ import ErrorMessage from '../../elements/errorMessage'
 import Story from './story'
 import { filterState } from '../../../lib/store/recoil'
 import { Story as TStory } from '../../../lib/types'
+
 export type StoryListProps = {
   stories: Loadable<TStory[]>
   count: number
 }
+
 const StoryList: React.FC<StoryListProps> = ({ stories, count }) => {
   const filter = useRecoilValue(filterState)
 

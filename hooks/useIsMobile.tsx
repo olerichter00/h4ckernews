@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import throttle from 'lodash.throttle'
-
 import config from '../lib/config'
 
 const useIsMobile = (): boolean => {
