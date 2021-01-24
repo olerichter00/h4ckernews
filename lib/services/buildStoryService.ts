@@ -1,14 +1,14 @@
 import { inject, injectable } from 'inversify'
 import HackernewsClient from '../clients/hackernewsClient'
-import MetadataScraper from './metadataScraper'
+import MetadataService from './metadataService'
 import { StoryMetadata, Story } from '../types'
 
 @injectable()
-class StoryBuilder {
-  @inject(HackernewsClient) protected hackernewsClient: HackernewsClient
-  @inject(MetadataScraper) protected metadataScraper: MetadataScraper
+class BuildStoryService {
+  @inject(HackernewsClient) private readonly hackernewsClient: HackernewsClient
+  @inject(MetadataService) private readonly metadataService: MetadataService
 
-  public getStory = async (id: string): Promise<Story> => {
+  public buildStory = async (id: string): Promise<Story> => {
     const story = await this.hackernewsClient.fetchStory(id)
     const metadata = (await this.getMetadata(id, story.url, story.title.split(' '))) || {}
 
@@ -24,7 +24,7 @@ class StoryBuilder {
       const itemUrl = `https://news.ycombinator.com/item?id=${id}`
       const storyUrl = String(url || itemUrl)
 
-      return await this.metadataScraper.scrape(storyUrl, keywords)
+      return await this.metadataService.scrape(storyUrl, keywords)
     } catch (error) {
       console.error(`Couldn not fetch metadata for story ${id}`)
 
@@ -33,4 +33,4 @@ class StoryBuilder {
   }
 }
 
-export default StoryBuilder
+export default BuildStoryService

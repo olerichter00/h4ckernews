@@ -2,7 +2,7 @@ import { injectable } from 'inversify'
 import sharp from 'sharp'
 
 @injectable()
-class ImageResizer {
+class ImageService {
   public resize = async (imageArrayBuffer: ArrayBuffer) => {
     const imageBuffer = Buffer.from(await imageArrayBuffer)
 
@@ -10,4 +10,4 @@ class ImageResizer {
   }
 }
 
-export default ImageResizer
+export default ImageService

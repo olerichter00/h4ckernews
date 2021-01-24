@@ -1,23 +1,34 @@
 import 'reflect-metadata'
 import { Container } from 'inversify'
 import HackernewsClient from './clients/hackernewsClient'
-import StoryCollections from './collections/storyCollections'
-import StoryBuilder from './services/storyBuilder'
-import MetadataScraper from './services/metadataScraper'
-import StoryUpdater from './services/storyUpdater'
-import StoryQuery from './services/storyQuery'
+import BuildStoryService from './services/buildStoryService'
+import MetadataService from './services/metadataService'
+import UpdateService from './services/updateService'
+import QueryService from './services/queryService'
 import DBConnection from './database/dbConnection'
-import ImageResizer from './services/imageResizer'
+import ImageService from './services/imageService'
+import StoryRepository from './repositories/storyRepository'
+import StorySerializer from './serializer/storySerializer'
 
 const DIContainer = new Container()
 
-DIContainer.bind<StoryCollections>(StoryCollections).toSelf()
-DIContainer.bind<StoryUpdater>(StoryUpdater).toSelf()
-DIContainer.bind<StoryBuilder>(StoryBuilder).toSelf()
-DIContainer.bind<HackernewsClient>(HackernewsClient).toSelf()
-DIContainer.bind<MetadataScraper>(MetadataScraper).toSelf()
-DIContainer.bind<StoryQuery>(StoryQuery).toSelf()
-DIContainer.bind<DBConnection>(DBConnection).toSelf()
-DIContainer.bind<ImageResizer>(ImageResizer).toSelf()
+// DB Connection
+DIContainer.bind<DBConnection>(DBConnection).toSelf().inSingletonScope()
+
+// Clients
+DIContainer.bind<HackernewsClient>(HackernewsClient).toSelf().inSingletonScope()
+
+// Repositories
+DIContainer.bind<StoryRepository>(StoryRepository).toSelf().inSingletonScope()
+
+// Services
+DIContainer.bind<UpdateService>(UpdateService).toSelf().inSingletonScope()
+DIContainer.bind<QueryService>(QueryService).toSelf().inSingletonScope()
+DIContainer.bind<BuildStoryService>(BuildStoryService).toSelf().inSingletonScope()
+DIContainer.bind<MetadataService>(MetadataService).toSelf().inSingletonScope()
+DIContainer.bind<ImageService>(ImageService).toSelf().inSingletonScope()
+
+// Serializer
+DIContainer.bind<StorySerializer>(StorySerializer).toSelf().inSingletonScope()
 
 export default DIContainer

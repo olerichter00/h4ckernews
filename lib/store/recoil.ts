@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil'
 
 import config from '../config'
-import { Story } from '../types'
+import { Story, StoryType } from '../types'
 
 export const forceUpdateState = atom({
   key: 'forceUpdateState',
@@ -22,7 +22,7 @@ export const storyTypeState = selector({
   key: 'storyTypeState',
   get: ({ get }) => get(typeState),
   set: ({ set, get }, newValue) => {
-    set(typeState, newValue)
+    set(typeState, newValue as StoryType)
     set(storyCountState, config.pageSize)
     set(forceUpdateState, get(forceUpdateState) + 1)
   },

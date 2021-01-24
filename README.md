@@ -34,6 +34,7 @@
 - [Quicklink](https://github.com/GoogleChromeLabs/quicklink)
 - [Headroom.js](https://wicky.nillia.ms/headroom.js/)
 - [mongoose](https://mongoosejs.com/)
+- [InversifyJS](https://inversify.io/)
 
 ## Features
 

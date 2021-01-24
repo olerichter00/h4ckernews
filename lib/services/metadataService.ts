@@ -3,7 +3,7 @@ import pageMetaScraper from 'page-meta-scraper'
 import config from '../config'
 
 @injectable()
-class MetadataScraper {
+class MetadataService {
   constructor() {
     this.configure()
   }
@@ -32,4 +32,4 @@ class MetadataScraper {
   private isDevEnvironment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 }
 
-export default MetadataScraper
+export default MetadataService
