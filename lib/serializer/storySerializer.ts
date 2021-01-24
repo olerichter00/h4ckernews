@@ -3,7 +3,7 @@ import { Story } from '../types'
 
 @injectable()
 class StorySerializer {
-  public serializeStory = (story: Story) => ({
+  public serializeStory = (story: Story & any): Story => ({
     title: story.title,
     url: story.url,
     score: story.score,
@@ -15,7 +15,7 @@ class StorySerializer {
     time: story.time,
   })
 
-  public serializeStories = (stories: Story[]) => stories.map(this.serializeStory)
+  public serializeStories = (stories: (Story & any)[]): Story[] => stories.map(this.serializeStory)
 }
 
 export default StorySerializer
