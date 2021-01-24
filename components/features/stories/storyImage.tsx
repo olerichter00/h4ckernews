@@ -35,7 +35,7 @@ const StoryImage: React.FC<StoryImageProps> = ({
   )}`
 
   // Hack to load high resolution ycombinator images
-  if (imageUrls[0] && imageUrls[0].startsWith('https://news.ycombinator.com'))
+  if (imageUrls[0]?.startsWith('https://news.ycombinator.com'))
     imageUrl =
       'https://www.workatastartup.com/assets/ycombinator-logo-b603b0a270e12b1d42b7cca9d4527a9b206adf8293a77f9f3e8b6cb542fcbfa7.png'
 

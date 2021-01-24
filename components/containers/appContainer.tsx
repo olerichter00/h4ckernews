@@ -11,9 +11,10 @@ import {
 } from '../../lib/store/recoil'
 import config from '../../lib/config'
 import { STORY_TYPES } from '../../lib/utils/constants'
+import { StoryType } from '../../lib/types'
 
 type AppProps = {
-  initialType?: string
+  initialType?: StoryType
 }
 
 const AppContainer: React.FC<AppProps> = ({ initialType = 'top' }) => {
