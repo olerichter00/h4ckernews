@@ -1,11 +1,12 @@
+import 'reflect-metadata'
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
-import { withTimeout } from '../../../../lib/utils/timeoutHelper'
-import { StoryType } from '../../../../lib/types'
-import validateType from '../../../../lib/validator/storyTypeValidator'
-import DIContainer from '../../../../lib/di-container'
-import UpdateService from '../../../../lib/services/updateService'
-import DBConnection from '../../../../lib/database/dbConnection'
+import { withTimeout } from 'lib/utils/timeoutHelper'
+import { StoryType } from 'lib/types'
+import validateType from 'lib/validator/storyTypeValidator'
+import DIContainer from 'lib/di-container'
+import UpdateService from 'lib/services/updateService'
+import DBConnection from 'lib/database/dbConnection'
 
 const TIMEOUT = 6000
 

@@ -1,5 +1,5 @@
-import { StoryType } from '../types'
-import { STORY_TYPES } from '../utils/constants'
+import { StoryType } from 'lib/types'
+import { STORY_TYPES } from 'lib/utils/constants'
 
 const validateType = (type: StoryType): boolean =>
   typeof type === 'string' && STORY_TYPES.includes(type)

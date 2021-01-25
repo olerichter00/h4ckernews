@@ -1,12 +1,13 @@
+import 'reflect-metadata'
 import Status from 'http-status-codes'
 import { NowRequest, NowResponse } from '@vercel/node'
-import { StoryType } from '../../../../lib/types'
-import StorySerializer from '../../../../lib/serializer/storySerializer'
-import validateType from '../../../../lib/validator/storyTypeValidator'
-import DIContainer from '../../../../lib/di-container'
-import QueryService from '../../../../lib/services/queryService'
-import { uniquifyStories } from '../../../../lib/utils/storiesHelper'
-import DBConnection from '../../../../lib/database/dbConnection'
+import { StoryType } from 'lib/types'
+import StorySerializer from 'lib/serializer/storySerializer'
+import validateType from 'lib/validator/storyTypeValidator'
+import DIContainer from 'lib/di-container'
+import QueryService from 'lib/services/queryService'
+import { uniquifyStories } from 'lib/utils/storiesHelper'
+import DBConnection from 'lib/database/dbConnection'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const dbConnection = DIContainer.resolve<DBConnection>(DBConnection)

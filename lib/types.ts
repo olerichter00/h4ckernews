@@ -2,6 +2,7 @@ export type StoryBase = {
   title: string
   url: string
   score: number
+  text: string
   id: string
   descendants: number
   time: number

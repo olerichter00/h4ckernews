@@ -1,6 +1,6 @@
 import { injectable } from 'inversify'
 import pageMetaScraper from 'page-meta-scraper'
-import config from '../config'
+import config from 'lib/config'
 
 @injectable()
 class MetadataService {

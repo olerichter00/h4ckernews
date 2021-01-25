@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify'
-import HackernewsClient from '../clients/hackernewsClient'
-import MetadataService from './metadataService'
+import HackernewsClient from 'lib/clients/hackernewsClient'
+import MetadataService from 'lib/services/metadataService'
 import { StoryMetadata, Story } from '../types'
 
 @injectable()

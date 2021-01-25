@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { injectable } from 'inversify'
-import config from '../config'
+import config from 'lib/config'
 
 @injectable()
 class DBConnection {

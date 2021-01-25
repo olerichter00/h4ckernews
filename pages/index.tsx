@@ -1,4 +1,4 @@
-import App from '../components/containers/appContainer'
+import App from 'components/containers/appContainer'
 
 const Home = () => {
   return <App />

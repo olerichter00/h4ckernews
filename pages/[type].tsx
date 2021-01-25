@@ -1,6 +1,6 @@
-import App from '../components/containers/appContainer'
-import { StoryType } from '../lib/types'
-import { STORY_TYPES } from '../lib/utils/constants'
+import App from 'components/containers/appContainer'
+import { StoryType } from 'lib/types'
+import { STORY_TYPES } from 'lib/utils/constants'
 
 type TypePageProps = { type: StoryType }
 

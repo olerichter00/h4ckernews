@@ -1,6 +1,6 @@
 import { injectable } from 'inversify'
-import Story from '../models/story'
-import { Story as IStory } from '../types'
+import Story from 'lib/models/story'
+import { Story as IStory } from 'lib/types'
 
 @injectable()
 class StoryRepository {

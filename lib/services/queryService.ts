@@ -1,7 +1,7 @@
 import { injectable, inject } from 'inversify'
-import HackernewsClient from '../clients/hackernewsClient'
-import { StoryType } from '../types'
-import StoryRepository from '../repositories/storyRepository'
+import HackernewsClient from 'lib/clients/hackernewsClient'
+import { StoryType } from 'lib/types'
+import StoryRepository from 'lib/repositories/storyRepository'
 
 @injectable()
 class QueryService {

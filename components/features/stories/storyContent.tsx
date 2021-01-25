@@ -8,7 +8,7 @@ export type StoryContentProps = {
   descriptionLines: number
   onTruncateTitle: (isTruncated: boolean) => void
   title: string
-  description: string
+  description?: string
   url: string
   score: number
   commentsUrl: string

@@ -1,10 +1,11 @@
 import { injectable } from 'inversify'
-import { Story } from '../types'
+import { Story } from 'lib/types'
 
 @injectable()
 class StorySerializer {
   public serializeStory = (story: Story & any): Story => ({
     title: story.title,
+    text: story.text,
     url: story.url,
     score: story.score,
     id: story.id,

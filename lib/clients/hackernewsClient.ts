@@ -1,6 +1,6 @@
 import { injectable } from 'inversify'
-import config from '../config'
-import { StoryBase, StoryType } from '../types'
+import config from 'lib/config'
+import { StoryBase, StoryType } from 'lib/types'
 @injectable()
 class HackernewsClient {
   fetchStoryIds = async (type: StoryType): Promise<Array<string>> => {

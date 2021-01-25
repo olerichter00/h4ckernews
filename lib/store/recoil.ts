@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil'
 
-import config from '../config'
-import { Story, StoryType } from '../types'
+import config from 'lib/config'
+import { Story, StoryType } from 'lib/types'
 
 export const forceUpdateState = atom({
   key: 'forceUpdateState',

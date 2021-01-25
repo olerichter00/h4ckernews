@@ -16,8 +16,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "types": ["reflect-metadata", "jest"],
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "baseUrl": "."
   },
+
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts_", "**/*.ts", "**/*.tsx", "jest.setup.ts", "scripts/refreshStories.ts"]
 }

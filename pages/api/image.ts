@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
-import DIContainer from '../../lib/di-container'
-import ImageService from '../../lib/services/imageService'
-import MetadataService from '../../lib/services/metadataService'
+import DIContainer from 'lib/di-container'
+import ImageService from 'lib/services/imageService'
+import MetadataService from 'lib/services/metadataService'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const metadataService = DIContainer.resolve<MetadataService>(MetadataService)

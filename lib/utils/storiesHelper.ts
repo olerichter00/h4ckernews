@@ -1,4 +1,4 @@
-import { Story } from '../types'
+import { Story } from 'lib/types'
 
 export const uniquifyStories = (stories: Story[]): Story[] => {
   const uniquifiedStories = []

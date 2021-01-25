@@ -1,9 +1,9 @@
 import { inject, injectable } from 'inversify'
-import HackernewsClient from '../clients/hackernewsClient'
-import { StoryType } from '../types'
-import config from '../config'
-import BuildStoryService from './buildStoryService'
-import StoryRepository from '../repositories/storyRepository'
+import HackernewsClient from 'lib/clients/hackernewsClient'
+import { StoryType } from 'lib/types'
+import config from 'lib/config'
+import BuildStoryService from 'lib/services/buildStoryService'
+import StoryRepository from 'lib/repositories/storyRepository'
 
 @injectable()
 class UpdateService {
