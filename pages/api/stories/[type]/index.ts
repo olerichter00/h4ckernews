@@ -27,7 +27,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   // Uniquify stories
   stories = uniquifyStories(stories)
 
-  res.setHeader('Cache-Control', 'public, s-max-age=900')
+  res.setHeader('Cache-Control', 'max-age=1800, s-maxage=1800')
   res.status(Status.OK)
   res.json({
     data: serializer.serializeStories(stories),
