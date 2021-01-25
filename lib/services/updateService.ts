@@ -11,10 +11,10 @@ class UpdateService {
   @inject(HackernewsClient) private readonly hackernewsClient: HackernewsClient
   @inject(StoryRepository) private readonly storyRepository: StoryRepository
 
-  public update = async (type: StoryType) => {
+  public update = async (type: StoryType, max: number = config.maxStories) => {
     const storyIds = await this.hackernewsClient.fetchStoryIds(type)
 
-    return Promise.allSettled(storyIds.slice(0, config.maxStories).map(this.saveStory))
+    return Promise.allSettled(storyIds.slice(0, max).map(this.saveStory))
   }
 
   private saveStory = async (id: string) => {
