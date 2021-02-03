@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently  \"next dev\" \"open http://localhost:3000\"",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -15,8 +15,7 @@
     "lint:fix": "prettier --write .",
     "deploy": "vercel --prod",
     "deploy:staging": "vercel",
-    "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "storybook": "start-storybook -p 6006 --no-dll"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.12.12",
@@ -59,6 +58,7 @@
     "autoprefixer": "^9",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.1.0",
+    "concurrently": "^5.3.0",
     "inversify": "^5.0.5",
     "jest": "^26.6.3",
     "node-mocks-http": "^1.10.0",
