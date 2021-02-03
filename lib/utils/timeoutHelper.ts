@@ -11,10 +11,10 @@ export const timeoutFetch = async (
   return response
 }
 
-export const withTimeout = (promise: Promise<any>, timeout: number) => {
+export const withTimeout = (promises: Promise<any>[], timeout: number) => {
   const timer = asyncTimeout(timeout)
 
-  return Promise.race([promise, timer])
+  return Promise.race([Promise.allSettled(promises), timer])
 }
 
 export const createTimeoutFetch = (timeout: number) => (

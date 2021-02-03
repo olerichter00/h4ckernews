@@ -6,7 +6,6 @@ import StorySerializer from 'lib/serializer/storySerializer'
 import validateType from 'lib/validator/storyTypeValidator'
 import DIContainer from 'lib/di-container'
 import QueryService from 'lib/services/queryService'
-import { uniquifyStories } from 'lib/utils/storiesHelper'
 import DBConnection from 'lib/database/dbConnection'
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -22,12 +21,9 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (!validateType(type)) return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
 
   // Fetch stories
-  let stories = await queryService.getStories(type)
+  const stories = await queryService.getStories(type)
 
-  // Uniquify stories
-  stories = uniquifyStories(stories)
-
-  res.setHeader('Cache-Control', 'max-age=1800, s-maxage=1800')
+  res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
   res.status(Status.OK)
   res.json({
     data: serializer.serializeStories(stories),

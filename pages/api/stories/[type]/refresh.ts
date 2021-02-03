@@ -25,7 +25,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (!validateType(type)) return res.status(Status.BAD_REQUEST).json({ error: 'Wrong type.' })
 
   // Update stories for type
-  await withTimeout(updateService.update(type), TIMEOUT)
+  await withTimeout([updateService.update(type)], TIMEOUT)
 
   res.status(Status.OK).json({
     status: 'ok',
