@@ -1,7 +1,7 @@
 import React, { ReactChildren, ReactChild } from 'react'
 
 type PreloadedLinkProps = {
-  children: ReactChildren | ReactChild
+  children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[]
   url: string
   [x: string]: any
 }

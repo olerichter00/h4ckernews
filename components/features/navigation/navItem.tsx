@@ -10,8 +10,9 @@ type NavItemProps = {
 const NavItem: React.FC<NavItemProps> = ({ active = false, onClick, children, ...rest }) => {
   return (
     <a
+      href="#"
       onClick={onClick}
-      className={`focus:outline-none cursor-pointer mx-2 ${active ? 'text-primary' : ''}`}
+      className={`cursor-pointer ml-2 mr-1 sm:ml-2 sm:mr-2 ${active ? 'text-primary' : ''}`}
       {...rest}
     >
       {children}

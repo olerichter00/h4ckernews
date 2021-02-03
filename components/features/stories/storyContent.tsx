@@ -29,10 +29,10 @@ const StoryContent: React.FC<StoryContentProps> = ({
   time,
 }) => {
   return (
-    <div className="flex flex-col justify-between ml-3 mr-4 mt-4 h-full text-tiny leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full">
+    <div className="flex flex-col justify-between mt-4 mx-1 h-full text-tiny leading-normal sm:mr-3 sm:mt-0 sm:mx-0 sm:pl-4 sm:pr-0 sm:pt-0 sm:w-full">
       <PreloadedLink
         url={url}
-        className="text-neutral hover:text-primary text-base font-bold leading-tight transition-all sm:text-lg sm:font-semibold"
+        className="text-neutral mb-2 group-hover:text-primary text-base font-bold leading-tight transition-all sm:mb-0 sm:text-lg sm:font-semibold"
       >
         <Truncate lines={titleLines} ellipsis={'...'} onTruncate={onTruncateTitle}>
           {title}

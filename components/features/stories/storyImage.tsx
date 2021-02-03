@@ -43,11 +43,11 @@ const StoryImage: React.FC<StoryImageProps> = ({
     <FadeTransition show={loaded} duration={0}>
       <PreloadedLink url={url}>
         <div
-          className="flex flex-none flex-col justify-center max-h-48 dark:bg-gray-100 bg-gray-900 rounded-t-xl hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32 sm:rounded-md"
+          className="flex flex-none flex-col justify-center max-h-48 dark:bg-gray-100 bg-gray-900 rounded-sm group-hover:opacity-75 overflow-hidden transition-opacity sm:mb-0 sm:w-48 sm:h-32"
           style={{
             minWidth: '200px',
-            minHeight: isMobile ? '160px' : '138px',
-            maxHeight: isMobile ? '160px' : '240px',
+            minHeight: isMobile ? '180px' : '138px',
+            maxHeight: isMobile ? '180px' : '240px',
           }}
         >
           {failed ? (

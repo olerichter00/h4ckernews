@@ -7,6 +7,7 @@ import ErrorMessage from '../../elements/errorMessage'
 import Story from './story'
 import { filterState } from '../../../lib/store/recoil'
 import { Story as TStory } from '../../../lib/types'
+import NoStoriesMessage from 'components/elements/noStoriesMessage'
 
 export type StoryListProps = {
   stories: Loadable<TStory[]>
@@ -20,12 +21,9 @@ const StoryList: React.FC<StoryListProps> = ({ stories, count }) => {
 
   if (longLoading) return <Spinner />
 
-  if (
-    stories.state === 'hasError' ||
-    (stories.state === 'hasValue' && stories.contents?.length === 0)
-  )
-    return <ErrorMessage />
+  if (stories.state === 'hasError') return <ErrorMessage />
 
+  if (stories.state === 'hasValue' && stories.contents?.length === 0) return <NoStoriesMessage />
   return (
     <div
       className={`duration-500 transition-opacity sm:mx-3 ${loading ? 'opacity-0' : 'opacity-100'}`}

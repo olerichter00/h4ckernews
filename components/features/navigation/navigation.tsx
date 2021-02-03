@@ -6,11 +6,12 @@ import useColorScheme from '../../../hooks/useColorScheme'
 import NavItem from './navItem'
 import { STORY_TYPES } from '../../../lib/utils/constants'
 import { StoryType } from '../../../lib/types'
+import { useState } from 'react'
 
 const Navigation: React.FC = () => {
   const [currentType, setCurrentType] = useRecoilState(storyTypeState)
   const [filter, setFilter] = useRecoilState(filterState)
-
+  const [isPinned, setIsPinned] = useState(false)
   const [colorScheme, switchColorScheme] = useColorScheme()
 
   const showStories = (type: StoryType) => {
@@ -20,11 +21,20 @@ const Navigation: React.FC = () => {
   }
 
   return (
-    <Headroom upTolerance={10} downTolerance={10}>
-      <nav className="sticky z-10 top-0 dark:bg-gray-900 bg-white border-b border-gray-300 dark:border-gray-800">
+    <Headroom
+      upTolerance={10}
+      downTolerance={10}
+      onUnfix={() => setIsPinned(false)}
+      onPin={() => setIsPinned(true)}
+    >
+      <nav
+        className={`${
+          isPinned ? 'border-gray-100 dark:border-gray-800' : 'border-white dark:border-gray-900'
+        } border-b sticky z-10 top-0 bg-white dark:bg-gray-900`}
+      >
         <div
           className={
-            'py-4 px-3 max-w-3xl sm:px-3 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap'
+            'py-4 px-3 max-w-3xl sm:px-5 m-auto items-center justify-between text-xl sm:font-semibold flex flex-nowrap'
           }
         >
           <div className="flex items-center">

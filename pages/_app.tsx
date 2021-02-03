@@ -22,11 +22,13 @@ const MyApp: React.FC<MyAppProps> = ({ Component, pageProps }) => {
           <meta property="og:image" content="https://h4ckernews.com/favicon.png" />
           <meta name="description" content="A beautiful hackernews client." />
           <meta name="keywords" content="hackernews" />
+          <link rel="apple-touch-icon" href="favicon.png" />
+
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
           />
-          <link rel="icon" href="/favicon.png" />
+          <link rel="icon" href="favicon.png" />
           <link rel="manifest" href="/manifest.json" />
           <link href="/favicon.svg" rel="icon" type="image/png" sizes="16x16" />
           <link href="/favicon.svg" rel="icon" type="image/png" sizes="48x48" />
